@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CobblePedia.Views.CobblemonView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:CobblePedia.Views"
+    mc:Ignorable="d">
+
+  <Grid Style="{StaticResource PageGrid}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock x:Uid="Cobblemon"
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Style="{ThemeResource TitleTextBlockStyle}"
+               Margin="{ThemeResource TitleBarTitleMargin}"
+               AutomationProperties.HeadingLevel="Level1" />
+  </Grid>
+</Page>

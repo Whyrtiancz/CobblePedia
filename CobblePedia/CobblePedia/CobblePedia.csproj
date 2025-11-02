@@ -1,0 +1,101 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>CobblePedia</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <Nullable>enable</Nullable>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\SVG\Mewx880.svg" />
+    <None Remove="Assets\SVG\Pikachux880.svg" />
+    <None Remove="Styles\Cards.xaml" />
+    <None Remove="Styles\Pages.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CobblePedia.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6901" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251003001" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CobblePedia.Models\CobblePedia.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Tables.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Pages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Cards.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\CobblemonView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PokemonView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TrainerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TypeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+    <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>CobblePedia.ico</ApplicationIcon>
+  </PropertyGroup>
+</Project>
