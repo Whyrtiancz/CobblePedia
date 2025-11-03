@@ -7,8 +7,10 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal partial class SpeciesViewModel : ObservableObject
+    internal partial class PokemonViewModel : ObservableObject
     {
+        [ObservableProperty] private bool isImplemented;
+        [ObservableProperty] private bool isForm;
         [ObservableProperty] private int nationalPokedexNumber;
         [ObservableProperty] private string numero;
         [ObservableProperty] private string name;
@@ -21,10 +23,12 @@
 
         public ObservableCollection<SpriteViewModel> Sprites { get; set; }
 
-        [ObservableProperty] private SpeciesListViewModel preEvolution;
+        [ObservableProperty] private PokemonSimplifiedViewModel preEvolution;
 
-        [ObservableProperty] private int height;
-        [ObservableProperty] private int weight;
+        [ObservableProperty] private string height;
+        [ObservableProperty] private string heightIcon;
+        [ObservableProperty] private string weight;
+        [ObservableProperty] private string weightIcon;
 
         [ObservableProperty] private float maleRatio;
         [ObservableProperty] private int eggCycles;
@@ -54,9 +58,11 @@
 
         private Pokemon species;
 
-        public SpeciesViewModel(Pokemon source)
+        public PokemonViewModel(Pokemon source)
         {
             species = source;
+            isImplemented = species.Implemented;
+            isForm = species.IsForm;
             nationalPokedexNumber = source.NationalPokedexNumber;
             numero = "#" + nationalPokedexNumber.ToString("D4");
             name = "-";
@@ -96,8 +102,10 @@
                 Sprites.Add(new SpriteViewModel(SpriteViewModel.SpriteCategory.DefaultShiny, source.Picture.FrontShiny, source.Picture.BackShiny));
             }
 
-            height = species.Height;
-            weight = species.Weight;
+            height = string.Format("{0:F1} m.", species.Height / 10.0);
+            heightIcon = string.Format(Properties.Resources.PokemonHeightPicture, GetHeightIndex(species.Height));
+            weight = string.Format("{0:F1} kg.", species.Weight / 10.0);
+            weightIcon = string.Format(Properties.Resources.PokemonWeightPicture, GetWeightIndex(species.Weight));
 
             maleRatio = species.MaleRatio;
             eggCycles = species.EggCycles;
@@ -128,7 +136,7 @@
             {
                 if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
                 {
-                    preEvolution = new SpeciesListViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
+                    preEvolution = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
                 }
                 else
                 {
@@ -138,6 +146,25 @@
 
             SetLanguage("en");
         }
+
+        private int GetWeightIndex(int weight) => weight switch
+        {
+            < 320 => 1,
+            >= 320 and < 700 => 2,
+            >= 700 and < 900 => 3,
+            >= 900 and < 3200 => 4,
+            >= 3200 => 5
+        };
+
+        private int GetHeightIndex(int height) => height switch
+        {
+            < 10 => 1,
+            >= 10 and < 16 => 2,
+            >= 16 and < 19 => 3,
+            >= 19 and < 50 => 4,
+            >= 50 => 5
+        };
+
 
         internal void SetLanguage(string language)
         {

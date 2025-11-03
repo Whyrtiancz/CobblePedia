@@ -4,8 +4,10 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal partial class SpeciesListViewModel : ObservableObject
+    internal partial class PokemonSimplifiedViewModel : ObservableObject
     {
+        [ObservableProperty] private bool isImplemented;
+        [ObservableProperty] private bool isForm;
         [ObservableProperty] private int nationalPokedexNumber;
         [ObservableProperty] private string numero;
         [ObservableProperty] private string name;
@@ -16,11 +18,13 @@
         public TypeViewModel PrimaryType { get; private set; }
         public TypeViewModel SecondaryType { get; private set; }
 
-        private Pokemon species;
+        internal Pokemon species;
 
-        public SpeciesListViewModel(Pokemon source)
+        public PokemonSimplifiedViewModel(Pokemon source)
         {
             species = source;
+            isImplemented = species.Implemented;
+            isForm = species.IsForm;
 
             nationalPokedexNumber = species.NationalPokedexNumber;
             numero = "#" + nationalPokedexNumber.ToString("D4");

@@ -1,0 +1,22 @@
+  - cubone-alola
+  - exeggcute-alola
+  - koffing-galar
+  - pikachu-alola
+  - cyndaquil-hisui
+  - pichu-alola
+  - quilava-hisui
+  - mime-jr-galar
+  - dewott-hisui
+  - oshawott-hisui
+  - petilil-hisui
+  - rufflet-hisui
+  - bergmite-hisui
+  - goomy-hisui
+  - dartrix-hisui
+  - rowlet-hisui
+  - ogerpon-teal-tera
+  - ogerpon-wellspring-tera
+  - ogerpon-hearthflame-tera
+  - ogerpon-cornerstone-tera
+
+

@@ -36,8 +36,8 @@
 
         internal Sprite(JObject source)
         {
-            Name = JsonHelper.GetStringValue(source, "name");
             SpriteId = JsonHelper.GetIntValue(source, "id");
+            Name = JsonHelper.GetStringValue(source, "name");
 
             BackDefault = DownloadSprite((string)source.SelectToken("sprites.back_default"), "back_default");
             BackShiny = DownloadSprite((string)source.SelectToken("$.sprites.back_shiny"), "back_default_shiny");

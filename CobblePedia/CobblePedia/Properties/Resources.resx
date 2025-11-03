@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="PokemonHeightPicture" xml:space="preserve">
+    <value>/Assets/Physiques/Pokemon-Height-{0}.png</value>
+  </data>
   <data name="PokemonPicturePath" xml:space="preserve">
     <value>/Assets/Pokemon/{0}</value>
+  </data>
+  <data name="PokemonWeightPicture" xml:space="preserve">
+    <value>/Assets/Physiques/Pokemon-Weight-{0}.png</value>
   </data>
   <data name="TypeIconPath" xml:space="preserve">
     <value>/Assets/Types/{0}-Icon.png</value>

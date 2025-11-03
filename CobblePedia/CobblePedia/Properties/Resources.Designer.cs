@@ -61,6 +61,15 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Assets/Physiques/Pokemon-Height-{0}.png.
+        /// </summary>
+        internal static string PokemonHeightPicture {
+            get {
+                return ResourceManager.GetString("PokemonHeightPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Assets/Pokemon/{0}.
         /// </summary>
         internal static string PokemonPicturePath {
@@ -70,11 +79,11 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to /Assets/Physiques/Pokemon-Weight-{0}.png.
         /// </summary>
-        internal static string String1 {
+        internal static string PokemonWeightPicture {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("PokemonWeightPicture", resourceCulture);
             }
         }
         

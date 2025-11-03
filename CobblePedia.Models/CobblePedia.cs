@@ -1,5 +1,7 @@
 ﻿namespace CobblePedia.Models
 {
+    using System.Linq;
+
     using global::CobblePedia.Models.Cobblemon;
     using global::CobblePedia.Models.Utils;
 
@@ -20,6 +22,7 @@
         public Dictionary<string, Sprite> Sprites { get; private set; }
         public Dictionary<string, Pokemon> Pokemon { get; private set; }
         public Dictionary<string, Trainer> Trainers { get; private set; }
+        public Dictionary<string, Species> PokemonSpecies { get; private set; }
 
         private static CobblePedia? pedia;
 
@@ -173,6 +176,8 @@
 
         public void BuildData(string pathToCobblemon, string pathToRtcmod)
         {
+            this.PokemonSpecies = new Dictionary<string, Species>();
+
             FR.Clear();
             EN.Clear();
 
@@ -199,7 +204,18 @@
 
                 if (!Pokemon.ContainsKey(item.PreEvolutionSpeciesId))
                 {
-                    Console.WriteLine("  -> {0} / {1}", item.SpeciesId, item.PreEvolutionSpeciesId);
+                    Console.WriteLine("  -> \"{0}\" / \"EvolveTo\": \"{1}", item.SpeciesId, item.PreEvolutionSpeciesId);
+                }
+            }
+            Console.WriteLine("Pokemon Evolution - Invalid links");
+            foreach (Pokemon item in Pokemon.Values)
+            {
+                foreach (Evolution evolution in item.Evolutions)
+                {
+                    if (!Pokemon.ContainsKey(evolution.EvolveTo))
+                    {
+                        Console.WriteLine("  -> \"{0}\" / \"EvolveTo\": \"{1}", item.SpeciesId, evolution.EvolveTo);
+                    }
                 }
             }
         }
@@ -373,7 +389,7 @@
 
             Pokemon.Clear();
 
-            List<Pokemon> items = new List<Pokemon>();
+            List<Species> items = new List<Species>();
             string searchPath = Path.Combine(basePath, CobblemonJar.Paths[1]);
             foreach (string path in Directory.EnumerateDirectories(searchPath))
             {
@@ -381,12 +397,26 @@
                 {
                     string jsonContent = File.ReadAllText(file);
                     JObject source = JObject.Parse(jsonContent);
-                    Pokemon species = new Pokemon(source);
+                    Species species = new Species(source);
                     items.Add(species);
                 }
             }
 
-            foreach (Pokemon item in items.OrderBy(item => item.NationalPokedexNumber).ToList<Pokemon>())
+            List<Pokemon> ordered = new List<Pokemon>();
+            foreach (Species item in items)
+            {
+                Pokemon pokemon = new Pokemon(item);
+                ordered.Add(pokemon);
+
+                int i = 0;
+                foreach (Species form in item.Forms)
+                {
+                    pokemon = new Pokemon(item, form, ++i);
+                    ordered.Add(pokemon);
+                }
+            }
+
+            foreach (Pokemon item in ordered.OrderBy(item => item.NationalPokedexNumber).ToList<Pokemon>())
             {
                 Pokemon.Add(item.SpeciesId, item);
             }

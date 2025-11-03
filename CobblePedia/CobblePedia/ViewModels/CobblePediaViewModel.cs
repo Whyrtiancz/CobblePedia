@@ -14,11 +14,12 @@
         public ObservableCollection<TypeExtendedViewModel> TypeViewModels { get; }
         public ObservableCollection<NatureViewModel> NatureViewModels { get; }
         public ObservableCollection<MoveViewModel> MoveViewModels { get; }
-        public ObservableCollection<SpeciesViewModel> SpeciesViewModels { get; }
+        public ObservableCollection<PokemonSimplifiedViewModel> PokemonViewModels { get; }
         public ObservableCollection<TrainerViewModel> TrainerViewModels { get; }
 
         [ObservableProperty] private TypeExtendedViewModel selectedType;
-        [ObservableProperty] private SpeciesViewModel selectedSpecies;
+        [ObservableProperty] private PokemonSimplifiedViewModel selectedSpecies;
+        [ObservableProperty] private PokemonViewModel selectedPokemon;
         [ObservableProperty] private TrainerViewModel selectedTrainer;
 
         [ObservableProperty] private int maxBaseHP;
@@ -28,11 +29,13 @@
         [ObservableProperty] private int maxBaseSpecialDefence;
         [ObservableProperty] private int maxBaseSpeed;
         [ObservableProperty] private int maxBaseTotal;
+        [ObservableProperty] private int maxHeight;
+        [ObservableProperty] private int maxWeight;
 
         internal Dictionary<string, GenerationViewModel> generations;
         internal Dictionary<string, TypeExtendedViewModel> types;
         private Dictionary<string, MoveViewModel> moves;
-        private Dictionary<string, SpeciesViewModel> species;
+        private Dictionary<string, PokemonSimplifiedViewModel> pokemon;
         private Dictionary<string, TrainerViewModel> trainers;
 
         private static CobblePediaViewModel model;
@@ -54,7 +57,7 @@
             generations = new Dictionary<string, GenerationViewModel>();
             types = new Dictionary<string, TypeExtendedViewModel>();
             moves = new Dictionary<string, MoveViewModel>();
-            species = new Dictionary<string, SpeciesViewModel>();
+            pokemon = new Dictionary<string, PokemonSimplifiedViewModel>();
             trainers = new Dictionary<string, TrainerViewModel>();
 
             foreach (Generation item in CobblePedia.Pedia.Generations.Values)
@@ -69,9 +72,9 @@
             {
                 moves.Add(item.MoveId, new MoveViewModel(item));
             }
-            foreach (Pokemon item in CobblePedia.Pedia.Pokemon.Values.SkipLast(1000))
+            foreach (Pokemon item in CobblePedia.Pedia.Pokemon.Values)
             {
-                species.Add(item.SpeciesId, new SpeciesViewModel(item));
+                pokemon.Add(item.SpeciesId, new PokemonSimplifiedViewModel(item));
             }
             foreach (Trainer item in CobblePedia.Pedia.Trainers.Values)
             {
@@ -85,17 +88,32 @@
             maxBaseSpecialDefence = CobblePedia.Pedia.Pokemon.Values.Max(item => item.BaseSpecialDefence);
             maxBaseSpeed = CobblePedia.Pedia.Pokemon.Values.Max(item => item.BaseSpeed);
             maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Max(item => item.BaseTotal);
+            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Max(item => item.BaseTotal);
+            maxHeight = CobblePedia.Pedia.Pokemon.Values.Max(item => item.Height);
+            maxWeight = CobblePedia.Pedia.Pokemon.Values.Max(item => item.Weight);
 
             this.MoveViewModels = new ObservableCollection<MoveViewModel>(moves.Values);
             this.GenerationViewModels = new ObservableCollection<GenerationViewModel>(generations.Values);
             this.TypeViewModels = new ObservableCollection<TypeExtendedViewModel>(types.Values);
-            this.SpeciesViewModels = new ObservableCollection<SpeciesViewModel>(species.Values);
+            this.PokemonViewModels = new ObservableCollection<PokemonSimplifiedViewModel>(pokemon.Values.Where(item => !item.IsForm));
             this.TrainerViewModels = new ObservableCollection<TrainerViewModel>(trainers.Values);
 
             this.NatureViewModels = new ObservableCollection<NatureViewModel>();
             foreach (Nature item in CobblePedia.Pedia.Natures.Values)
             {
                 this.NatureViewModels.Add(new NatureViewModel(item));
+            }
+
+            PropertyChanged += CobblePediaViewModel_PropertyChanged;
+        }
+
+        private void CobblePediaViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "SelectedSpecies":
+                    SelectedPokemon = new PokemonViewModel(SelectedSpecies.species);
+                    break;
             }
         }
 
@@ -127,7 +145,7 @@
             {
                 item.SetLanguage(language);
             }
-            foreach (SpeciesViewModel item in this.SpeciesViewModels)
+            foreach (PokemonSimplifiedViewModel item in this.PokemonViewModels)
             {
                 item.SetLanguage(language);
             }

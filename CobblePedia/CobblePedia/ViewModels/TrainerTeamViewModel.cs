@@ -6,7 +6,7 @@
 
     internal partial class TrainerTeamViewModel : ObservableObject
     {
-        [ObservableProperty] private SpeciesViewModel species;
+        [ObservableProperty] private PokemonViewModel species;
 
         [ObservableProperty] private MoveViewModel move1;
         [ObservableProperty] private MoveViewModel move2;
@@ -21,7 +21,7 @@
         {
             team = source;
 
-            species = new SpeciesViewModel(CobblePedia.Pedia.Pokemon[team.SpeciesId]);
+            species = new PokemonViewModel(CobblePedia.Pedia.Pokemon[team.SpeciesId]);
             if (team.MoveSet.Count > 0)
             {
                 move1 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[0]]);
