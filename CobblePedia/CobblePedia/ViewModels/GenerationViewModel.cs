@@ -16,7 +16,7 @@
             generation = source;
             region = generation.Region;
             name = "-";
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

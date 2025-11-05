@@ -250,6 +250,38 @@
             EN.Add("SpriteDefaultShiny", "Shiny");
             EN.Add("SpriteMaleShiny", "Male Shiny");
             EN.Add("SpriteFemaletShiny", "Female Shiny");
+
+            FR.Add("EggGroup_amorphous", "Amorphe");
+            FR.Add("EggGroup_bug", "Insecte");
+            FR.Add("EggGroup_ditto", "Métamorphe");
+            FR.Add("EggGroup_dragon", "Dragon");
+            FR.Add("EggGroup_fairy", "Fée");
+            FR.Add("EggGroup_field", "Sol");
+            FR.Add("EggGroup_flying", "Vol");
+            FR.Add("EggGroup_grass", "Herbe");
+            FR.Add("EggGroup_human_like", "Humain");
+            FR.Add("EggGroup_mineral", "Roche");
+            FR.Add("EggGroup_monster", "Monstre");
+            FR.Add("EggGroup_undiscovered", "Non découvert");
+            FR.Add("EggGroup_water_1", "Eau 1");
+            FR.Add("EggGroup_water_2", "Eau 2");
+            FR.Add("EggGroup_water_3", "Eau 3");
+
+            EN.Add("EggGroup_amorphous", "Amorphous");
+            EN.Add("EggGroup_bug", "Bug");
+            EN.Add("EggGroup_ditto", "Ditto");
+            EN.Add("EggGroup_dragon", "Dragon");
+            EN.Add("EggGroup_fairy", "Fairy");
+            EN.Add("EggGroup_field", "Field");
+            EN.Add("EggGroup_flying", "Flying");
+            EN.Add("EggGroup_grass", "Grass");
+            EN.Add("EggGroup_human_like", "Human like");
+            EN.Add("EggGroup_mineral", "Mineral");
+            EN.Add("EggGroup_monster", "Monster");
+            EN.Add("EggGroup_undiscovered", "Undiscovered");
+            EN.Add("EggGroup_water_1", "Water 1");
+            EN.Add("EggGroup_water_2", "Water 2");
+            EN.Add("EggGroup_water_3", "Water 3");
         }
 
         private void LoadPokeAPI()

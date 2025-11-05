@@ -24,7 +24,7 @@
             increasedStat = nature.IncreasedStat;
             likesFlavor = nature.LikesFlavor;
 
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

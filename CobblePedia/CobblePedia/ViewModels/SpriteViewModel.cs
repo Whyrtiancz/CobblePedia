@@ -31,7 +31,7 @@
             frontSprite = string.Format(Properties.Resources.PokemonPicturePath, front);
             backSprite = string.Format(Properties.Resources.PokemonPicturePath, back);
 
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

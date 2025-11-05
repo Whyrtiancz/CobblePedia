@@ -23,7 +23,7 @@
       <ListView SelectionMode="Single" ItemsSource="{x:Bind ViewModel.TrainerViewModels}" 
         SelectedItem="{x:Bind ViewModel.SelectedTrainer, Mode=TwoWay}">
         <ListView.ItemTemplate>
-          <DataTemplate x:DataType="model:TrainerViewModel">
+          <DataTemplate x:DataType="model:TrainerExtendedViewModel">
             <TextBlock Text="{x:Bind Name, Mode=TwoWay}"
                     Style="{ThemeResource BaseTextBlockStyle}"
                     Margin="12,6,0,0"/>

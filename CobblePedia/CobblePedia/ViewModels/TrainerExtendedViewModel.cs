@@ -6,7 +6,7 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal partial class TrainerViewModel : ObservableObject
+    internal partial class TrainerExtendedViewModel : ObservableObject
     {
         [ObservableProperty] private string name;
         [ObservableProperty] private int battleCountTicks;
@@ -28,7 +28,7 @@
 
         private Trainer trainer;
 
-        public TrainerViewModel(Trainer source)
+        public TrainerExtendedViewModel(Trainer source)
         {
             trainer = source;
             name = source.TrainerId;
@@ -52,7 +52,7 @@
             Series = new ObservableCollection<string>(source.Series);
             RequiredDefeats = new ObservableCollection<string>(source.RequiredDefeats);
 
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

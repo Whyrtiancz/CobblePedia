@@ -7,8 +7,10 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal partial class PokemonViewModel : ObservableObject
+    internal partial class PokemonExtendedViewModel : ObservableObject
     {
+
+        #region General
         [ObservableProperty] private bool isImplemented;
         [ObservableProperty] private bool isForm;
         [ObservableProperty] private int nationalPokedexNumber;
@@ -16,31 +18,42 @@
         [ObservableProperty] private string name;
         [ObservableProperty] private string description;
         [ObservableProperty] private string frontDefault;
-
         public GenerationViewModel Generation { get; private set; }
-        public TypeViewModel PrimaryType { get; private set; }
-        public TypeViewModel SecondaryType { get; private set; }
-
+        public TypeSimplifiedViewModel PrimaryType { get; private set; }
+        public TypeSimplifiedViewModel SecondaryType { get; private set; }
         public ObservableCollection<SpriteViewModel> Sprites { get; set; }
+        #endregion General
 
-        [ObservableProperty] private PokemonSimplifiedViewModel preEvolution;
-
+        #region Physique
         [ObservableProperty] private string height;
         [ObservableProperty] private string heightIcon;
         [ObservableProperty] private string weight;
         [ObservableProperty] private string weightIcon;
+        #endregion Physique
 
+        #region Reproduction
         [ObservableProperty] private float maleRatio;
+        [ObservableProperty] private string ratio;
         [ObservableProperty] private int eggCycles;
+        [ObservableProperty] private string eggGroups;
+        #endregion Reproduction
 
+        #region Evolution
+        [ObservableProperty] private PokemonSimplifiedViewModel preEvolution;
+        public ObservableCollection<EvolutionViewModel> Evolutions { get; set; }
+        #endregion Evolution
+
+        #region Formes
+        #endregion Formes
+
+        #region Entrainement et capture
         [ObservableProperty] private int baseExperienceYield;
         [ObservableProperty] private string baseExperienceGroup;
         [ObservableProperty] private int baseFriendship;
         [ObservableProperty] private int catchRate;
+        #endregion Entrainement et capture
 
-        [ObservableProperty] private bool isDynamaxBlocked;
-
-
+        #region Statistiques
         [ObservableProperty] private int baseHP;
         [ObservableProperty] private int baseAttack;
         [ObservableProperty] private int baseDefence;
@@ -55,33 +68,35 @@
         [ObservableProperty] private int evSpecialAttack;
         [ObservableProperty] private int evSpecialDefence;
         [ObservableProperty] private int evSpeed;
+        #endregion Statistiques
+
+        [ObservableProperty] private bool isDynamaxBlocked;
+
 
         private Pokemon species;
 
-        public PokemonViewModel(Pokemon source)
+        public PokemonExtendedViewModel(Pokemon source)
         {
             species = source;
+            #region General
             isImplemented = species.Implemented;
             isForm = species.IsForm;
             nationalPokedexNumber = source.NationalPokedexNumber;
             numero = "#" + nationalPokedexNumber.ToString("D4");
             name = "-";
             description = "-";
-
             Generation = new GenerationViewModel(CobblePedia.Pedia.Generations[source.Generation]);
-
-            PrimaryType = new TypeViewModel(CobblePedia.Pedia.Types[source.PrimaryType]);
+            PrimaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[source.PrimaryType]);
             if (source.SecondaryType == null)
             {
-                SecondaryType = new TypeViewModel();
+                SecondaryType = new TypeSimplifiedViewModel();
             }
             else
             {
-                SecondaryType = new TypeViewModel(CobblePedia.Pedia.Types[source.SecondaryType]);
+                SecondaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[source.SecondaryType]);
             }
 
             frontDefault = string.Format(Properties.Resources.PokemonPicturePath, source.Picture.FrontDefault);
-
             Sprites = new ObservableCollection<SpriteViewModel>();
             if (source.Picture.FrontFemale != null)
             {
@@ -101,21 +116,56 @@
             {
                 Sprites.Add(new SpriteViewModel(SpriteViewModel.SpriteCategory.DefaultShiny, source.Picture.FrontShiny, source.Picture.BackShiny));
             }
+            #endregion General
 
+            #region Physique
             height = string.Format("{0:F1} m.", species.Height / 10.0);
             heightIcon = string.Format(Properties.Resources.PokemonHeightPicture, GetHeightIndex(species.Height));
             weight = string.Format("{0:F1} kg.", species.Weight / 10.0);
             weightIcon = string.Format(Properties.Resources.PokemonWeightPicture, GetWeightIndex(species.Weight));
+            #endregion Physique
 
+            #region Reproduction
+            ratio = string.Format("{0:P}", species.MaleRatio);
             maleRatio = species.MaleRatio;
             eggCycles = species.EggCycles;
+            #endregion Reproduction
 
+            #region Evolution
+            preEvolution = new PokemonSimplifiedViewModel();
+            if (species.PreEvolutionSpeciesId != null)
+            {
+                if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
+                {
+                    preEvolution = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
+                }
+                else
+                {
+                    Console.WriteLine("--> {0} / {1}", species.SpeciesId, species.PreEvolutionSpeciesId);
+                }
+            }
+            Evolutions = new ObservableCollection<EvolutionViewModel>();
+            foreach (Evolution evolution in species.Evolutions)
+            {
+                Evolutions.Add(new EvolutionViewModel(evolution));
+            }
+            #endregion Evolution
+
+            #region Formes
+            #endregion Formes
+
+            #region Entrainement et capture
+            //    [ObservableProperty] private int baseExperienceYield;
+            //[ObservableProperty] private string baseExperienceGroup;
+            //[ObservableProperty] private int baseFriendship;
+            //[ObservableProperty] private int catchRate;
+            #endregion Entrainement et capture
+
+            #region Statistiques
             baseExperienceGroup = species.BaseExperienceGroup;
             baseExperienceYield = species.BaseExperienceYield;
             baseFriendship = species.BaseFriendship;
             catchRate = species.CatchRate;
-
-            isDynamaxBlocked = species.IsDynamaxBlocked;
 
             baseAttack = species.BaseAttack;
             baseDefence = species.BaseDefence;
@@ -131,20 +181,11 @@
             evSpecialAttack = species.EvSpecialAttack;
             evSpecialDefence = species.EvSpecialDefence;
             evSpeed = species.EvSpeed;
+            #endregion Statistiques
 
-            if (species.PreEvolutionSpeciesId != null)
-            {
-                if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
-                {
-                    preEvolution = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
-                }
-                else
-                {
-                    Console.WriteLine("--> {0} / {1}", species.SpeciesId, species.PreEvolutionSpeciesId);
-                }
-            }
+            isDynamaxBlocked = species.IsDynamaxBlocked;
 
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         private int GetWeightIndex(int weight) => weight switch
@@ -168,15 +209,24 @@
 
         internal void SetLanguage(string language)
         {
+            EggGroups = string.Join(", ", species.EggGroups);
             switch (language)
             {
                 case "fr":
                     Name = CobblePedia.Pedia.FR[species.KeyName];
                     Description = CobblePedia.Pedia.FR[species.KeyDescription];
+                    foreach (string item in species.EggGroups)
+                    {
+                        EggGroups = EggGroups.Replace(item, CobblePedia.Pedia.FR[string.Format(Properties.Resources.PokemonEggGroup, item)]);
+                    }
                     break;
                 default:
                     Name = CobblePedia.Pedia.EN[species.KeyName];
                     Description = CobblePedia.Pedia.EN[species.KeyDescription];
+                    foreach (string item in species.EggGroups)
+                    {
+                        EggGroups = EggGroups.Replace(item, CobblePedia.Pedia.EN[string.Format(Properties.Resources.PokemonEggGroup, item)]);
+                    }
                     break;
             }
 

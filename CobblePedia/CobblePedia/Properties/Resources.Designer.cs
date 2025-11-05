@@ -61,6 +61,15 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EggGroup_{0}.
+        /// </summary>
+        internal static string PokemonEggGroup {
+            get {
+                return ResourceManager.GetString("PokemonEggGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Assets/Physiques/Pokemon-Height-{0}.png.
         /// </summary>
         internal static string PokemonHeightPicture {

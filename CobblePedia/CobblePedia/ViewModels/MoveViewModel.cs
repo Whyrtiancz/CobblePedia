@@ -26,7 +26,7 @@
             target = move.Target;
             moveType = move.MoveType;
             moveTypeIcon = string.Format(Properties.Resources.TypeIconPath, moveType);
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

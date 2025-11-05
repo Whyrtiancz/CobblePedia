@@ -4,7 +4,7 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    public partial class TypeViewModel : ObservableObject
+    public partial class TypeSimplifiedViewModel : ObservableObject
     {
         [ObservableProperty] private string name;
         [ObservableProperty] private string icon;
@@ -13,14 +13,14 @@
         private PokemonType pType;
         private bool isEmpty = true;
 
-        public TypeViewModel()
+        public TypeSimplifiedViewModel()
         {
             name = string.Empty;
             icon = string.Format(Properties.Resources.TypeIconPath, "empty"); ;
             largeIcon = string.Format(Properties.Resources.TypeLargeIconPath, "empty");
         }
 
-        public TypeViewModel(PokemonType source)
+        public TypeSimplifiedViewModel(PokemonType source)
         {
             pType = source;
             name = "-";
@@ -28,7 +28,7 @@
             largeIcon = string.Format(Properties.Resources.TypeLargeIconPath, source.TypeId);
             isEmpty = false;
 
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)

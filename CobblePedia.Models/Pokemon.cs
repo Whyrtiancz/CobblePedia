@@ -5,18 +5,33 @@
         public static string FileName { get; } = "pokemon.json";
 
         public bool Implemented { get; set; }
-
         public bool IsForm { get; set; }
         public int NationalPokedexNumber { get; set; }
         public string SpeciesId { get; set; }
-        public string PreEvolutionSpeciesId { get; set; }
 
+        #region General
         public string Generation { get; set; }
         public string PrimaryType { get; set; }
         public string SecondaryType { get; set; }
+        #endregion General
+
+        #region Physique
         public int Height { get; set; }
         public int Weight { get; set; }
+        #endregion Physique
 
+        #region Reproduction
+        public float MaleRatio { get; set; }
+        public int EggCycles { get; set; }
+        public List<string> EggGroups { get; set; }
+        #endregion Reproduction
+
+        #region Evolution
+        public string PreEvolutionSpeciesId { get; set; }
+        public List<Evolution> Evolutions { get; set; }
+        #endregion Evolution
+
+        #region Statistiques
         public int BaseHP { get; set; }
         public int BaseAttack { get; set; }
         public int BaseDefence { get; set; }
@@ -31,6 +46,7 @@
         public int EvSpecialAttack { get; set; }
         public int EvSpecialDefence { get; set; }
         public int EvSpeed { get; set; }
+        #endregion Statistiques
 
         public int BaseExperienceYield { get; set; }
         public string BaseExperienceGroup { get; set; }
@@ -38,12 +54,7 @@
         public int CatchRate { get; set; }
         public bool IsDynamaxBlocked { get; set; }
 
-        public float MaleRatio { get; set; }
-        public int EggCycles { get; set; }
-
         public List<PokemonAbility> Abilities { get; set; }
-        public List<Evolution> Evolutions { get; set; }
-        public List<string> EggGroups { get; set; }
         public List<PokemonMove> LeveledMoves { get; set; }
         public List<PokemonMove> EggMoves { get; set; }
         public List<PokemonMove> TMMoves { get; set; }

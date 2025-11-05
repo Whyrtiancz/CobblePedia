@@ -243,4 +243,16 @@
   <data name="PokemonPokedex.Text" xml:space="preserve">
     <value>Données du Pokédex</value>
   </data>
+  <data name="PokemonPhysicalExpander.Header" xml:space="preserve">
+    <value>Données physiques</value>
+  </data>
+  <data name="PokemonHeight.Text" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="PokemonWeight.Text" xml:space="preserve">
+    <value>Poids</value>
+  </data>
+  <data name="PokemonMaleRatio.Text" xml:space="preserve">
+    <value>Ratio Mâle/Femelle</value>
+  </data>
 </root>

@@ -15,10 +15,21 @@
         [ObservableProperty] private string frontDefault;
 
         public GenerationViewModel Generation { get; private set; }
-        public TypeViewModel PrimaryType { get; private set; }
-        public TypeViewModel SecondaryType { get; private set; }
+        public TypeSimplifiedViewModel PrimaryType { get; private set; }
+        public TypeSimplifiedViewModel SecondaryType { get; private set; }
 
         internal Pokemon species;
+
+        public PokemonSimplifiedViewModel()
+        {
+            isImplemented = false;
+            isForm = false;
+            nationalPokedexNumber = 0;
+            numero = string.Empty;
+            name = string.Empty;
+            description = string.Empty;
+            frontDefault = string.Format(Properties.Resources.PokemonPicturePath, "0_none_front_default.png");
+        }
 
         public PokemonSimplifiedViewModel(Pokemon source)
         {
@@ -33,24 +44,26 @@
 
             Generation = new GenerationViewModel(CobblePedia.Pedia.Generations[species.Generation]);
 
-            PrimaryType = new TypeViewModel(CobblePedia.Pedia.Types[species.PrimaryType]);
+            PrimaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[species.PrimaryType]);
             if (species.SecondaryType == null)
             {
-                SecondaryType = new TypeViewModel();
+                SecondaryType = new TypeSimplifiedViewModel();
             }
             else
             {
-                SecondaryType = new TypeViewModel(CobblePedia.Pedia.Types[species.SecondaryType]);
+                SecondaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[species.SecondaryType]);
             }
 
             frontDefault = string.Format(Properties.Resources.PokemonPicturePath, species.Picture.FrontDefault);
 
-
-            SetLanguage("en");
+            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
+            if (species == null)
+                return;
+
             switch (language)
             {
                 case "fr":

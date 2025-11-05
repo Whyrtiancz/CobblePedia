@@ -144,7 +144,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
@@ -167,7 +167,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
@@ -216,7 +216,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
@@ -262,7 +262,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
@@ -314,7 +314,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
@@ -337,7 +337,7 @@
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeViewModel">
+              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
                 <StackPanel Style="{StaticResource ItemCell}">
                   <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                   <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>

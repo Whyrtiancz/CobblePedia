@@ -42,18 +42,6 @@
     <Setter Property="Margin" Value="4,0,0,0" />
   </Style>
 
-  <Style x:Key="SpeciesIcon"
-         TargetType="Image">
-    <Setter Property="Height" Value="32" />
-    <Setter Property="Margin" Value="0,2" />
-  </Style>
-
-  <Style x:Key="SpeciesName"
-         TargetType="TextBlock">
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="Margin" Value="4,0,0,0" />
-  </Style>
-
   <Style x:Key="ItemCell"
          TargetType="StackPanel">
     <Setter Property="Orientation" Value="Horizontal" />
@@ -62,6 +50,32 @@
   </Style>
   
   <!-- PokemonView -->
+  <Style x:Key="PokemonName"
+         TargetType="TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,0,0,0" />
+  </Style>
+
+  <Style x:Key="PokemonNumber"
+         TargetType="TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,0,0,0" />
+    <Setter Property="FontSize" Value="12epx" />
+  </Style>
+
+  <Style x:Key="PokemonIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="32" />
+    <Setter Property="Margin" Value="0,2" />
+  </Style>
+
+  <Style x:Key="PokemonLargeIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="64" />
+    <Setter Property="Margin" Value="2,2" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+  </Style>
+
   <Style x:Key="TextCell"
          TargetType="Border">
     <Setter Property="Padding" Value="4,4" />
