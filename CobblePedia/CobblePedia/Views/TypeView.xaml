@@ -8,17 +8,9 @@
     xmlns:local="using:CobblePedia.Views"
     xmlns:model="using:CobblePedia.ViewModels"
     x:DataType="model:CobblePediaViewModel"
+    x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
-  <!--<Page.Resources>
-    <DataTemplate x:Key="ItemCell" x:DataType="model:TypeViewModel">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-      </StackPanel>
-    </DataTemplate>
-  </Page.Resources>-->
-  
   <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
@@ -44,9 +36,9 @@
         <ListView Style="{StaticResource LeftListView}"
                   SelectionMode="Single"
                   ItemsSource="{x:Bind ViewModel.TypeViewModels}"
-                  SelectedItem="{x:Bind ViewModel.SelectedType, Mode=TwoWay}">
+                  SelectedItem="{x:Bind ViewModel.SelectedTypeInList, Mode=TwoWay}">
           <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:TypeExtendedViewModel">
+            <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
               <StackPanel Orientation="Horizontal">
                 <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
                 <TextBlock Text="{x:Bind Name}"
@@ -59,7 +51,7 @@
     </ScrollViewer>
 
     <!-- Type sélectionné -->
-    <TextBlock Text="{x:Bind ViewModel.SelectedType.Name, Mode=OneWay}"
+    <TextBlock Text="{x:Bind ViewModel.SelectedType.Name}"
                Style="{ThemeResource TitleTextBlockStyle}"
                Margin="{ThemeResource ContentDialogTitleMargin}"
                Grid.Column="1" Grid.Row="1" />
@@ -68,6 +60,7 @@
     <ScrollViewer Grid.Column="1" Grid.Row="2"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
+      <!--<DataTemplate x:DataType="model:TypeExtendedViewModel">-->
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="1*" />
@@ -133,7 +126,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -156,7 +149,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -205,7 +198,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="4">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -251,7 +244,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="6">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -303,7 +296,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -326,7 +319,7 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom, Mode=OneWay}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"

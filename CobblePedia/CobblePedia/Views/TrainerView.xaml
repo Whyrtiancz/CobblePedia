@@ -8,92 +8,96 @@
     xmlns:local="using:CobblePedia.Views"
     xmlns:model="using:CobblePedia.ViewModels"
     x:DataType="model:CobblePediaViewModel"
-    x:DefaultBindMode="OneTime"
+    x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
-  <Grid>
+  <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <ScrollViewer Grid.Column="0" Grid.Row="0">
-      <ListView SelectionMode="Single" ItemsSource="{x:Bind ViewModel.TrainerViewModels}" 
-        SelectedItem="{x:Bind ViewModel.SelectedTrainer, Mode=TwoWay}">
-        <ListView.ItemTemplate>
-          <DataTemplate x:DataType="model:TrainerExtendedViewModel">
-            <TextBlock Text="{x:Bind Name, Mode=TwoWay}"
-                    Style="{ThemeResource BaseTextBlockStyle}"
-                    Margin="12,6,0,0"/>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
-    </ScrollViewer>
-    <!--<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-      <StackPanel Orientation="Vertical">
-        <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.Name, Mode=OneWay}"
-                Style="{ThemeResource BaseTextBlockStyle}"
-                Margin="12,6,0,0"/>
-        <StackPanel Orientation="Vertical">
-          <TextBlock Text="Team"
-                  Style="{ThemeResource BaseTextBlockStyle}"
-                  Margin="12,6,0,0"/>
-          --><!--<Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition Width="auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-              <RowDefinition />
-            </Grid.RowDefinitions>
-          </Grid>--><!--
-          <ListView SelectionMode="Single" ItemsSource="{x:Bind ViewModel.SelectedTrainer.Teams, Mode=OneWay}">
-            <ListView.ItemTemplate>
-              <DataTemplate x:DataType="model:TrainerTeamViewModel">
-                <StackPanel Orientation="Horizontal">
-                  <Image Source="{x:Bind Species.FrontDefault, Mode=OneWay}"
-                        Height="32"
-                        Margin="4,4,4,4"/>
-                  <TextBlock Text="{x:Bind Species.Name, Mode=OneWay}"
-                    Style="{ThemeResource BaseTextBlockStyle}"
-                    Margin="12,4,12,4"/>
-                  <Image Source="{x:Bind Move1.MoveTypeIcon, Mode=OneWay}"
-                         Height="32"
-                         Margin="4,4,4,4"/>
-                  <TextBlock Text="{x:Bind Move1.Name, Mode=OneWay}"
-                      Style="{ThemeResource BaseTextBlockStyle}"
-                      Margin="12,6,0,0"/>
-                  <Image Source="{x:Bind Move2.MoveTypeIcon, Mode=OneWay}"
-                         Height="32"
-                         Margin="4,4,4,4"/>
-                  <TextBlock Text="{x:Bind Move2.Name, Mode=OneWay}"
-                      Style="{ThemeResource BaseTextBlockStyle}"
-                      Margin="12,6,0,0"/>
-                  <Image Source="{x:Bind Move3.MoveTypeIcon, Mode=OneWay}"
-                         Height="32"
-                         Margin="4,4,4,4"/>
-                  <TextBlock Text="{x:Bind Move3.Name, Mode=OneWay}"
-                      Style="{ThemeResource BaseTextBlockStyle}"
-                      Margin="12,6,0,0"/>
-                  <Image Source="{x:Bind Move4.MoveTypeIcon, Mode=OneWay}"
-                         Height="32"
-                         Margin="4,4,4,4"/>
-                  <TextBlock Text="{x:Bind Move4.Name, Mode=OneWay}"
-                      Style="{ThemeResource BaseTextBlockStyle}"
-                      Margin="12,6,0,0"/>
+
+    <TextBlock x:Uid="trainers"
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Style="{ThemeResource TitleTextBlockStyle}"
+               Margin="{ThemeResource TitleBarTitleMargin}"
+               AutomationProperties.HeadingLevel="Level1" />
+
+    <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                  Style="{StaticResource LeftScrollviewer}"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Auto">
+      <Border>
+        <ListView Style="{StaticResource LeftListView}"
+                  SelectionMode="Single"
+                  ItemsSource="{x:Bind ViewModel.TrainerViewModels}"
+                  SelectedItem="{x:Bind ViewModel.SelectedTrainerInList, Mode=TwoWay}">
+          <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:TrainerSimplifiedViewModel">
+              <StackPanel Orientation="Horizontal">
+                <Image Source="/Assets/Trainers/default.png"
+                     Style="{StaticResource TrainerIcon}" />
+                <StackPanel Orientation="vertical">
+                  <TextBlock Text="{x:Bind Name}"
+                           Style="{StaticResource PokemonName}"/>
+                  <TextBlock Text="{x:Bind Series}"
+                           FontSize="12epx"
+                           Style="{StaticResource PokemonName}"/>
                 </StackPanel>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>
-        </StackPanel>
-      </StackPanel>
-    </StackPanel>-->
+              </StackPanel>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </Border>
+    </ScrollViewer>
+
+    <!-- Type sélectionné -->
+    <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.Name}"
+               Style="{ThemeResource TitleTextBlockStyle}"
+               Margin="{ThemeResource ContentDialogTitleMargin}"
+               Grid.Column="1" Grid.Row="1" />
+
+    <!-- Tableau des forces et faiblesses -->
+    <ScrollViewer Grid.Column="1" Grid.Row="2"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Auto">
+      <GridView ItemsSource="{x:Bind ViewModel.SelectedTrainer.Teams}"
+                HorizontalAlignment="Stretch">
+        <GridView.ItemsPanel>
+          <ItemsPanelTemplate>
+            <ItemsWrapGrid MaximumRowsOrColumns="6"
+                             Orientation="Horizontal"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"/>
+          </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+
+        <GridView.ItemTemplate>
+          <DataTemplate x:DataType="model:TrainerTeamViewModel">
+            <StackPanel Orientation="Vertical"
+                        Style="{StaticResource ItemCell}">
+              <Image Source="{x:Bind Pokemon.FrontDefault}" Style="{StaticResource PokemonLargeIcon}" />
+              <TextBlock Text="{x:Bind Pokemon.Name}" Style="{StaticResource TypeName}"/>
+              <Image Source="{x:Bind Move1.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+              <TextBlock Text="{x:Bind Move1.Name}" Style="{StaticResource TypeName}"/>
+              <Image Source="{x:Bind Move2.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+              <TextBlock Text="{x:Bind Move2.Name}" Style="{StaticResource TypeName}"/>
+              <Image Source="{x:Bind Move3.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+              <TextBlock Text="{x:Bind Move3.Name}" Style="{StaticResource TypeName}"/>
+              <Image Source="{x:Bind Move4.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+              <TextBlock Text="{x:Bind Move4.Name}" Style="{StaticResource TypeName}"/>
+            </StackPanel>
+          </DataTemplate>
+        </GridView.ItemTemplate>
+      </GridView>
+
+    </ScrollViewer>
+
   </Grid>
 
 </Page>

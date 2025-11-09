@@ -93,7 +93,7 @@
         }
         public static int GetIntValue(JObject source, string key)
         {
-            if (source.ContainsKey(key))
+            if (source.ContainsKey(key) && (source.SelectToken(key).Type == JTokenType.Integer))
             {
                 return (int)source.SelectToken(key);
             }

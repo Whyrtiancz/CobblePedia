@@ -247,12 +247,45 @@
     <value>Physical data</value>
   </data>
   <data name="PokemonHeight.Text" xml:space="preserve">
-    <value>Height</value>
+    <value>Height </value>
   </data>
   <data name="PokemonWeight.Text" xml:space="preserve">
-    <value>Weight</value>
+    <value>Weight </value>
   </data>
   <data name="PokemonMaleRatio.Text" xml:space="preserve">
     <value>Male/Female ratio</value>
+  </data>
+  <data name="PokemonEggInfo.Text" xml:space="preserve">
+    <value>Breeding</value>
+  </data>
+  <data name="PokemonStatisticalExpander.Header" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="PokemonBreedingAndEvolution.Header" xml:space="preserve">
+    <value>Breeding and evolutions</value>
+  </data>
+  <data name="PokemonMoves.Header" xml:space="preserve">
+    <value>Moves</value>
+  </data>
+  <data name="PokemonStatAttack.Text" xml:space="preserve">
+    <value>Attack</value>
+  </data>
+  <data name="PokemonStatSpecialAttack.Text" xml:space="preserve">
+    <value>Attack special</value>
+  </data>
+  <data name="PokemonStatTotal.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="PokemonStatSpeed.Text" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="PokemonStatHP.Text" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="PokemonStatDefence.Text" xml:space="preserve">
+    <value>Defence</value>
+  </data>
+  <data name="PokemonStatSpecialDefence.Text" xml:space="preserve">
+    <value>Defence special</value>
   </data>
 </root>

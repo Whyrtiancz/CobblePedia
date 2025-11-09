@@ -4,6 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CobblePedia.Styles">
 
+  <!-- Marges -->
+  <Thickness x:Key="PokemonHeaderMargin">0,4,24,4</Thickness>
+  <Thickness x:Key="PokemonDescriptionMargin">0,4</Thickness>
+
+  <!-- A trier -->
   <Style x:Key="PageGrid" 
          TargetType="Grid">
     <Setter Property="Margin" Value="40,24,36,36" />
@@ -103,7 +108,7 @@
   <Style x:Key="ProgressBarStat"
          TargetType="ProgressBar">
     <Setter Property="MinHeight" Value="18" />
-    <Setter Property="Margin" Value="8, 2" />
+    <Setter Property="Margin" Value="8, 4" />
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
   </Style>
@@ -114,5 +119,30 @@
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="HorizontalAlignment" Value="Center" />
   </Style>
+  <Style x:Key="MoveTypeIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="32" />
+    <Setter Property="Margin" Value="0,2" />
+  </Style>
+  <Style x:Key="DamageClassIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="12" />
+    <Setter Property="Margin" Value="2,2" />
+  </Style>
+  
+  <Style x:Key="EggGroupName"
+         TargetType="TextBlock">
+    <Setter Property="Width" Value="92" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,0,0,0" />
+  </Style>
 
+  <!-- Trainer View -->
+  <Style x:Key="TrainerIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="32" />
+    <Setter Property="Margin" Value="2,2" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+  </Style>
+  
 </ResourceDictionary>

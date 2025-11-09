@@ -214,5 +214,10 @@
             Picture = species.Picture;
             Spawns = species.Spawns;
         }
+
+        public List<Evolution> GetEvolutionTo(string evolveTo)
+        {
+            return Evolutions.Where(item => item.EvolveTo == evolveTo).ToList();
+        }
     }
 }

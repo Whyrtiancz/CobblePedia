@@ -31,17 +31,6 @@
             SpawnId = token.Value<string>("id");
             NationalPokedexNumber = nationalPokedexNumber;
             Presets = new List<string>(token.SelectTokens("presets").Values<string>());
-            //Presets = new List<string>();
-            //if (null != token.SelectToken("presets"))
-            //{
-            //    foreach (JToken item in token.SelectTokens("presets"))
-            //    {
-            //        foreach (string preset in item.Values<string>())
-            //        {
-            //            Presets.Add(preset);
-            //        }
-            //    }
-            //}
             Type = token.Value<string>("type");
             Context = token.Value<string>("context");
             Bucket = token.Value<string>("bucket");

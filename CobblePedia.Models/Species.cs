@@ -218,11 +218,22 @@
                     {
                         continue;
                     }
-                    Evolutions.Add(ReadEvolution(item));
+                    Evolutions.Add(evolution);
                 }
             }
 
-            EggGroups = new List<string>(source.SelectTokens("eggGroups").Values<string>());
+            EggGroups = new List<string>();
+            foreach (string item in source.SelectTokens("eggGroups").Values<string>())
+            {
+                if (item == "undiscovered")
+                {
+                    EggGroups.Add("no-eggs");
+                }
+                else
+                {
+                    EggGroups.Add(item);
+                }
+            }
 
             LeveledMoves = new List<PokemonMove>();
             EggMoves = new List<PokemonMove>();
@@ -629,12 +640,22 @@
 
         private Evolution ReadEvolution(JToken token)
         {
-            Evolution evolution = new Evolution();
+            Evolution evolution = new Evolution(token);
 
-            evolution.Method = token.Value<string>("variant");
-            evolution.EvolveTo = NamingHelper.RebuildPokemonName(token.Value<string>("result"));
-            evolution.IsConsumeHeldItem = token.Value<bool>("consumeHeldItem");
-            evolution.LearnableMoves = new List<string>(token.SelectTokens("learnableMoves").Values<string>());
+            //evolution.Method = token.Value<string>("variant");
+            //evolution.EvolveTo = NamingHelper.RebuildPokemonName(token.Value<string>("result"));
+            //switch(evolution.Method)
+            //{
+            //    case "level_up":
+
+            //        break;
+            //    case "":
+            //        break;
+            //    case "":
+            //        break;
+            //}
+            //evolution.IsConsumeHeldItem = token.Value<bool>("consumeHeldItem");
+            //evolution.LearnableMoves = new List<string>(token.SelectTokens("learnableMoves").Values<string>());
 
             return evolution;
         }

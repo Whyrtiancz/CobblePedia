@@ -1,11 +1,14 @@
 ﻿namespace CobblePedia.ViewModels
 {
-    using System;
     using System.Collections.ObjectModel;
 
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
+
+    using Microsoft.UI.Xaml.Media;
+
+    using Windows.UI;
 
     internal partial class PokemonExtendedViewModel : ObservableObject
     {
@@ -17,7 +20,6 @@
         [ObservableProperty] private string numero;
         [ObservableProperty] private string name;
         [ObservableProperty] private string description;
-        [ObservableProperty] private string frontDefault;
         public GenerationViewModel Generation { get; private set; }
         public TypeSimplifiedViewModel PrimaryType { get; private set; }
         public TypeSimplifiedViewModel SecondaryType { get; private set; }
@@ -32,14 +34,20 @@
         #endregion Physique
 
         #region Reproduction
+        [ObservableProperty] private bool isBreedable;
+        [ObservableProperty] private Brush background;
+        [ObservableProperty] private Brush foreground;
         [ObservableProperty] private float maleRatio;
         [ObservableProperty] private string ratio;
         [ObservableProperty] private int eggCycles;
-        [ObservableProperty] private string eggGroups;
+        [ObservableProperty] private EggGroupViewModel primaryEggGroup;
+        [ObservableProperty] private EggGroupViewModel secondaryEggGroup;
         #endregion Reproduction
 
         #region Evolution
+        [ObservableProperty] private string frontDefault;
         [ObservableProperty] private PokemonSimplifiedViewModel preEvolution;
+        [ObservableProperty] private EvolutionViewModel preEvolutionCondition;
         public ObservableCollection<EvolutionViewModel> Evolutions { get; set; }
         #endregion Evolution
 
@@ -70,14 +78,20 @@
         [ObservableProperty] private int evSpeed;
         #endregion Statistiques
 
-        [ObservableProperty] private bool isDynamaxBlocked;
+        #region Attaques
+        public ObservableCollection<MoveViewModel> LeveledMoves { get; set; }
+        public ObservableCollection<MoveViewModel> TMMoves { get; set; }
+        public ObservableCollection<MoveViewModel> TutorMoves { get; set; }
+        #endregion Attaques
 
+        [ObservableProperty] private bool isDynamaxBlocked;
 
         private Pokemon species;
 
         public PokemonExtendedViewModel(Pokemon source)
         {
             species = source;
+
             #region General
             isImplemented = species.Implemented;
             isForm = species.IsForm;
@@ -85,18 +99,17 @@
             numero = "#" + nationalPokedexNumber.ToString("D4");
             name = "-";
             description = "-";
-            Generation = new GenerationViewModel(CobblePedia.Pedia.Generations[source.Generation]);
-            PrimaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[source.PrimaryType]);
+            Generation = CobblePediaViewModel.Model.generations[source.Generation];
+            PrimaryType = CobblePediaViewModel.Model.types[source.PrimaryType];
             if (source.SecondaryType == null)
             {
                 SecondaryType = new TypeSimplifiedViewModel();
             }
             else
             {
-                SecondaryType = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[source.SecondaryType]);
+                SecondaryType = CobblePediaViewModel.Model.types[source.SecondaryType];
             }
 
-            frontDefault = string.Format(Properties.Resources.PokemonPicturePath, source.Picture.FrontDefault);
             Sprites = new ObservableCollection<SpriteViewModel>();
             if (source.Picture.FrontFemale != null)
             {
@@ -126,22 +139,50 @@
             #endregion Physique
 
             #region Reproduction
-            ratio = string.Format("{0:P}", species.MaleRatio);
-            maleRatio = species.MaleRatio;
+            IsBreedable = species.EggGroups is not null && species.EggGroups.Count > 0 && species.EggGroups[0] != "no-eggs";
+            switch (species.EggGroups.Count)
+            {
+                case 1:
+                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[0]];
+                    secondaryEggGroup = new EggGroupViewModel();
+                    break;
+                case 2:
+                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[0]];
+                    secondaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[1]];
+                    break;
+                default:
+                    primaryEggGroup = new EggGroupViewModel();
+                    secondaryEggGroup = primaryEggGroup;
+                    break;
+            }
+
+            if (IsBreedable)
+            {
+                foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x00, 0x8B));
+                background = new SolidColorBrush(Color.FromArgb(0xFF, 0x8B, 0x00, 0x00));
+                ratio = string.Format("{0:P1}", species.MaleRatio);
+                maleRatio = species.MaleRatio;
+            }
+            else
+            {
+                foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xA9, 0xA9, 0xA9));
+                background = foreground;
+                ratio = primaryEggGroup.Name;
+                maleRatio = 0;
+            }
             eggCycles = species.EggCycles;
             #endregion Reproduction
 
             #region Evolution
+            frontDefault = string.Format(Properties.Resources.PokemonPicturePath, species.Picture.FrontDefault);
             preEvolution = new PokemonSimplifiedViewModel();
+            preEvolutionCondition = new EvolutionViewModel();
             if (species.PreEvolutionSpeciesId != null)
             {
                 if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
                 {
                     preEvolution = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
-                }
-                else
-                {
-                    Console.WriteLine("--> {0} / {1}", species.SpeciesId, species.PreEvolutionSpeciesId);
+                    preEvolutionCondition = new EvolutionViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId].GetEvolutionTo(species.SpeciesId)[0]);
                 }
             }
             Evolutions = new ObservableCollection<EvolutionViewModel>();
@@ -155,10 +196,10 @@
             #endregion Formes
 
             #region Entrainement et capture
-            //    [ObservableProperty] private int baseExperienceYield;
-            //[ObservableProperty] private string baseExperienceGroup;
-            //[ObservableProperty] private int baseFriendship;
-            //[ObservableProperty] private int catchRate;
+            baseExperienceYield = species.BaseExperienceYield;
+            baseExperienceGroup = species.BaseExperienceGroup;
+            baseFriendship = species.BaseFriendship;
+            catchRate = species.CatchRate;
             #endregion Entrainement et capture
 
             #region Statistiques
@@ -182,6 +223,29 @@
             evSpecialDefence = species.EvSpecialDefence;
             evSpeed = species.EvSpeed;
             #endregion Statistiques
+
+            #region Attaques
+            LeveledMoves = new ObservableCollection<MoveViewModel>();
+            TMMoves = new ObservableCollection<MoveViewModel>();
+            TutorMoves = new ObservableCollection<MoveViewModel>();
+
+            foreach (PokemonMove item in species.EggMoves)
+            {
+                LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Egg));
+            }
+            foreach (PokemonMove item in species.LeveledMoves)
+            {
+                LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], item.Level));
+            }
+            foreach (PokemonMove item in species.TMMoves)
+            {
+                TMMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.CT_CM));
+            }
+            foreach (PokemonMove item in species.TutorMoves)
+            {
+                TutorMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Tutor));
+            }
+            #endregion Attaques
 
             isDynamaxBlocked = species.IsDynamaxBlocked;
 
@@ -209,37 +273,46 @@
 
         internal void SetLanguage(string language)
         {
-            EggGroups = string.Join(", ", species.EggGroups);
             switch (language)
             {
                 case "fr":
                     Name = CobblePedia.Pedia.FR[species.KeyName];
                     Description = CobblePedia.Pedia.FR[species.KeyDescription];
-                    foreach (string item in species.EggGroups)
-                    {
-                        EggGroups = EggGroups.Replace(item, CobblePedia.Pedia.FR[string.Format(Properties.Resources.PokemonEggGroup, item)]);
-                    }
                     break;
                 default:
                     Name = CobblePedia.Pedia.EN[species.KeyName];
                     Description = CobblePedia.Pedia.EN[species.KeyDescription];
-                    foreach (string item in species.EggGroups)
-                    {
-                        EggGroups = EggGroups.Replace(item, CobblePedia.Pedia.EN[string.Format(Properties.Resources.PokemonEggGroup, item)]);
-                    }
                     break;
             }
 
             Generation.SetLanguage(language);
             PrimaryType.SetLanguage(language);
             SecondaryType.SetLanguage(language);
+            primaryEggGroup.SetLanguage(language);
+            secondaryEggGroup.SetLanguage(language);
 
             foreach (SpriteViewModel item in Sprites)
             {
                 item.SetLanguage(language);
             }
-
+            foreach (MoveViewModel item in LeveledMoves)
+            {
+                item.SetLanguage(language);
+            }
+            foreach (MoveViewModel item in TMMoves)
+            {
+                item.SetLanguage(language);
+            }
+            foreach (MoveViewModel item in TutorMoves)
+            {
+                item.SetLanguage(language);
+            }
+            if (!IsBreedable)
+            {
+                ratio = primaryEggGroup.Name;
+            }
             PreEvolution?.SetLanguage(language);
+            PreEvolutionCondition?.SetLanguage(language);
         }
     }
 }

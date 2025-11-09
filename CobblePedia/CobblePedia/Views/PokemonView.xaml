@@ -14,17 +14,15 @@
   <Page.Resources>
     <x:Double x:Key="ProgressBarTrackHeight">18</x:Double>
   </Page.Resources>
-  
+
   <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
@@ -33,13 +31,13 @@
 
     <!-- Main Title -->
     <TextBlock Text="Pokedex"
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
                Style="{ThemeResource TitleTextBlockStyle}"
                Margin="{ThemeResource TitleBarTitleMargin}"
                AutomationProperties.HeadingLevel="Level1" />
 
     <!-- Pokemon list -->
-    <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
+    <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
                   Style="{StaticResource LeftScrollviewer}"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
@@ -66,83 +64,40 @@
     </ScrollViewer>
 
     <!-- Pokemon -->
-    <!-- Ligne 1 à 4 -->
-    <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-           Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" />
-    <Border Style="{StaticResource TextCell}"
-            Grid.Column="1" Grid.Row="1">
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Numero}"
-                 Style="{ThemeResource TitleTextBlockStyle}" />
-    </Border>
-    <Border Style="{StaticResource TextCell}"
-            Grid.Column="2" Grid.Row="1">
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Name}"
-               Style="{ThemeResource TitleTextBlockStyle}" />
-    </Border>
-    <Border Style="{StaticResource TypesCell}"
-            Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Icon}" Style="{StaticResource TypeIcon}" />
-        <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Name}"
-                           Style="{StaticResource TypeName}"/>
-        <Image Source="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Icon}" Style="{StaticResource TypeIcon}" />
-        <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Name}"
-                           Style="{StaticResource TypeName}"/>
-      </StackPanel>
-    </Border>
-    <Border Style="{StaticResource GenerationCell}"
-            Grid.Column="1" Grid.Row="2">
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Generation.Name}" 
-                   Grid.Column="0" Grid.Row="0"/>
-    </Border>
-    <Border Style="{StaticResource GenerationCell}"
-            Grid.Column="1" Grid.Row="3">
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Generation.Region}" 
-                   Grid.Column="1" Grid.Row="0"/>
-    </Border>
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Numero}"
+               Style="{ThemeResource TitleTextBlockStyle}"
+               Margin="{StaticResource PokemonHeaderMargin}"
+               Grid.Column="1" Grid.Row="1" />
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Name}"
+               Style="{ThemeResource TitleTextBlockStyle}" 
+               Margin="{StaticResource PokemonHeaderMargin}"
+               Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
 
-    <!-- Description -->
-    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Description}"
-               Style="{StaticResource TableTitleBorder}"
-               Margin="8,4,8,4"
-               Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
-               TextWrapping="Wrap"/>
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Generation.Name}" 
+               Style="{ThemeResource BodyTextBlockStyle}"
+               VerticalAlignment="Center"
+               Grid.Column="1" Grid.Row="2"/>
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Generation.Region}" 
+               Style="{ThemeResource BodyTextBlockStyle}"
+               VerticalAlignment="Center"
+               Grid.Column="2" Grid.Row="2"/>
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0, 0, 0, 8"
+                Grid.Column="3" Grid.Row="2">
+      <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Icon}"
+             Style="{StaticResource TypeIcon}" />
+      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Name}"
+                 Style="{StaticResource TypeName}"/>
+      <Image Source="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Icon}"
+             Style="{StaticResource TypeIcon}" />
+      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Name}"
+                 Style="{StaticResource TypeName}"/>
+    </StackPanel>
 
-    <!-- Sprites -->
-    <Border Style="{StaticResource TextCell}"
-            Grid.Column="3" Grid.Row="2" Grid.RowSpan="2">
-      <FlipView Height="144" Width="256"
-              BorderBrush="{ThemeResource SolidBackgroundFillColorBaseAltBrush}" BorderThickness="1" 
-              ItemsSource="{x:Bind ViewModel.SelectedPokemon.Sprites}">
-        <FlipView.ItemTemplate>
-          <DataTemplate x:DataType="model:SpriteViewModel">
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-              </Grid.ColumnDefinitions>
-              <Image Height="128"
-                   Grid.Column="0"
-                   Source="{x:Bind FrontSprite}" />
-              <Image Height="128" 
-                   Grid.Column="1"
-                   Source="{x:Bind BackSprite}" />
-              <Border Background="{ThemeResource SystemFillColorNeutralBrush}" Height="24" VerticalAlignment="Bottom"
-                    Grid.Column="0" Grid.ColumnSpan="2">
-                <TextBlock Text="{x:Bind Name}"
-                         FontSize="12epx"
-                         Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}" 
-                         Padding="4,4" 
-                         HorizontalAlignment="Center"/>
-              </Border>
-            </Grid>
-          </DataTemplate>
-        </FlipView.ItemTemplate>
-      </FlipView>
-    </Border>
-
-    <!-- Informations -->
-    <ScrollViewer Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
+    <!-- Détails -->
+    <ScrollViewer Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
       <Grid>
@@ -154,172 +109,245 @@
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
           <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Expander x:Uid="PokemonPhysicalExpander"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
-                  HorizontalContentAlignment="Left"
+                  HorizontalContentAlignment="Stretch"
                   Grid.Column="0" Grid.Row="0">
           <Expander.Content>
             <Grid HorizontalAlignment="Stretch">
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
               </Grid.ColumnDefinitions>
               <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
               </Grid.RowDefinitions>
-              <TextBlock x:Uid="PokemonHeight"
-                         Text="Taille"
-                         Grid.Column="0" Grid.Row="0"
-                         HorizontalAlignment="Center" />
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Height}"
-                         Grid.Column="1" Grid.Row="0" 
-                         HorizontalAlignment="Center" />
-              <Image Source="{x:Bind ViewModel.SelectedPokemon.HeightIcon}"
-                     Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" />
-              <Image Source="/Assets/Physiques/Man-Height.png"
-                     Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" />
-              
-              <TextBlock x:Uid="PokemonWeight"
-                         Grid.Column="2" Grid.Row="0"
-                         HorizontalAlignment="Center" />
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Weight}"
-                         Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" />
-              <Image Source="{x:Bind ViewModel.SelectedPokemon.WeightIcon}"
-                     Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
-              <Image Source="/Assets/Physiques/Man-Weight.png" Grid.Column="3"
-                     Grid.Row="1" Grid.RowSpan="2" />
 
+              <!-- Ligne 0 -->
+              <StackPanel Orientation="Horizontal"
+                          HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Grid.Column="0" Grid.Row="0">
+                <TextBlock x:Uid="PokemonHeight" />
+                <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Height}" />
+              </StackPanel>
+              <StackPanel Orientation="Horizontal"
+                          HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Grid.Column="1" Grid.Row="0">
+                <TextBlock x:Uid="PokemonWeight" />
+                <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Weight}" />
+              </StackPanel>
               <TextBlock x:Uid="PokemonMaleRatio"
-                         Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2"
-                         HorizontalAlignment="Center"/>
+                         HorizontalAlignment="Center"
+                         Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" />
+              <FlipView x:Name="PokemonSprites"
+                        Height="144" Width="256"
+                        ItemsSource="{x:Bind ViewModel.SelectedPokemon.Sprites}"
+                        HorizontalAlignment="Right"
+                        Grid.Column="4" Grid.Row="0" Grid.RowSpan="4">
+                <FlipView.ItemTemplate>
+                  <DataTemplate x:DataType="model:SpriteViewModel">
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                      </Grid.ColumnDefinitions>
+                      <Image Source="{x:Bind FrontSprite}"
+                           Height="128"
+                           Grid.Column="0" />
+                      <Image Source="{x:Bind BackSprite}"
+                           Height="128"
+                           Grid.Column="1" />
+                      <Border Background="{ThemeResource SystemFillColorNeutralBrush}" Height="24"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{x:Bind Name}"
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center"/>
+                      </Border>
+                    </Grid>
+                  </DataTemplate>
+                </FlipView.ItemTemplate>
+              </FlipView>
+
+              <!-- Ligne 1 -->
+              <Image Source="{x:Bind ViewModel.SelectedPokemon.HeightIcon}"
+                     Width="128"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" />
+              <Image Source="{x:Bind ViewModel.SelectedPokemon.WeightIcon}"
+                     Width="128"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" />
+
               <ProgressBar Minimum="0" Maximum="1"
-                           Value="{x:Bind ViewModel.SelectedPokemon.MaleRatio}"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Center"
-                           Foreground="DarkBlue"
-                           Background="DarkRed"
-                           MinHeight="18"
-                           Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" />
+                         Value="{x:Bind ViewModel.SelectedPokemon.MaleRatio}"
+                         VerticalAlignment="Top"
+                         Foreground="{x:Bind ViewModel.SelectedPokemon.Foreground}"
+                         Background="{x:Bind ViewModel.SelectedPokemon.Background}"
+                         MinHeight="18" Width="128"
+                         Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" />
               <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Ratio}"
-                         Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Center"/>
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" />
+
               <FontIcon FontFamily="Segoe UI Symbol" 
-                        Glyph="&#x2642;"
-                        Grid.Column="4" Grid.Row="2"
-                        Foreground="DarkBlue"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Center"/>
+                      Glyph="&#x2642;"
+                      Foreground="{x:Bind ViewModel.SelectedPokemon.Foreground}"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Center"
+                      Grid.Column="2" Grid.Row="2" />
               <FontIcon FontFamily="Segoe UI Symbol" 
-                        Glyph="&#x2640;"
-                        Grid.Column="5" Grid.Row="2"
-                        Foreground="DarkRed"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Center"/>
+                      Glyph="&#x2640;"
+                      Foreground="{x:Bind ViewModel.SelectedPokemon.Background}"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Center"
+                      Grid.Column="3" Grid.Row="2" />
+
+              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Description}"
+                         Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5"
+                         TextWrapping="Wrap" />
             </Grid>
           </Expander.Content>
         </Expander>
-        <Expander Header="Reproduction et évolutions"
+
+        <Expander x:Uid="PokemonBreedingAndEvolution"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
                   Grid.Column="0" Grid.Row="1">
+
           <Expander.Content>
+
             <Grid>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="96" />
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="96" />
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="96" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
               </Grid.ColumnDefinitions>
               <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
               </Grid.RowDefinitions>
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EggGroups}" 
+
+              <TextBlock x:Uid="PokemonEggInfo"
                          Grid.Column="0" Grid.Row="0" />
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EggCycles}" 
-                         Grid.Column="0" Grid.Row="1" />
-              
-              <Image Source="{x:Bind ViewModel.SelectedPokemon.PreEvolution.FrontDefault}"
-                     Grid.Column="2" Grid.Row="0"
-                     Style="{StaticResource PokemonLargeIcon}" />
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PreEvolution.Name}"
-                         Grid.Column="2" Grid.Row="1"
-                         Style="{StaticResource PokemonName}"/>
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PreEvolution.Numero}"
-                         Grid.Column="2" Grid.Row="2"
-                         Style="{StaticResource PokemonNumber}"/>
-              
-              <Image Source="{x:Bind ViewModel.SelectedPokemon.FrontDefault}"
-                     Grid.Column="4" Grid.Row="0"
-                     Style="{StaticResource PokemonLargeIcon}" />
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Name}"
-                         Grid.Column="4" Grid.Row="1"
-                         Style="{StaticResource PokemonName}"/>
-              <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Numero}"
-                         Grid.Column="4" Grid.Row="2"
-                         Style="{StaticResource PokemonNumber}"/>
-              
+              <TextBlock Text="Pré-évolution"
+                         Grid.Column="1" Grid.Row="0" />
+              <TextBlock Text="Evolution courante"
+                         Grid.Column="2" Grid.Row="0" />
+              <TextBlock Text="Prochaines évolutions"
+                         Grid.Column="3" Grid.Row="0" />
+
+              <!-- EggGroups & EggCycles -->
+              <StackPanel Orientation="Horizontal"
+                          Grid.Column="0" Grid.Row="1">
+                <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.EggIcon}"
+                       Style="{StaticResource TypeIcon}" />
+                <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.Name}"
+                           Style="{StaticResource EggGroupName}"/>
+              </StackPanel>
+              <StackPanel Orientation="Horizontal"
+                          Grid.Column="0" Grid.Row="2">
+                <Image Source="{x:Bind ViewModel.SelectedPokemon.SecondaryEggGroup.EggIcon}"
+                       Style="{StaticResource TypeIcon}" />
+                <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.SecondaryEggGroup.Name}"
+                           Style="{StaticResource EggGroupName}"/>
+              </StackPanel>
+
+              <!-- Evolutions -->
+              <Border CornerRadius="{Binding CornerRadius, ElementName=PokemonSprites}"
+                      Background="{Binding Background, ElementName=PokemonSprites}"
+                      Width="128"
+                      Margin="8"
+                      Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                <StackPanel Orientation="Vertical">
+                  <Image Source="{x:Bind ViewModel.SelectedPokemon.PreEvolution.FrontDefault}"
+                         Height="64"/>
+                  <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PreEvolution.Name}"
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center"/>
+                </StackPanel>
+              </Border>
+
+              <Border CornerRadius="{Binding CornerRadius, ElementName=PokemonSprites}"
+                      Background="{Binding Background, ElementName=PokemonSprites}"
+                      Width="128"
+                      Margin="8"
+                      Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
+                <StackPanel Orientation="Vertical">
+                  <Image Source="{x:Bind ViewModel.SelectedPokemon.FrontDefault}"
+                         Height="64"/>
+                  <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Name}"
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center"/>
+                  <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PreEvolutionCondition.Method}"
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Border>
+
               <FlipView ItemsSource="{x:Bind ViewModel.SelectedPokemon.Evolutions}"
-                        Grid.Column="6" Grid.Row="0" Grid.RowSpan="4"
                         HorizontalContentAlignment="Center"
-                        Height="128" Width="96">
+                        Width="128" Height="128"
+                        Margin="8"
+                        Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
                 <FlipView.ItemTemplate>
                   <DataTemplate x:DataType="model:EvolutionViewModel">
-                    <Grid>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                      </Grid.ColumnDefinitions>
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                      </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical">
                       <Image Source="{x:Bind EvolveTo.FrontDefault}"
-                             Grid.Column="0" Grid.Row="0"
-                             Style="{StaticResource PokemonLargeIcon}" />
+                         Height="64"/>
                       <TextBlock Text="{x:Bind EvolveTo.Name}"
-                                 Grid.Column="0" Grid.Row="1"
-                                 Style="{StaticResource PokemonName}"/>
-                      <TextBlock Text="{x:Bind EvolveTo.Numero}"
-                                 Grid.Column="0" Grid.Row="2"
-                                 Style="{StaticResource PokemonNumber}"/>
-                    </Grid>
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center"/>
+                      <TextBlock Text="{x:Bind Method}"
+                                 FontSize="12epx"
+                                 Foreground="{ThemeResource TextOnAccentFillColorSelectedTextBrush}"
+                                 Padding="4,4"
+                                 HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
                   </DataTemplate>
                 </FlipView.ItemTemplate>
               </FlipView>
+
             </Grid>
+
           </Expander.Content>
         </Expander>
-        <Expander Header="Entrainement et capture"
-                  IsExpanded="True"
-                  HorizontalAlignment="Stretch"
-                  Grid.Column="0" Grid.Row="2">
 
-        </Expander>
-        <Expander Header="Statistiques"
+        <Expander x:Uid="PokemonStatisticalExpander"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
-                  Grid.Column="0" Grid.Row="3">
+                  Grid.Column="0" Grid.Row="2">
           <Expander.Content>
             <Grid HorizontalAlignment="Stretch">
               <Grid.ColumnDefinitions>
@@ -337,20 +365,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
-              <TextBlock Text="Attack"
-                 Grid.Column="0" Grid.Row="0"/>
-              <TextBlock Text="Special Attack"
-                 Grid.Column="0" Grid.Row="1"/>
-              <TextBlock Text="Defence"
-                 Grid.Column="0" Grid.Row="2"/>
-              <TextBlock Text="Special Defence"
-                 Grid.Column="0" Grid.Row="3"/>
-              <TextBlock Text="HP"
-                 Grid.Column="0" Grid.Row="4"/>
-              <TextBlock Text="Speed"
-                 Grid.Column="0" Grid.Row="5"/>
-              <TextBlock Text="Total"
-                 Grid.Column="0" Grid.Row="6"/>
+              <TextBlock x:Uid="PokemonStatAttack"
+                         Grid.Column="0" Grid.Row="0"/>
+              <TextBlock x:Uid="PokemonStatSpecialAttack"
+                         Grid.Column="0" Grid.Row="1"/>
+              <TextBlock x:Uid="PokemonStatDefence"
+                         Grid.Column="0" Grid.Row="2"/>
+              <TextBlock x:Uid="PokemonStatSpecialDefence"
+                         Grid.Column="0" Grid.Row="3"/>
+              <TextBlock x:Uid="PokemonStatHP"
+                         Grid.Column="0" Grid.Row="4"/>
+              <TextBlock x:Uid="PokemonStatSpeed"
+                         Grid.Column="0" Grid.Row="5"/>
+              <TextBlock x:Uid="PokemonStatTotal"
+                         Grid.Column="0" Grid.Row="6"/>
 
               <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EvAttack }"
                          Style="{StaticResource ProgressBarValue}"
@@ -387,14 +415,14 @@
                            Value="{x:Bind ViewModel.SelectedPokemon.BaseSpecialDefence}"
                            Style="{StaticResource ProgressBarStat}"
                            Grid.Column="2" Grid.Row="3" />
-              <ProgressBar Minimum="0" Maximum="{x:Bind ViewModel.MaxBaseHP, Mode=OneTime}"
-                           Value="{x:Bind ViewModel.SelectedPokemon.BaseHP}"
-                           Style="{StaticResource ProgressBarStat}"
-                           Grid.Column="2" Grid.Row="4" />
               <ProgressBar Minimum="0" Maximum="{x:Bind ViewModel.MaxBaseSpeed, Mode=OneTime}"
                            Value="{x:Bind ViewModel.SelectedPokemon.BaseSpeed}"
                            Style="{StaticResource ProgressBarStat}"
                            Grid.Column="2" Grid.Row="5" />
+              <ProgressBar Minimum="0" Maximum="{x:Bind ViewModel.MaxBaseHP, Mode=OneTime}"
+                           Value="{x:Bind ViewModel.SelectedPokemon.BaseHP}"
+                           Style="{StaticResource ProgressBarStat}"
+                           Grid.Column="2" Grid.Row="4" />
               <ProgressBar Minimum="0" Maximum="{x:Bind ViewModel.MaxBaseTotal, Mode=OneTime}"
                            Value="{x:Bind ViewModel.SelectedPokemon.BaseTotal}"
                            Style="{StaticResource ProgressBarStat}"
@@ -429,36 +457,265 @@
                          HorizontalAlignment="Right"
                          Grid.Column="3" Grid.Row="1"/>
               <TextBlock Text="{x:Bind ViewModel.MaxBaseDefence}"
-                   HorizontalAlignment="Right"
-                 Grid.Column="3" Grid.Row="2"/>
+                         HorizontalAlignment="Right"
+                         Grid.Column="3" Grid.Row="2"/>
               <TextBlock Text="{x:Bind ViewModel.MaxBaseSpecialDefence}"
-                   HorizontalAlignment="Right"
-                 Grid.Column="3" Grid.Row="3"/>
+                         HorizontalAlignment="Right"
+                         Grid.Column="3" Grid.Row="3"/>
               <TextBlock Text="{x:Bind ViewModel.MaxBaseHP}"
-                   HorizontalAlignment="Right"
-                 Grid.Column="3" Grid.Row="4"/>
+                         HorizontalAlignment="Right"
+                         Grid.Column="3" Grid.Row="4"/>
               <TextBlock Text="{x:Bind ViewModel.MaxBaseSpeed}"
-                   HorizontalAlignment="Right"
-                 Grid.Column="3" Grid.Row="5"/>
+                         HorizontalAlignment="Right"
+                         Grid.Column="3" Grid.Row="5"/>
               <TextBlock Text="{x:Bind ViewModel.MaxBaseTotal}"
-                   HorizontalAlignment="Right"
-                 Grid.Column="3" Grid.Row="6"/>
+                         HorizontalAlignment="Right"
+                         Grid.Column="3" Grid.Row="6"/>
             </Grid>
           </Expander.Content>
         </Expander>
-        <Expander Header="Capacité"
+
+        <Expander x:Uid="PokemonMoves"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
-                  Grid.Column="0" Grid.Row="4">
+                  HorizontalContentAlignment="Left"
+                  Grid.Column="0" Grid.Row="3">
 
-        </Expander>
-        <Expander Header="Attaques"
-                  IsExpanded="True"
-                  HorizontalAlignment="Stretch"
-                  Grid.Column="0" Grid.Row="5">
+          <Expander.Content>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
 
+              <!-- LeveledMoves -->
+              <TextBlock Text="Attaques par niveau"
+                         HorizontalAlignment="Center"
+                         Grid.Row="0" Grid.Column="0" />
+              <ScrollViewer Grid.Row="1" Grid.Column="0"
+                            Margin="0,8,0,0"
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+
+                <ListView ItemsSource="{x:Bind ViewModel.SelectedPokemon.LeveledMoves}"
+                          SelectedItem="{x:Bind ViewModel.SelectedMoveLeveled, Mode=TwoWay}"
+                          SelectionMode="Single"
+                          Width="192" Height="208">
+                  <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MoveViewModel">
+                      <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="Auto" />
+                          <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{x:Bind MoveTypeIcon}"
+                               Style="{StaticResource MoveTypeIcon}"
+                               Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
+                        <TextBlock Text="{x:Bind Name}"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="0" />
+                        <TextBlock Text="{x:Bind Description}"
+                                   FontSize="12epx"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="1" />
+                        <Image Source="{x:Bind DamageClassIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="0" />
+                        <Image Source="{x:Bind MoveTargetIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="1" />
+                      </Grid>
+                    </DataTemplate>
+                  </ListView.ItemTemplate>
+                </ListView>
+
+              </ScrollViewer>
+
+              <!-- TMMoves -->
+              <TextBlock Text="Attaques par CT/TM"
+                         HorizontalAlignment="Center"
+                         Grid.Row="0" Grid.Column="1" />
+              <ScrollViewer Grid.Row="1" Grid.Column="1"
+                            Margin="0,8,0,0"
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+
+                <ListView ItemsSource="{x:Bind ViewModel.SelectedPokemon.TMMoves}"
+                          SelectedItem="{x:Bind ViewModel.SelectedMoveCT_TM, Mode=TwoWay}"
+                          SelectionMode="Single"
+                          Width="192" Height="208">
+                  <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MoveViewModel">
+                      <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="Auto" />
+                          <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{x:Bind MoveTypeIcon}"
+                               Style="{StaticResource MoveTypeIcon}"
+                               Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
+                        <TextBlock Text="{x:Bind Name}"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="0" />
+                        <TextBlock Text="{x:Bind Description}"
+                                   FontSize="12epx"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="1" />
+                        <Image Source="{x:Bind DamageClassIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="0" />
+                        <Image Source="{x:Bind MoveTargetIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="1" />
+                      </Grid>
+                    </DataTemplate>
+                  </ListView.ItemTemplate>
+                </ListView>
+
+              </ScrollViewer>
+
+              <!-- TutorMoves -->
+              <TextBlock Text="Apprentissage par tuteur"
+                         HorizontalAlignment="Center"
+                         Grid.Row="0" Grid.Column="2" />
+              <ScrollViewer Grid.Row="1" Grid.Column="2"
+                            Margin="0,8,0,0"
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+
+                <ListView ItemsSource="{x:Bind ViewModel.SelectedPokemon.TutorMoves}"
+                          SelectedItem="{x:Bind ViewModel.SelectedMoveTutor, Mode=TwoWay}"
+                          SelectionMode="Single" 
+                          Width="192" Height="208">
+                  <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MoveViewModel">
+                      <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="Auto" />
+                          <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{x:Bind MoveTypeIcon}"
+                               Style="{StaticResource MoveTypeIcon}"
+                               Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
+                        <TextBlock Text="{x:Bind Name}"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="0" />
+                        <TextBlock Text="{x:Bind Description}"
+                                   FontSize="12epx"
+                                   Style="{StaticResource PokemonName}"
+                                   Grid.Column="1" Grid.Row="1" />
+                        <Image Source="{x:Bind DamageClassIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="0" />
+                        <Image Source="{x:Bind MoveTargetIcon}"
+                               Style="{StaticResource DamageClassIcon}"
+                               Grid.Column="2" Grid.Row="1" />
+                      </Grid>
+                    </DataTemplate>
+                  </ListView.ItemTemplate>
+                </ListView>
+
+              </ScrollViewer>
+
+              <StackPanel Orientation="Horizontal"
+                          HorizontalAlignment="Center"
+                          Grid.Row="0" Grid.Column="3">
+                <Image Source="{x:Bind ViewModel.SelectedMove.MoveTypeIcon}"
+                     Style="{StaticResource MoveTypeIcon}" />
+                <StackPanel Orientation="vertical">
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Name}"
+                           Style="{StaticResource PokemonName}"/>
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Description}"
+                           FontSize="12epx"
+                           Style="{StaticResource PokemonName}"/>
+                </StackPanel>
+              </StackPanel>
+              
+              <ScrollViewer Grid.Row="1" Grid.Column="3"
+                            HorizontalAlignment="Stretch"
+                            Margin="8,8"
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+
+                <Grid HorizontalAlignment="Stretch">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+
+                  <TextBlock Text="PP"
+                             Grid.Column="0" Grid.Row="0" />
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Pp}"
+                             Grid.Column="1" Grid.Row="0" />
+
+                  <TextBlock Text="Accuracy"
+                             Grid.Column="0" Grid.Row="1" />
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Accuracy}"
+                             Grid.Column="1" Grid.Row="1" />
+
+                  <TextBlock Text="Power"
+                             Grid.Column="0" Grid.Row="2" />
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Power}"
+                             Grid.Column="1" Grid.Row="2" />
+
+                  <TextBlock Text="Priority"
+                             Grid.Column="0" Grid.Row="3" />
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Priority}"
+                             Grid.Column="1" Grid.Row="3" />
+
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Effect}"
+                             TextWrapping="Wrap"
+                             Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Flavor}"
+                             TextWrapping="Wrap"
+                             Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                </Grid>
+
+              </ScrollViewer>
+
+            </Grid>
+          </Expander.Content>
         </Expander>
+
       </Grid>
     </ScrollViewer>
   </Grid>
 </Page>
+
+<!--
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EggGroups}" 
+                Grid.Column="0" Grid.Row="0" />
+    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EggCycles}" 
+                Grid.Column="0" Grid.Row="1" />
+  -->

@@ -58,6 +58,10 @@
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
+        internal PokemonExtendedViewModel GetExtendedViewModel()
+        {
+            return new PokemonExtendedViewModel(this.species);
+        }
 
         internal void SetLanguage(string language)
         {

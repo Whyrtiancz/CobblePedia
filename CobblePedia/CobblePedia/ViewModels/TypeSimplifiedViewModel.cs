@@ -31,6 +31,11 @@
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
+        internal TypeExtendedViewModel GetExtendedViewModel()
+        {
+            return new TypeExtendedViewModel(this.pType);
+        }
+
         internal void SetLanguage(string language)
         {
             if (isEmpty)

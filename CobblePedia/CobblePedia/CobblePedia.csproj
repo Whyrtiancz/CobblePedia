@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
@@ -11,11 +11,15 @@
     <Nullable>enable</Nullable>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\SVG\Mewx880.svg" />
     <None Remove="Assets\SVG\Pikachux880.svg" />
     <None Remove="Styles\Cards.xaml" />
     <None Remove="Styles\Pages.xaml" />
+    <None Remove="Views\PokemonView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CobblePedia.ico" />
@@ -51,7 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Styles\Tables.xaml">
+    <Page Update="Views\PokemonView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -75,9 +79,6 @@
     <Page Update="Views\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\PokemonView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Settings.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -87,6 +88,16 @@
     <Page Update="Views\TypeView.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PRIResource Update="Strings\fr-FR\Resources.resw">
+      <Generator></Generator>
+    </PRIResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\MoveTarget\" />
   </ItemGroup>
 
     <!-- Publish Properties -->

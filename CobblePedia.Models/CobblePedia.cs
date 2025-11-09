@@ -181,9 +181,9 @@
             FR.Clear();
             EN.Clear();
 
-            LoadCustomL10N();
+            string extractPath = LoadCobblemonPart1(pathToCobblemon);
             LoadPokeAPI();
-            LoadCobblemon(pathToCobblemon);
+            LoadCobblemonPart2(extractPath);
             LoadRtcMod(pathToRtcmod);
 
             CheckEvolutions();
@@ -251,37 +251,115 @@
             EN.Add("SpriteMaleShiny", "Male Shiny");
             EN.Add("SpriteFemaletShiny", "Female Shiny");
 
-            FR.Add("EggGroup_amorphous", "Amorphe");
-            FR.Add("EggGroup_bug", "Insecte");
-            FR.Add("EggGroup_ditto", "Métamorphe");
-            FR.Add("EggGroup_dragon", "Dragon");
-            FR.Add("EggGroup_fairy", "Fée");
-            FR.Add("EggGroup_field", "Sol");
-            FR.Add("EggGroup_flying", "Vol");
-            FR.Add("EggGroup_grass", "Herbe");
-            FR.Add("EggGroup_human_like", "Humain");
-            FR.Add("EggGroup_mineral", "Roche");
-            FR.Add("EggGroup_monster", "Monstre");
-            FR.Add("EggGroup_undiscovered", "Non découvert");
-            FR.Add("EggGroup_water_1", "Eau 1");
-            FR.Add("EggGroup_water_2", "Eau 2");
-            FR.Add("EggGroup_water_3", "Eau 3");
+            FR.Add("Evolution_Method_level_up", "Par niveau (>={0})");
+            FR.Add("Evolution_Method_friendship", "Par amitié (>={0})");
+            FR.Add("Evolution_Method_battle_critical_hits", "Par attaques critiques (>={0})");
+            FR.Add("Evolution_Method_item_interact", "Par objet ({0})");
+            FR.Add("Evolution_Method_trade", "Par échange ({0})");
 
-            EN.Add("EggGroup_amorphous", "Amorphous");
-            EN.Add("EggGroup_bug", "Bug");
-            EN.Add("EggGroup_ditto", "Ditto");
-            EN.Add("EggGroup_dragon", "Dragon");
-            EN.Add("EggGroup_fairy", "Fairy");
-            EN.Add("EggGroup_field", "Field");
-            EN.Add("EggGroup_flying", "Flying");
-            EN.Add("EggGroup_grass", "Grass");
-            EN.Add("EggGroup_human_like", "Human like");
-            EN.Add("EggGroup_mineral", "Mineral");
-            EN.Add("EggGroup_monster", "Monster");
-            EN.Add("EggGroup_undiscovered", "Undiscovered");
-            EN.Add("EggGroup_water_1", "Water 1");
-            EN.Add("EggGroup_water_2", "Water 2");
-            EN.Add("EggGroup_water_3", "Water 3");
+            EN.Add("Evolution_Method_level_up", "By level (>={0})");
+            EN.Add("Evolution_Method_friendship", "By friendship (>={0})");
+            EN.Add("Evolution_Method_battle_critical_hits", "By critical hits (>={0})");
+            EN.Add("Evolution_Method_item_interact", "By item ({0})");
+            EN.Add("Evolution_Method_trade", "By trade ({0})");
+
+            FR.Add("cobblemon:thunder_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.thunder_stone"));
+            FR.Add("cobblemon:moon_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.moon_stone"));
+            FR.Add("cobblemon:fire_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.fire_stone"));
+            FR.Add("cobblemon:leaf_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.leaf_stone"));
+            FR.Add("cobblemon:sun_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.sun_stone"));
+            FR.Add("cobblemon:water_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.water_stone"));
+            FR.Add("cobblemon:ice_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.ice_stone"));
+            FR.Add("cobblemon:shiny_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.shiny_stone"));
+            FR.Add("cobblemon:dusk_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.dusk_stone"));
+            FR.Add("cobblemon:dawn_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.dawn_stone"));
+            FR.Add("cobblemon:black_augurite", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.black_augurite"));
+            FR.Add("cobblemon:peat_block", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.peat_block"));
+            FR.Add("cobblemon:shell_helmet", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.shell_helmet"));
+            FR.Add("cobblemon:link_cable", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.link_cable"));
+            FR.Add("cobblemon:tart_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.tart_apple"));
+            FR.Add("cobblemon:sweet_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.sweet_apple"));
+            FR.Add("cobblemon:syrupy_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.syrupy_apple"));
+            FR.Add("cobblemon:cracked_pot", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.cracked_pot"));
+            FR.Add("cobblemon:metal_coat", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.metal_coat"));
+            FR.Add("cobblemon:auspicious_armor", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.auspicious_armor"));
+            FR.Add("cobblemon:malicious_armor", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.malicious_armor"));
+            FR.Add("cobblemon:unremarkable_teacup", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.unremarkable_teacup"));
+            FR.Add("cobblemon:galarica_cuff", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.galarica_cuff"));
+            FR.Add("cobblemon:galarica_wreath", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.galarica_wreath"));
+            FR.Add("cobblemon:chipped_pot", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.chipped_pot"));
+            FR.Add("cobblemon:masterpiece_teacup", JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, "item.cobblemon.masterpiece_teacup"));
+
+            EN.Add("cobblemon:thunder_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.thunder_stone"));
+            EN.Add("cobblemon:moon_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.moon_stone"));
+            EN.Add("cobblemon:fire_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.fire_stone"));
+            EN.Add("cobblemon:leaf_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.leaf_stone"));
+            EN.Add("cobblemon:sun_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.sun_stone"));
+            EN.Add("cobblemon:water_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.water_stone"));
+            EN.Add("cobblemon:ice_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.ice_stone"));
+            EN.Add("cobblemon:shiny_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.shiny_stone"));
+            EN.Add("cobblemon:dusk_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.dusk_stone"));
+            EN.Add("cobblemon:dawn_stone", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.dawn_stone"));
+            EN.Add("cobblemon:black_augurite", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.black_augurite"));
+            EN.Add("cobblemon:peat_block", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.peat_block"));
+            EN.Add("cobblemon:shell_helmet", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.shell_helmet"));
+            EN.Add("cobblemon:link_cable", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.link_cable"));
+            EN.Add("cobblemon:tart_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.tart_apple"));
+            EN.Add("cobblemon:sweet_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.sweet_apple"));
+            EN.Add("cobblemon:syrupy_apple", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.syrupy_apple"));
+            EN.Add("cobblemon:cracked_pot", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.cracked_pot"));
+            EN.Add("cobblemon:metal_coat", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.metal_coat"));
+            EN.Add("cobblemon:auspicious_armor", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.auspicious_armor"));
+            EN.Add("cobblemon:malicious_armor", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.malicious_armor"));
+            EN.Add("cobblemon:unremarkable_teacup", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.unremarkable_teacup"));
+            EN.Add("cobblemon:galarica_cuff", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.galarica_cuff"));
+            EN.Add("cobblemon:galarica_wreath", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.galarica_wreath"));
+            EN.Add("cobblemon:chipped_pot", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.chipped_pot"));
+            EN.Add("cobblemon:masterpiece_teacup", JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, "item.cobblemon.masterpiece_teacup"));
+
+            FR.Add("Trainer_Type_", "");
+            FR.Add("Trainer_Type_leader", "Leader");
+            FR.Add("Trainer_Type_battleground", "Champ de bataille");
+            FR.Add("Trainer_Type_team_rocket", "Team Rocket");
+            FR.Add("Trainer_Type_team_shadow", "Team Shadow");
+            FR.Add("Trainer_Type_champ", "Champion");
+            FR.Add("Trainer_Type_normal", "Normal");
+            FR.Add("Trainer_Type_rival", "Rival");
+            FR.Add("Trainer_Type_team_galactic", "Team Galactic");
+            FR.Add("Trainer_Type_e4", "Conseil des 4");
+            FR.Add("Trainer_Type_ligh_of_ruin", "Ligh of ruin");
+
+            EN.Add("Trainer_Type_", "");
+            EN.Add("Trainer_Type_leader", "Leader");
+            EN.Add("Trainer_Type_battleground", "Battleground");
+            EN.Add("Trainer_Type_team_rocket", "Team Rocket");
+            EN.Add("Trainer_Type_team_shadow", "Team Shadow");
+            EN.Add("Trainer_Type_champ", "Champion");
+            EN.Add("Trainer_Type_normal", "Normal");
+            EN.Add("Trainer_Type_rival", "Rival");
+            EN.Add("Trainer_Type_team_galactic", "Team Galactic");
+            EN.Add("Trainer_Type_e4", "Conseil des 4");
+            EN.Add("Trainer_Type_ligh_of_ruin", "Ligh of ruin");
+
+            FR.Add("Trainer_Series_", "");
+            FR.Add("Trainer_Series_unbound", "Illimité");
+            FR.Add("Trainer_Series_radicalred", "Radical Rouge");
+            FR.Add("Trainer_Series_bdsp", "BDSP");
+
+            EN.Add("Trainer_Series_", "");
+            EN.Add("Trainer_Series_unbound", "Unbound");
+            EN.Add("Trainer_Series_radicalred", "Radical Red");
+            EN.Add("Trainer_Series_bdsp", "BDSP");
+
+            FR.Add("Moves_Egg", "Eclosion");
+            FR.Add("Moves_Level", "Niveau {0}");
+            FR.Add("Moves_TM", "CT/TM");
+            FR.Add("Moves_Tutor", "Tuteur");
+
+            EN.Add("Moves_Egg", "Egg");
+            EN.Add("Moves_Level", "Level {0}");
+            EN.Add("Moves_TM", "CT/CM");
+            EN.Add("Moves_Tutor", "Tutor");
         }
 
         private void LoadPokeAPI()
@@ -296,15 +374,21 @@
             LoadSprites(Path.Combine(ConfigurationHelper.CobblePediaDataPath, Sprite.BasePath));
         }
 
-        public void LoadCobblemon(string file)
+        public string LoadCobblemonPart1(string file)
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
             string extractPath = Path.Combine(ConfigurationHelper.CobblePediaDataPath, fileName);
             JarHelper.ExtractSubfolder(file, extractPath, RctmodJar.Paths, true);
 
             LoadLanguages(extractPath);
+            LoadCustomL10N();
+
+            return extractPath;
+        }
+        public void LoadCobblemonPart2(string extractPath)
+        {
             LoadSpawns(extractPath);
-            LoadSpecies(extractPath);
+            LoadPokemon(extractPath);
         }
 
         public void LoadRtcMod(string file)
@@ -415,9 +499,9 @@
             }
         }
 
-        private void LoadSpecies(string basePath)
+        private void LoadPokemon(string basePath)
         {
-            Console.WriteLine("LoadSpecies");
+            Console.WriteLine("LoadPokemon");
 
             Pokemon.Clear();
 

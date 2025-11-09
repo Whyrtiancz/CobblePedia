@@ -117,17 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DamageClassPicture" xml:space="preserve">
+    <value>/Assets/DamageClass/{0}.png</value>
+  </data>
+  <data name="EggGroupPicture" xml:space="preserve">
+    <value>/Assets/Eggs/Egg-{0}.png</value>
+  </data>
+  <data name="MoveTargetPicture" xml:space="preserve">
+    <value>/Assets/MoveTarget/{0}.png</value>
+  </data>
   <data name="PokemonEggGroup" xml:space="preserve">
     <value>EggGroup_{0}</value>
   </data>
   <data name="PokemonHeightPicture" xml:space="preserve">
-    <value>/Assets/Physiques/Pokemon-Height-{0}.png</value>
+    <value>/Assets/Physiques/Height-{0}.png</value>
   </data>
   <data name="PokemonPicturePath" xml:space="preserve">
     <value>/Assets/Pokemon/{0}</value>
   </data>
   <data name="PokemonWeightPicture" xml:space="preserve">
-    <value>/Assets/Physiques/Pokemon-Weight-{0}.png</value>
+    <value>/Assets/Physiques/Weight-{0}.png</value>
+  </data>
+  <data name="TrainerSeries" xml:space="preserve">
+    <value>Trainer_Series_{0}</value>
+  </data>
+  <data name="TrainerType" xml:space="preserve">
+    <value>Trainer_Type_{0}</value>
   </data>
   <data name="TypeIconPath" xml:space="preserve">
     <value>/Assets/Types/{0}-Icon.png</value>

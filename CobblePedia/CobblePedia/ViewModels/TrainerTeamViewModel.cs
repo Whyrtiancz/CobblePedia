@@ -24,16 +24,16 @@
             pokemon = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[team.SpeciesId]);
             if (team.MoveSet.Count > 0)
             {
-                move1 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[0]]);
+                move1 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[0]], MoveViewModel.EMoveLearnType.None);
                 if (team.MoveSet.Count > 1)
                 {
-                    move2 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[1]]);
+                    move2 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[1]], MoveViewModel.EMoveLearnType.None);
                     if (team.MoveSet.Count > 2)
                     {
-                        move3 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[2]]);
+                        move3 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[2]], MoveViewModel.EMoveLearnType.None);
                         if (team.MoveSet.Count > 3)
                         {
-                            move4 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[3]]);
+                            move4 = new MoveViewModel(CobblePedia.Pedia.Moves[team.MoveSet[3]], MoveViewModel.EMoveLearnType.None);
                         }
                     }
                 }

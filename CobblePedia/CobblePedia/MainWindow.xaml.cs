@@ -79,7 +79,6 @@ namespace CobblePedia
             if (selectedItem != null)
             {
                 string selectedItemTag = ((string)selectedItem.Tag);
-                //sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "CobblePedia.Views." + selectedItemTag;
                 Type pageType = Type.GetType(pageName);
                 navFrame.Navigate(pageType);

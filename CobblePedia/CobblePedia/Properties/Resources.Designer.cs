@@ -61,6 +61,33 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Assets/DamageClass/{0}.png.
+        /// </summary>
+        internal static string DamageClassPicture {
+            get {
+                return ResourceManager.GetString("DamageClassPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Assets/Eggs/Egg-{0}.png.
+        /// </summary>
+        internal static string EggGroupPicture {
+            get {
+                return ResourceManager.GetString("EggGroupPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Assets/MoveTarget/{0}.png.
+        /// </summary>
+        internal static string MoveTargetPicture {
+            get {
+                return ResourceManager.GetString("MoveTargetPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EggGroup_{0}.
         /// </summary>
         internal static string PokemonEggGroup {
@@ -70,7 +97,7 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Assets/Physiques/Pokemon-Height-{0}.png.
+        ///   Looks up a localized string similar to /Assets/Physiques/Height-{0}.png.
         /// </summary>
         internal static string PokemonHeightPicture {
             get {
@@ -88,11 +115,29 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Assets/Physiques/Pokemon-Weight-{0}.png.
+        ///   Looks up a localized string similar to /Assets/Physiques/Weight-{0}.png.
         /// </summary>
         internal static string PokemonWeightPicture {
             get {
                 return ResourceManager.GetString("PokemonWeightPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trainer_Series_{0}.
+        /// </summary>
+        internal static string TrainerSeries {
+            get {
+                return ResourceManager.GetString("TrainerSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trainer_Type_{0}.
+        /// </summary>
+        internal static string TrainerType {
+            get {
+                return ResourceManager.GetString("TrainerType", resourceCulture);
             }
         }
         
