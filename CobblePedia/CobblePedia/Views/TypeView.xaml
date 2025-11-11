@@ -11,6 +11,25 @@
     x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
+  <Page.Resources>
+
+    <DataTemplate x:Key="TypeSimplifiedView" x:DataType="model:TypeSimplifiedViewModel">
+      <StackPanel Style="{StaticResource ItemCell}">
+        <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
+      </StackPanel>
+    </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="TypePanelTemplate">
+      <ItemsWrapGrid MaximumRowsOrColumns="3"
+                     Orientation="Horizontal"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     ItemWidth="92"/>
+    </ItemsPanelTemplate>
+
+  </Page.Resources>
+
   <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
@@ -32,22 +51,11 @@
                   Style="{StaticResource LeftScrollviewer}"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
-      <Border>
-        <ListView Style="{StaticResource LeftListView}"
-                  SelectionMode="Single"
-                  ItemsSource="{x:Bind ViewModel.TypeViewModels}"
-                  SelectedItem="{x:Bind ViewModel.SelectedTypeInList, Mode=TwoWay}">
-          <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-              <StackPanel Orientation="Horizontal">
-                <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                <TextBlock Text="{x:Bind Name}"
-                           Style="{StaticResource TypeName}"/>
-              </StackPanel>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-      </Border>
+      <ListView SelectedItem="{x:Bind ViewModel.SelectedTypeInList, Mode=TwoWay}"
+                ItemsSource="{x:Bind ViewModel.TypeViewModels}"
+                ItemTemplate="{StaticResource TypeSimplifiedView}"
+                SelectionMode="Single"
+                Style="{StaticResource LeftListView}" />
     </ScrollViewer>
 
     <!-- Type sélectionné -->
@@ -126,7 +134,8 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}">
             <GridView.ItemsPanel>
               <ItemsPanelTemplate>
                 <ItemsWrapGrid MaximumRowsOrColumns="3"
@@ -136,38 +145,14 @@
                              ItemWidth="92"/>
               </ItemsPanelTemplate>
             </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
           </GridView>
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
-          </GridView>
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}"
+                    ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <!-- Ligne 2 - Entête -->
         <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
@@ -198,25 +183,9 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="4">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
-          </GridView>
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                    ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         
         <!-- Ligne 3 - Entête -->
@@ -244,25 +213,9 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="6">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
-          </GridView>
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                    ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
@@ -296,48 +249,16 @@
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="1" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
-          </GridView>
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                    ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
               Style="{StaticResource TableTitleBorder}"
               Grid.Column="2" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
-              <DataTemplate x:DataType="model:TypeSimplifiedViewModel">
-                <StackPanel Style="{StaticResource ItemCell}">
-                  <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-                  <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
-                </StackPanel>
-              </DataTemplate>
-            </GridView.ItemTemplate>
-          </GridView>
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}"
+                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                    ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
       </Grid>
     </ScrollViewer>

@@ -262,7 +262,7 @@
     <value>Statistiques</value>
   </data>
   <data name="PokemonBreedingAndEvolution.Header" xml:space="preserve">
-    <value>Reproduction et évolutions</value>
+    <value>Reproduction, évolutions et formes</value>
   </data>
   <data name="PokemonMoves.Header" xml:space="preserve">
     <value>Mouvements</value>
@@ -287,5 +287,29 @@
   </data>
   <data name="PokemonStatSpecialDefence.Text" xml:space="preserve">
     <value>Défense spéciale</value>
+  </data>
+  <data name="PokemonMoveLearnedByLevel.Text" xml:space="preserve">
+    <value>Apprentissage par niveau</value>
+  </data>
+  <data name="PokemonMoveLearnedByCT_TM.Text" xml:space="preserve">
+    <value>Apprentissage par CT/CM</value>
+  </data>
+  <data name="PokemonMoveLearnedByTutor.Text" xml:space="preserve">
+    <value>Apprentissage par tuteur</value>
+  </data>
+  <data name="PokemonEvolution.Text" xml:space="preserve">
+    <value>Evolutions</value>
+  </data>
+  <data name="PokemonEvolutionPrevious.Text" xml:space="preserve">
+    <value>Précédente</value>
+  </data>
+  <data name="PokemonEvolutionCurrent.Text" xml:space="preserve">
+    <value>Courante</value>
+  </data>
+  <data name="PokemonEvolutionNext.Text" xml:space="preserve">
+    <value>Suivante</value>
+  </data>
+  <data name="PokemonForm.Text" xml:space="preserve">
+    <value>Forme</value>
   </data>
 </root>

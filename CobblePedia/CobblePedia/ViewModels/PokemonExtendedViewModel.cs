@@ -52,6 +52,7 @@
         #endregion Evolution
 
         #region Formes
+        public ObservableCollection<PokemonSimplifiedViewModel> Forms { get; set; }
         #endregion Formes
 
         #region Entrainement et capture
@@ -83,6 +84,13 @@
         public ObservableCollection<MoveViewModel> TMMoves { get; set; }
         public ObservableCollection<MoveViewModel> TutorMoves { get; set; }
         #endregion Attaques
+
+        #region Drops
+        #endregion Drops
+
+        #region Capacités
+        public ObservableCollection<AbilityViewModel> Abilities { get; set; }
+        #endregion Capacités
 
         [ObservableProperty] private bool isDynamaxBlocked;
 
@@ -190,6 +198,11 @@
             {
                 Evolutions.Add(new EvolutionViewModel(evolution));
             }
+            Forms = new ObservableCollection<PokemonSimplifiedViewModel>();
+            foreach (string item in species.Forms)
+            {
+                Forms.Add(new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[item]));
+            }
             #endregion Evolution
 
             #region Formes
@@ -246,6 +259,14 @@
                 TutorMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Tutor));
             }
             #endregion Attaques
+
+            #region Capacités
+            Abilities = new ObservableCollection<AbilityViewModel>();
+            foreach (PokemonAbility item in species.Abilities)
+            {
+                Abilities.Add(new AbilityViewModel(item));
+            }
+            #endregion Capacités
 
             isDynamaxBlocked = species.IsDynamaxBlocked;
 
@@ -304,6 +325,10 @@
                 item.SetLanguage(language);
             }
             foreach (MoveViewModel item in TutorMoves)
+            {
+                item.SetLanguage(language);
+            }
+            foreach (AbilityViewModel item in Abilities)
             {
                 item.SetLanguage(language);
             }
