@@ -60,6 +60,7 @@
         }
         internal PokemonExtendedViewModel GetExtendedViewModel()
         {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedPokemon"] = this.species.SpeciesId;
             return new PokemonExtendedViewModel(this.species);
         }
 

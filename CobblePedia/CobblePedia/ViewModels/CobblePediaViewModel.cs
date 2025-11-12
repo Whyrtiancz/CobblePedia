@@ -24,6 +24,7 @@
         [ObservableProperty] private MoveViewModel selectedMoveLeveled;
         [ObservableProperty] private MoveViewModel selectedMoveCT_TM;
         [ObservableProperty] private MoveViewModel selectedMoveTutor;
+        [ObservableProperty] private AbilityViewModel selectedAbility;
 
         [ObservableProperty] private int maxBaseHP;
         [ObservableProperty] private int maxBaseAttack;
@@ -122,6 +123,39 @@
             PropertyChanged += CobblePediaViewModel_PropertyChanged;
         }
 
+        internal void Initialize()
+        {
+            string? typeId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] as string;
+            string? pokemonId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedPokemon"] as string;
+            string? trainerId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["Selectedtrainer"] as string;
+
+            if (typeId == null)
+            {
+                SelectedTypeInList = TypeViewModels.First();
+            }
+            else
+            {
+                SelectedTypeInList = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[typeId]);
+
+            }
+            if (pokemonId == null)
+            {
+                SelectedPokemonInList = PokemonViewModels.First();
+            }
+            else
+            {
+                SelectedPokemonInList = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[pokemonId]);
+            }
+            if (trainerId == null)
+            {
+                SelectedTrainerInList = TrainerViewModels.First();
+            }
+            else
+            {
+                SelectedTrainerInList = new TrainerSimplifiedViewModel(CobblePedia.Pedia.Trainers[trainerId]);
+            }
+        }
+
         #region Data Language
         internal void SetFR()
         {
@@ -164,6 +198,8 @@
                     break;
                 case "SelectedPokemonInList":
                     SelectedPokemon = SelectedPokemonInList.GetExtendedViewModel();
+                    SelectedMove = SelectedPokemon.LeveledMoves.First();
+                    SelectedAbility = SelectedPokemon.Abilities.First();
                     break;
                 case "SelectedTrainerInList":
                     SelectedTrainer = SelectedTrainerInList.GetExtendedViewModel();

@@ -60,11 +60,23 @@
 
     <DataTemplate x:Key="AbilityView" x:DataType="model:AbilityViewModel">
       <StackPanel Orientation="Horizontal" Padding="4">
-        <Ellipse x:Name="Ellipse"
-                               Width ="16" Height="16"
-                               Margin="4"
-                               Fill="{ThemeResource SystemControlBackgroundBaseMediumBrush}"/>
-        <TextBlock Text="{x:Bind Name}" />
+        <Border Background="{ThemeResource SmokeFillColorDefaultBrush}"
+                CornerRadius="45"
+                Visibility="{x:Bind HiddenVisibility}">
+          <FontIcon Glyph="&#xE7B3;"
+                    FontSize="12epx"
+                    Margin="4"/>
+        </Border>
+        <Border Background="{ThemeResource SmokeFillColorDefaultBrush}"
+                CornerRadius="45"
+                Visibility="{x:Bind VisibleVisibility}">
+          <FontIcon Glyph="&#xED1A;"
+                    FontSize="12epx"
+                    Margin="4"/>
+        </Border>
+        <TextBlock Text="{x:Bind Name}"
+                   Margin="8, 0, 0, 0"
+                   VerticalAlignment="Center"/>
       </StackPanel>
     </DataTemplate>
 
@@ -146,6 +158,8 @@
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
@@ -570,10 +584,42 @@
                          HorizontalAlignment="Right"
                          Grid.Column="3" Grid.Row="6"/>
 
+            </Grid>
+          </Expander.Content>
+        </Expander>
+
+        <Expander x:Uid="PokemonAbilities"
+                  IsExpanded="True"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Left"
+                  Grid.Column="0" Grid.Row="3">
+
+          <Expander.Content>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+
               <ListView ItemsSource="{x:Bind ViewModel.SelectedPokemon.Abilities}"
+                        SelectedItem="{x:Bind ViewModel.SelectedAbility, Mode=TwoWay}"
                         ItemTemplate="{StaticResource AbilityView}"
                         SelectionMode="Single"
-                        Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" />
+                        Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" />
+
+              <TextBlock Text="{x:Bind ViewModel.SelectedAbility.Name}"
+                         Grid.Column="1" Grid.Row="0" />
+              <TextBlock Text="{x:Bind ViewModel.SelectedAbility.Effect}"
+                         TextWrapping="Wrap"
+                         Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+              <!--<TextBlock Text="{x:Bind ViewModel.SelectedAbility.Flavor}"
+                         Grid.Column="1" Grid.Row="2" />-->
 
             </Grid>
           </Expander.Content>
@@ -583,7 +629,7 @@
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
-                  Grid.Column="0" Grid.Row="3">
+                  Grid.Column="0" Grid.Row="4">
 
           <Expander.Content>
             <Grid>
@@ -706,11 +752,11 @@
 
                   <TextBlock Text="{x:Bind ViewModel.SelectedMove.Effect}"
                              TextWrapping="Wrap"
-                             Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+                             Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" />
 
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Flavor}"
+                  <!--<TextBlock Text="{x:Bind ViewModel.SelectedMove.Flavor}"
                              TextWrapping="Wrap"
-                             Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                             Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>-->
                 </Grid>
 
               </ScrollViewer>
@@ -723,23 +769,28 @@
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
-                  Grid.Column="0" Grid.Row="4">
+                  Grid.Column="0" Grid.Row="5">
 
           <Expander.Content>
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-              </Grid.RowDefinitions>
+            <ScrollViewer>
+              <ItemsRepeater ItemsSource="{x:Bind ViewModel.SelectedPokemon.Drops}">
+                <ItemsRepeater.Layout>
+                  <StackLayout Orientation="Vertical" Spacing="4"/>
+                </ItemsRepeater.Layout>
 
-              
-            </Grid>
+                <ItemsRepeater.ItemTemplate>
+                  <DataTemplate x:DataType="model:DropViewModel">
+                    <Grid ColumnDefinitions="Auto,*,Auto,Auto" 
+                          Padding="4" Margin="4">
+                      <Image Grid.Column="0" Source="{x:Bind Icon}" Width="16" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Text="{x:Bind Name}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Text="{x:Bind QuantityRange}" Margin="8,0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Text="{x:Bind Chance}" VerticalAlignment="Center" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+              </ItemsRepeater>
+            </ScrollViewer>
           </Expander.Content>
         </Expander>
 

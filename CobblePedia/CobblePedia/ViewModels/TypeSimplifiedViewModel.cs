@@ -33,6 +33,7 @@
 
         internal TypeExtendedViewModel GetExtendedViewModel()
         {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] = this.pType.TypeId;
             return new TypeExtendedViewModel(this.pType);
         }
 

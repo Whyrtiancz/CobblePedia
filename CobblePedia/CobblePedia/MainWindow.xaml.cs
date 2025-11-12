@@ -59,9 +59,7 @@ namespace CobblePedia
             this.SetTitleBar(titleBar); // Set the custom title bar
             navView.SelectedItem = navView.MenuItems.OfType<NavigationViewItem>().First();
 
-            CobblePediaViewModel.Model.SelectedTypeInList = CobblePediaViewModel.Model.TypeViewModels.First();
-            CobblePediaViewModel.Model.SelectedPokemonInList = CobblePediaViewModel.Model.PokemonViewModels.First();
-            CobblePediaViewModel.Model.SelectedTrainerInList = CobblePediaViewModel.Model.TrainerViewModels.First();
+            CobblePediaViewModel.Model.Initialize();
 
             if (Content is FrameworkElement root)
                 root.DataContext = CobblePediaViewModel.Model;

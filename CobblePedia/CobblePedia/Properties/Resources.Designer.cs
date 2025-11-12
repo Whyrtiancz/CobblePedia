@@ -79,6 +79,15 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Assets/Items/{0}.png.
+        /// </summary>
+        internal static string ItemPicture {
+            get {
+                return ResourceManager.GetString("ItemPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Assets/MoveTarget/{0}.png.
         /// </summary>
         internal static string MoveTargetPicture {

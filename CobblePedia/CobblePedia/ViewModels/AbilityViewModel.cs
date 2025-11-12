@@ -4,11 +4,16 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
+    using Microsoft.UI.Xaml;
+
     public partial class AbilityViewModel : ObservableObject
     {
         [ObservableProperty] private string name;
         [ObservableProperty] private string effect;
         [ObservableProperty] private string flavor;
+        [ObservableProperty] private bool isHidden;
+        [ObservableProperty] private Visibility visibleVisibility;
+        [ObservableProperty] private Visibility hiddenVisibility;
 
         private PokemonAbility pokemonAbility;
         private Ability ability;
@@ -17,6 +22,14 @@
         {
             pokemonAbility = source;
             ability = CobblePedia.Pedia.Abilities[pokemonAbility.AbilityId];
+            isHidden = pokemonAbility.IsHidden;
+            visibleVisibility = Visibility.Visible;
+            hiddenVisibility = Visibility.Collapsed;
+            if (isHidden)
+            {
+                visibleVisibility = Visibility.Collapsed;
+                hiddenVisibility = Visibility.Visible;
+            }
             name = "-";
 
 

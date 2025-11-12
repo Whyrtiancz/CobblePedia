@@ -34,6 +34,7 @@
 
         internal TrainerExtendedViewModel GetExtendedViewModel()
         {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["Selectedtrainer"] = this.trainer.TrainerId;
             return new TrainerExtendedViewModel(this.trainer);
         }
 

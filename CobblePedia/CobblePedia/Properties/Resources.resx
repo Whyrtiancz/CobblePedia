@@ -120,6 +120,9 @@
   <data name="DamageClassPicture" xml:space="preserve">
     <value>/Assets/DamageClass/{0}.png</value>
   </data>
+  <data name="ItemPicture" xml:space="preserve">
+    <value>/Assets/Items/{0}.png</value>
+  </data>
   <data name="EggGroupPicture" xml:space="preserve">
     <value>/Assets/Eggs/Egg-{0}.png</value>
   </data>

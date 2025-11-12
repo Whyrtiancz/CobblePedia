@@ -312,4 +312,7 @@
   <data name="PokemonForm.Text" xml:space="preserve">
     <value>Form</value>
   </data>
+  <data name="PokemonAbilities.Header" xml:space="preserve">
+    <value>Abilities</value>
+  </data>
 </root>

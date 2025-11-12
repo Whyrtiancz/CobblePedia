@@ -86,6 +86,7 @@
         #endregion Attaques
 
         #region Drops
+        public ObservableCollection<DropViewModel> Drops { get; set; }
         #endregion Drops
 
         #region Capacités
@@ -260,6 +261,14 @@
             }
             #endregion Attaques
 
+            #region Drops
+            Drops = new ObservableCollection<DropViewModel>();
+            foreach (Drop item in species.Drops)
+            {
+                Drops.Add(new DropViewModel(item));
+            }
+            #endregion Drops
+
             #region Capacités
             Abilities = new ObservableCollection<AbilityViewModel>();
             foreach (PokemonAbility item in species.Abilities)
@@ -329,6 +338,10 @@
                 item.SetLanguage(language);
             }
             foreach (AbilityViewModel item in Abilities)
+            {
+                item.SetLanguage(language);
+            }
+            foreach (DropViewModel item in Drops)
             {
                 item.SetLanguage(language);
             }
