@@ -89,14 +89,33 @@
         public bool IsElligible(string searchPattern)
         {
             bool isElligible = false;
+            bool isKeyTypeFound = false;
+            bool isKeyTypeFilterFound = false;
 
             var querySplit = searchPattern.ToLower().Split(" ");
             foreach (string item in querySplit)
             {
-                isElligible = isElligible || searchValues.Contains(item);
+                isKeyTypeFilterFound = isKeyTypeFilterFound || item.StartsWith('@');
+                isKeyTypeFound = isKeyTypeFound || item == KeyType;
+                if (!isKeyTypeFilterFound && !isKeyTypeFound)
+                {
+                    isElligible = searchValues.Contains(item);
+                }
+                if (isKeyTypeFilterFound)
+                {
+                    if (querySplit.Length == 1)
+                    {
+                        isElligible = isKeyTypeFound;
+                    }
+                    else
+                    {
+                        isElligible = searchValues.Contains(item) && isKeyTypeFound;
+                    }
+                }
+
                 if (isElligible)
                 {
-                    return isElligible;
+                    continue;
                 }
             }
 
