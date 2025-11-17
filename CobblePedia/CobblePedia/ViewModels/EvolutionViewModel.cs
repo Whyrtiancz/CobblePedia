@@ -8,7 +8,7 @@
 
     internal partial class EvolutionViewModel : ObservableObject
     {
-        [ObservableProperty] private PokemonSimplifiedViewModel evolveTo;
+        [ObservableProperty] private SearchableObjectViewModel evolveTo;
         [ObservableProperty] private string method;
 
         private string methodKey;
@@ -24,7 +24,7 @@
             evolution = source;
             methodKey = string.Format("Evolution_Method_{0}", evolution.Method);
 
-            evolveTo = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[evolution.EvolveTo]);
+            evolveTo = CobblePediaViewModel.Model.GetSearchableObjectViewModel(evolution.EvolveTo, "@pokemon");
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }

@@ -64,27 +64,6 @@ namespace CobblePedia
             this.SetTitleBar(titleBar); // Set the custom title bar
             navView.SelectedItem = navView.MenuItems.OfType<NavigationViewItem>().First();
 
-            //Task.Run(() =>
-            //{
-            //    User user = User.FindAllAsync(UserType.LocalUser, UserAuthenticationStatus.LocallyAuthenticated).Get().First();
-            //    string displayName = user.GetPropertyAsync(KnownUserProperties.DisplayName).ToString();
-            //    string first = user.GetPropertyAsync(KnownUserProperties.FirstName).ToString();
-            //    string last = user.GetPropertyAsync(KnownUserProperties.LastName).ToString();
-            //    string initials = string.Join("", new[] { first, last }.Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => s.Trim()[0])).ToUpperInvariant();
-            //    initials;
-            //    //var pictureRef = user.GetPictureAsync(UserPictureSize.Size64x64);
-            //    //BitmapImage bitmap = null;
-            //    //if (pictureRef != null)
-            //    //{
-            //    //    using var ras = pictureRef.
-            //    //    bitmap = new BitmapImage();
-            //    //    await bitmap.SetSourceAsync(ras);
-            //    //}
-            //    // Exemple d’utilisation avec un PersonPicture nommé personPicture
-            //    //personPicture.DisplayName = string.IsNullOrWhiteSpace(displayName) ? $"{first} {last}".Trim() : displayName;
-            //    //personPicture.Initials = initials;
-            //    //personPicture.ProfilePicture = bitmap;
-            //});
             CobblePediaViewModel.Model.Initialize();
 
             if (Content is FrameworkElement root)

@@ -22,8 +22,8 @@
         [ObservableProperty] private string description;
         public TypeExtendedViewModel TypeEfficiency { get; private set; }
         public GenerationViewModel Generation { get; private set; }
-        public TypeSimplifiedViewModel PrimaryType { get; private set; }
-        public TypeSimplifiedViewModel SecondaryType { get; private set; }
+        public SearchableObjectViewModel PrimaryType { get; private set; }
+        public SearchableObjectViewModel SecondaryType { get; private set; }
         public ObservableCollection<SpriteViewModel> Sprites { get; set; }
         #endregion General
 
@@ -47,13 +47,13 @@
 
         #region Evolution
         [ObservableProperty] private string frontDefault;
-        [ObservableProperty] private PokemonSimplifiedViewModel preEvolution;
+        [ObservableProperty] private SearchableObjectViewModel preEvolution;
         [ObservableProperty] private EvolutionViewModel preEvolutionCondition;
         public ObservableCollection<EvolutionViewModel> Evolutions { get; set; }
         #endregion Evolution
 
         #region Formes
-        public ObservableCollection<PokemonSimplifiedViewModel> Forms { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> Forms { get; set; }
         #endregion Formes
 
         #region Entrainement et capture
@@ -114,16 +114,16 @@
             name = "-";
             description = "-";
             Generation = CobblePediaViewModel.Model.generations[source.Generation];
-            PrimaryType = CobblePediaViewModel.Model.types[source.PrimaryType];
+            PrimaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.PrimaryType, "@type");
             TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], null, true);
             if (source.SecondaryType == null)
             {
-                SecondaryType = new TypeSimplifiedViewModel();
+                SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty);
             }
             else
             {
                 TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], CobblePedia.Pedia.Types[species.SecondaryType], true);
-                SecondaryType = CobblePediaViewModel.Model.types[source.SecondaryType];
+                SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.SecondaryType, "@type");
             }
 
             Sprites = new ObservableCollection<SpriteViewModel>();
@@ -191,13 +191,13 @@
 
             #region Evolution
             frontDefault = string.Format(Properties.Resources.PokemonPicturePath, species.Picture.FrontDefault);
-            preEvolution = new PokemonSimplifiedViewModel();
+            preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty);
             preEvolutionCondition = new EvolutionViewModel();
             if (species.PreEvolutionSpeciesId != null)
             {
                 if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
                 {
-                    preEvolution = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId]);
+                    preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(species.PreEvolutionSpeciesId, "@pokemon");
                     preEvolutionCondition = new EvolutionViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId].GetEvolutionTo(species.SpeciesId)[0]);
                 }
             }
@@ -206,10 +206,10 @@
             {
                 Evolutions.Add(new EvolutionViewModel(evolution));
             }
-            Forms = new ObservableCollection<PokemonSimplifiedViewModel>();
+            Forms = new ObservableCollection<SearchableObjectViewModel>();
             foreach (string item in species.Forms)
             {
-                Forms.Add(new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[item]));
+                Forms.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@pokemon"));
             }
             #endregion Evolution
 
@@ -330,8 +330,8 @@
             }
 
             Generation.SetLanguage(language);
-            PrimaryType.SetLanguage(language);
-            SecondaryType.SetLanguage(language);
+            //PrimaryType.SetLanguage(language);
+            //SecondaryType.SetLanguage(language);
             primaryEggGroup.SetLanguage(language);
             secondaryEggGroup.SetLanguage(language);
 
@@ -339,18 +339,18 @@
             {
                 item.SetLanguage(language);
             }
-            foreach (MoveViewModel item in LeveledMoves)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (MoveViewModel item in TMMoves)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (MoveViewModel item in TutorMoves)
-            {
-                item.SetLanguage(language);
-            }
+            //foreach (MoveViewModel item in LeveledMoves)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (MoveViewModel item in TMMoves)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (MoveViewModel item in TutorMoves)
+            //{
+            //    item.SetLanguage(language);
+            //}
             foreach (AbilityViewModel item in Abilities)
             {
                 item.SetLanguage(language);
@@ -369,8 +369,8 @@
                 Ratio = primaryEggGroup.Name;
             }
 
-            PreEvolution?.SetLanguage(language);
-            PreEvolutionCondition?.SetLanguage(language);
+            //PreEvolution?.SetLanguage(language);
+            //PreEvolutionCondition?.SetLanguage(language);
         }
     }
 }

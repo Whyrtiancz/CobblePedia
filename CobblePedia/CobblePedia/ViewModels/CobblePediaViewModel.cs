@@ -16,15 +16,20 @@
 
         [ObservableProperty] private SearchableObjectViewModel? selectedTypeInList;
         [ObservableProperty] private TypeExtendedViewModel? selectedType;
-        [ObservableProperty] private SearchableObjectViewModel? selectedPokemonInList;
-        [ObservableProperty] private PokemonExtendedViewModel? selectedPokemon;
+
         [ObservableProperty] private SearchableObjectViewModel selectedTrainerInList;
         [ObservableProperty] private TrainerExtendedViewModel selectedTrainer;
-        [ObservableProperty] private MoveViewModel selectedMove;
-        [ObservableProperty] private MoveViewModel selectedMoveLeveled;
-        [ObservableProperty] private MoveViewModel selectedMoveCT_TM;
-        [ObservableProperty] private MoveViewModel selectedMoveTutor;
-        [ObservableProperty] private AbilityViewModel selectedAbility;
+
+        [ObservableProperty] private SearchableObjectViewModel? selectedMoveInList;
+        [ObservableProperty] private MoveViewModel? selectedMove;
+
+        [ObservableProperty] private SearchableObjectViewModel? selectedPokemonInList;
+        [ObservableProperty] private PokemonExtendedViewModel? selectedPokemon;
+        [ObservableProperty] private MoveViewModel? pokemonSelectedMove;
+        [ObservableProperty] private MoveViewModel? selectedMoveLeveled;
+        [ObservableProperty] private MoveViewModel? selectedMoveCT_TM;
+        [ObservableProperty] private MoveViewModel? selectedMoveTutor;
+        [ObservableProperty] private AbilityViewModel? selectedAbility;
 
         [ObservableProperty] private int maxBaseHP;
         [ObservableProperty] private int maxBaseAttack;
@@ -37,10 +42,7 @@
         [ObservableProperty] private int maxWeight;
 
         internal Dictionary<string, GenerationViewModel> generations;
-        internal Dictionary<string, TypeSimplifiedViewModel> types;
         internal Dictionary<string, EggGroupViewModel> eggGroups;
-        //private Dictionary<string, SearchableObjectViewModel> trainers;
-        //private Dictionary<string, SearchableObjectViewModel> pokemon;
 
         List<SearchableObjectViewModel> searchableObjects;
 
@@ -62,6 +64,8 @@
         {
             // -------------------------------------------------
             searchableObjects = new List<SearchableObjectViewModel>();
+            searchableObjects.Add(new SearchableObjectViewModel());
+
             foreach (PokemonType item in CobblePedia.Pedia.Types.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
@@ -71,6 +75,10 @@
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
             foreach (Trainer item in CobblePedia.Pedia.Trainers.Values)
+            {
+                searchableObjects.Add(new SearchableObjectViewModel(item));
+            }
+            foreach (Move item in CobblePedia.Pedia.Moves.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
@@ -95,14 +103,6 @@
             foreach (Generation item in CobblePedia.Pedia.Generations.Values)
             {
                 generations.Add(item.GenerationId, new GenerationViewModel(item));
-            }
-
-            // -------------------------------------------------
-            // Types
-            types = new Dictionary<string, TypeSimplifiedViewModel>();
-            foreach (PokemonType item in CobblePedia.Pedia.Types.Values)
-            {
-                types.Add(item.TypeId, new TypeSimplifiedViewModel(item));
             }
 
             // -------------------------------------------------
@@ -158,6 +158,11 @@
             }
         }
 
+        internal SearchableObjectViewModel GetSearchableObjectViewModel(string objectId, string keyType)
+        {
+            return searchableObjects.Where(item => item.ObjectId == objectId && item.KeyType == keyType).First();
+        }
+
         internal List<SearchableObjectViewModel> Filter(string searchPattern)
         {
             List<SearchableObjectViewModel> elligibles = new List<SearchableObjectViewModel>();
@@ -207,7 +212,7 @@
                     SelectedPokemon = SelectedPokemonInList.GetExtendedViewModel() as PokemonExtendedViewModel;
                     if (SelectedPokemon != null)
                     {
-                        SelectedMove = SelectedPokemon.LeveledMoves.First();
+                        PokemonSelectedMove = SelectedPokemon.LeveledMoves.First();
                         SelectedAbility = SelectedPokemon.Abilities.First();
                     }
                     break;
@@ -215,13 +220,13 @@
                     SelectedTrainer = SelectedTrainerInList.GetExtendedViewModel() as TrainerExtendedViewModel;
                     break;
                 case "SelectedMoveLeveled":
-                    SelectedMove = SelectedMoveLeveled;
+                    PokemonSelectedMove = SelectedMoveLeveled;
                     break;
                 case "SelectedMoveCT_TM":
-                    SelectedMove = SelectedMoveCT_TM;
+                    PokemonSelectedMove = SelectedMoveCT_TM;
                     break;
                 case "SelectedMoveTutor":
-                    SelectedMove = SelectedMoveTutor;
+                    PokemonSelectedMove = SelectedMoveTutor;
                     break;
             }
         }

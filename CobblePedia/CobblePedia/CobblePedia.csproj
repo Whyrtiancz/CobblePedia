@@ -15,6 +15,11 @@
     <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ViewModels\PokemonSimplifiedViewModel.cs" />
+    <Compile Remove="ViewModels\TrainerSimplifiedViewModel.cs" />
+    <Compile Remove="ViewModels\TypeSimplifiedViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\SVG\Mewx880.svg" />
     <None Remove="Assets\SVG\Pikachux880.svg" />
     <None Remove="Styles\Cards.xaml" />

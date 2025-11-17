@@ -81,7 +81,7 @@
           <DataTemplate x:DataType="model:TrainerTeamViewModel">
             <StackPanel Orientation="Vertical"
                         Style="{StaticResource ItemCell}">
-              <Image Source="{x:Bind Pokemon.FrontDefault}" Style="{StaticResource PokemonLargeIcon}" />
+              <Image Source="{x:Bind Pokemon.Icon}" Style="{StaticResource PokemonLargeIcon}" />
               <TextBlock Text="{x:Bind Pokemon.Name}" Style="{StaticResource TypeName}"/>
               <Image Source="{x:Bind Move1.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
               <TextBlock Text="{x:Bind Move1.Name}" Style="{StaticResource TypeName}"/>

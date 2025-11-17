@@ -23,20 +23,21 @@
         [ObservableProperty] private Visibility level5Visibility;
         [ObservableProperty] private Visibility level6Visibility;
 
-        public ObservableCollection<TypeSimplifiedViewModel> FourfoldDamageTo { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> DoubleDamageTo { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> HalfDamageTo { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> QuarterDamageTo { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> NoDamageTo { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> FourfoldDamageTo { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> DoubleDamageTo { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> HalfDamageTo { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> QuarterDamageTo { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> NoDamageTo { get; set; }
 
-        public ObservableCollection<TypeSimplifiedViewModel> NoDamageFrom { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> QuarterDamageFrom { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> HalfDamageFrom { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> DoubleDamageFrom { get; set; }
-        public ObservableCollection<TypeSimplifiedViewModel> FourfoldDamageFrom { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> NoDamageFrom { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> QuarterDamageFrom { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> HalfDamageFrom { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> DoubleDamageFrom { get; set; }
+        public ObservableCollection<SearchableObjectViewModel> FourfoldDamageFrom { get; set; }
 
         private PokemonType primaryType;
         private PokemonType? secondaryType;
+
 
         public TypeExtendedViewModel(PokemonType type1, PokemonType? type2, bool isPokemonCard)
         {
@@ -53,17 +54,17 @@
                 secondaryIcon = string.Format(Properties.Resources.TypeIconPath, secondaryType.TypeId);
             }
 
-            FourfoldDamageTo = new ObservableCollection<TypeSimplifiedViewModel>();
-            DoubleDamageTo = new ObservableCollection<TypeSimplifiedViewModel>();
-            HalfDamageTo = new ObservableCollection<TypeSimplifiedViewModel>();
-            QuarterDamageTo = new ObservableCollection<TypeSimplifiedViewModel>();
-            NoDamageTo = new ObservableCollection<TypeSimplifiedViewModel>();
+            FourfoldDamageTo = new ObservableCollection<SearchableObjectViewModel>();
+            DoubleDamageTo = new ObservableCollection<SearchableObjectViewModel>();
+            HalfDamageTo = new ObservableCollection<SearchableObjectViewModel>();
+            QuarterDamageTo = new ObservableCollection<SearchableObjectViewModel>();
+            NoDamageTo = new ObservableCollection<SearchableObjectViewModel>();
 
-            FourfoldDamageFrom = new ObservableCollection<TypeSimplifiedViewModel>();
-            DoubleDamageFrom = new ObservableCollection<TypeSimplifiedViewModel>();
-            HalfDamageFrom = new ObservableCollection<TypeSimplifiedViewModel>();
-            QuarterDamageFrom = new ObservableCollection<TypeSimplifiedViewModel>();
-            NoDamageFrom = new ObservableCollection<TypeSimplifiedViewModel>();
+            FourfoldDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
+            DoubleDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
+            HalfDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
+            QuarterDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
+            NoDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
 
             CalculateForceAndWeakness(primaryType.DoubleDamageTo, primaryType.HalfDamageTo, primaryType.NoDamageTo,
                 secondaryType?.DoubleDamageTo, secondaryType?.HalfDamageTo, secondaryType?.NoDamageTo,
@@ -91,44 +92,44 @@
 
             if (FourfoldDamageTo.Count == 0)
             {
-                FourfoldDamageTo.Add(new TypeSimplifiedViewModel());
+                FourfoldDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (DoubleDamageTo.Count == 0)
             {
-                DoubleDamageTo.Add(new TypeSimplifiedViewModel());
+                DoubleDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (HalfDamageTo.Count == 0)
             {
-                HalfDamageTo.Add(new TypeSimplifiedViewModel());
+                HalfDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (QuarterDamageTo.Count == 0)
             {
-                QuarterDamageTo.Add(new TypeSimplifiedViewModel());
+                QuarterDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (NoDamageTo.Count == 0)
             {
-                NoDamageTo.Add(new TypeSimplifiedViewModel());
+                NoDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
 
             if (FourfoldDamageFrom.Count == 0)
             {
-                FourfoldDamageFrom.Add(new TypeSimplifiedViewModel());
+                FourfoldDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (DoubleDamageFrom.Count == 0)
             {
-                DoubleDamageFrom.Add(new TypeSimplifiedViewModel());
+                DoubleDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (HalfDamageFrom.Count == 0)
             {
-                HalfDamageFrom.Add(new TypeSimplifiedViewModel());
+                HalfDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (QuarterDamageFrom.Count == 0)
             {
-                QuarterDamageFrom.Add(new TypeSimplifiedViewModel());
+                QuarterDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
             if (NoDamageFrom.Count == 0)
             {
-                NoDamageFrom.Add(new TypeSimplifiedViewModel());
+                NoDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
@@ -136,9 +137,9 @@
 
         private void CalculateForceAndWeakness(List<string> primaryDouble, List<string> primaryHalf, List<string> primaryNo,
                                                List<string>? secondaryDouble, List<string>? secondaryHalf, List<string>? secondaryNo,
-                                               ObservableCollection<TypeSimplifiedViewModel> fourths, ObservableCollection<TypeSimplifiedViewModel> doubles,
-                                               ObservableCollection<TypeSimplifiedViewModel> halfs, ObservableCollection<TypeSimplifiedViewModel> quarters,
-                                               ObservableCollection<TypeSimplifiedViewModel> nos)
+                                               ObservableCollection<SearchableObjectViewModel> fourths, ObservableCollection<SearchableObjectViewModel> doubles,
+                                               ObservableCollection<SearchableObjectViewModel> halfs, ObservableCollection<SearchableObjectViewModel> quarters,
+                                               ObservableCollection<SearchableObjectViewModel> nos)
         {
             Dictionary<string, float> calculation = new Dictionary<string, float>();
 
@@ -197,19 +198,19 @@
                 switch (calculation[item])
                 {
                     case 0.0f:
-                        nos.Add(new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[item]));
+                        nos.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
                         break;
                     case 0.25f:
-                        quarters.Add(new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[item]));
+                        quarters.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
                         break;
                     case 0.5f:
-                        halfs.Add(new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[item]));
+                        halfs.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
                         break;
                     case 2.0f:
-                        doubles.Add(new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[item]));
+                        doubles.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
                         break;
                     case 4.0f:
-                        fourths.Add(new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[item]));
+                        fourths.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
                         break;
                     default:
                         break;
@@ -237,47 +238,47 @@
                     break;
             }
 
-            foreach (TypeSimplifiedViewModel item in FourfoldDamageTo)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in DoubleDamageTo)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in HalfDamageTo)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in QuarterDamageTo)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in NoDamageTo)
-            {
-                item.SetLanguage(language);
-            }
+            //foreach (SearchableObjectViewModel item in FourfoldDamageTo)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in DoubleDamageTo)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in HalfDamageTo)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in QuarterDamageTo)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in NoDamageTo)
+            //{
+            //    item.SetLanguage(language);
+            //}
 
-            foreach (TypeSimplifiedViewModel item in NoDamageFrom)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in QuarterDamageFrom)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in HalfDamageFrom)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in DoubleDamageFrom)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TypeSimplifiedViewModel item in FourfoldDamageFrom)
-            {
-                item.SetLanguage(language);
-            }
+            //foreach (SearchableObjectViewModel item in NoDamageFrom)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in QuarterDamageFrom)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in HalfDamageFrom)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in DoubleDamageFrom)
+            //{
+            //    item.SetLanguage(language);
+            //}
+            //foreach (SearchableObjectViewModel item in FourfoldDamageFrom)
+            //{
+            //    item.SetLanguage(language);
+            //}
         }
     }
 }

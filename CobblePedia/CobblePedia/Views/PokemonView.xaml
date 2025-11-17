@@ -371,7 +371,7 @@
                       Grid.Column="1" Grid.Row="2" Grid.RowSpan="3">
                 <StackPanel Orientation="Vertical"
                             Margin="0,8">
-                  <Image Source="{x:Bind ViewModel.SelectedPokemon.PreEvolution.FrontDefault}"
+                  <Image Source="{x:Bind ViewModel.SelectedPokemon.PreEvolution.Icon}"
                          Height="64"/>
                   <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PreEvolution.Name}"
                                  FontSize="12epx"
@@ -412,7 +412,7 @@
                   <DataTemplate x:DataType="model:EvolutionViewModel">
                     <StackPanel Orientation="Vertical"
                             Margin="0,8">
-                      <Image Source="{x:Bind EvolveTo.FrontDefault}"
+                      <Image Source="{x:Bind EvolveTo.Icon}"
                          Height="64"/>
                       <TextBlock Text="{x:Bind EvolveTo.Name}"
                                  FontSize="12epx"
@@ -436,10 +436,10 @@
                         Margin="8"
                         Grid.Column="4" Grid.Row="2" Grid.RowSpan="3">
                 <FlipView.ItemTemplate>
-                  <DataTemplate x:DataType="model:PokemonSimplifiedViewModel">
+                  <DataTemplate x:DataType="model:SearchableObjectViewModel">
                     <StackPanel Orientation="Vertical"
                             Margin="0,8">
-                      <Image Source="{x:Bind FrontDefault}"
+                      <Image Source="{x:Bind Icon}"
                          Height="64"/>
                       <TextBlock Text="{x:Bind Name}"
                                  FontSize="12epx"
@@ -750,12 +750,12 @@
               <StackPanel Orientation="Horizontal"
                           HorizontalAlignment="Center"
                           Grid.Row="0" Grid.Column="3">
-                <Image Source="{x:Bind ViewModel.SelectedMove.MoveTypeIcon}"
+                <Image Source="{x:Bind ViewModel.PokemonSelectedMove.MoveTypeIcon}"
                      Style="{StaticResource MoveTypeIcon}" />
                 <StackPanel Orientation="vertical">
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Name}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Name}"
                            Style="{StaticResource PokemonName}"/>
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Description}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Description}"
                            FontSize="12epx"
                            Style="{StaticResource PokemonName}"/>
                 </StackPanel>
@@ -784,29 +784,29 @@
 
                   <TextBlock Text="PP"
                              Grid.Column="0" Grid.Row="0" />
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Pp}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Pp}"
                              Grid.Column="1" Grid.Row="0" />
 
                   <TextBlock Text="Accuracy"
                              Grid.Column="0" Grid.Row="1" />
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Accuracy}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Accuracy}"
                              Grid.Column="1" Grid.Row="1" />
 
                   <TextBlock Text="Power"
                              Grid.Column="0" Grid.Row="2" />
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Power}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Power}"
                              Grid.Column="1" Grid.Row="2" />
 
                   <TextBlock Text="Priority"
                              Grid.Column="0" Grid.Row="3" />
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Priority}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Priority}"
                              Grid.Column="1" Grid.Row="3" />
 
-                  <TextBlock Text="{x:Bind ViewModel.SelectedMove.Effect}"
+                  <TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Effect}"
                              TextWrapping="Wrap"
                              Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" />
 
-                  <!--<TextBlock Text="{x:Bind ViewModel.SelectedMove.Flavor}"
+                  <!--<TextBlock Text="{x:Bind ViewModel.PokemonSelectedMove.Flavor}"
                              TextWrapping="Wrap"
                              Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"/>-->
                 </Grid>
