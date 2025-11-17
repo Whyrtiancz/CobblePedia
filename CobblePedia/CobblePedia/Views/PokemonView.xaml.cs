@@ -23,5 +23,16 @@ public sealed partial class PokemonView : Page
     public PokemonView()
     {
         InitializeComponent();
+
+        PokemonListview.SelectionChanged += PokemonListview_SelectionChanged;
+        //this.DataContext = ViewModel;
+    }
+
+    private void PokemonListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ViewModel.SelectedPokemonInList != null & PokemonListview.Items.Count > 0)
+        {
+            PokemonListview.ScrollIntoView(ViewModel.SelectedPokemonInList, ScrollIntoViewAlignment.Leading);
+        }
     }
 }

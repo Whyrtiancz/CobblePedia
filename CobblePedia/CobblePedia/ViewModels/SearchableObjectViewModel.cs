@@ -14,6 +14,7 @@
         public string ObjectId { get; private set; }
         public string KeyType { get; private set; }
         public object Source { get; private set; }
+        public string ViewType { get; private set; }
 
         private string searchValues;
         private string keyName;
@@ -27,6 +28,7 @@
             KeyType = string.Empty;
             label = string.Empty;
             icon = string.Format(Properties.Resources.TypeIconPath, "empty"); ;
+            ViewType = string.Empty;
 
             searchValues = string.Empty;
         }
@@ -39,6 +41,7 @@
             KeyType = "@pokemon";
             label = "#" + pokemon.NationalPokedexNumber.ToString("D4");
             icon = string.Format(Properties.Resources.PokemonPicturePath, pokemon.Picture.FrontDefault);
+            ViewType = "CobblePedia.Views.PokemonView";
 
             searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePedia.Pedia.FR[keyName]).ToLower();
 
@@ -53,6 +56,7 @@
             KeyType = "@type";
             label = string.Empty;
             icon = string.Format(Properties.Resources.TypeIconPath, pokemonType.TypeId);
+            ViewType = "CobblePedia.Views.TypeView";
 
             searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
 
@@ -67,6 +71,7 @@
             KeyType = "@trainer";
             label = string.Join(",", trainer.Series);
             icon = "Assets/Trainers/default.png";
+            ViewType = "CobblePedia.Views.TrainerView";
 
             searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
 
@@ -80,6 +85,7 @@
             KeyType = "@move";
             label = move.DamageClass;
             icon = string.Format(Properties.Resources.TypeIconPath, move.MoveType);
+            ViewType = string.Empty;
 
             searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
 

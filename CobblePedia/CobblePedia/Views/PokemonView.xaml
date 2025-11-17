@@ -109,7 +109,8 @@
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
 
-      <ListView ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
+      <ListView x:Name="PokemonListview"
+                ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
                 SelectedItem="{x:Bind ViewModel.SelectedPokemonInList, Mode=TwoWay}"
                 ItemTemplate="{StaticResource PokemonSimplified}"
                 SelectionMode="Single" />
@@ -472,18 +473,24 @@
 
                 <ItemsRepeater.ItemTemplate>
                   <DataTemplate x:DataType="model:SpawnConditionViewModel">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto,*" 
+                    <Grid ColumnDefinitions="Auto,Auto,Auto,*"
+                          RowDefinitions="Auto,Auto,*"
                           Padding="4" Margin="4">
                       <Image Grid.Column="0" Source="{x:Bind Context}" Width="16" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="1" Text="{x:Bind Bucket}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="2" Text="{x:Bind Presets}" Margin="8,0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="3" Text="{x:Bind Biomes}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                      <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind Bucket}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="0" Text="{x:Bind Presets}" Margin="8,0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="0" Text="{x:Bind Biomes}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                      <TextBlock Grid.Column="1" Grid.Row="1" Text="{x:Bind CanSeeSky}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="1" Text="{x:Bind MinSkylight}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="1" Text="{x:Bind MaxSkyLight}" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind Level}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="2" Text="{x:Bind IsRaining}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="2" Text="{x:Bind MaxY}" VerticalAlignment="Center" />
                     </Grid>
                   </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
               </ItemsRepeater>
             </ScrollViewer>
-
 
           </Expander.Content>
         </Expander>

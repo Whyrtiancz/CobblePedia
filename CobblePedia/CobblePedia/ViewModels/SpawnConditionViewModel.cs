@@ -21,6 +21,12 @@
         [ObservableProperty] private string bucket;
         [ObservableProperty] private string presets;
         [ObservableProperty] private string biomes;
+        [ObservableProperty] private string level;
+        [ObservableProperty] private string minSkylight;
+        [ObservableProperty] private string maxSkyLight;
+        [ObservableProperty] private string canSeeSky;
+        [ObservableProperty] private string isRaining;
+        [ObservableProperty] private string maxY;
 
         private Spawn spawn;
 
@@ -32,6 +38,12 @@
             bucket = spawn.Bucket;
             presets = string.Join(", ", spawn.Presets);
             biomes = string.Join(", ", spawn.Biomes);
+            level = spawn.Level;
+            minSkylight = spawn.MinSkyLight.ToString("D2");
+            maxSkyLight = spawn.MaxSkyLight.ToString("D2");
+            canSeeSky = spawn.CanSeeSky.ToString();
+            isRaining = spawn.IsRaining.ToString();
+            maxY = spawn.MaxY.ToString("D2");
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }

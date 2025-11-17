@@ -18,9 +18,6 @@ namespace CobblePedia
 
     using Windows.System;
 
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
         internal void SetLanguage(string language)
@@ -116,46 +113,6 @@ namespace CobblePedia
                     controlsSearchBox.ItemsSource = new string[] { "No results found" };
                 }
             }
-
-            //if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-            //{
-            //    var suggestions = new List<ControlInfoDataItem>();
-
-            //    var querySplit = sender.Text.Split(" ");
-            //    foreach (var group in ControlInfoDataSource.Instance.Groups)
-            //    {
-            //        var matchingItems = group.Items.Where(
-            //            item =>
-            //            {
-            //                // Idea: check for every word entered (separated by space) if it is in the name, 
-            //                // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button"
-            //                // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words
-            //                bool flag = item.IncludedInBuild;
-            //                foreach (string queryToken in querySplit)
-            //                {
-            //                    // Check if token is not in string
-            //                    if (item.Title.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
-            //                    {
-            //                        // Token is not in string, so we ignore this item.
-            //                        flag = false;
-            //                    }
-            //                }
-            //                return flag;
-            //            });
-            //        foreach (var item in matchingItems)
-            //        {
-            //            suggestions.Add(item);
-            //        }
-            //    }
-            //    if (suggestions.Count > 0)
-            //    {
-            //        controlsSearchBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title).ToList();
-            //    }
-            //    else
-            //    {
-            //        controlsSearchBox.ItemsSource = new string[] { "No results found" };
-            //    }
-            //}
         }
 
         private void OnControlsSearchBoxQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
@@ -163,14 +120,28 @@ namespace CobblePedia
             if (args.ChosenSuggestion != null && args.ChosenSuggestion is SearchableObjectViewModel)
             {
                 SearchableObjectViewModel infoDataItem = args.ChosenSuggestion as SearchableObjectViewModel;
-                //var hasChangedSelection = EnsureItemIsVisibleInNavigation(infoDataItem.Title);
-
-                //// In case the menu selection has changed, it means that it has triggered
-                //// the selection changed event, that will navigate to the page already
-                //if (!hasChangedSelection)
-                //{
-                //    Navigate(typeof(ItemPage), infoDataItem.UniqueId);
-                //}
+                if (infoDataItem != null && infoDataItem.ViewType != string.Empty)
+                {
+                    switch (infoDataItem.KeyType)
+                    {
+                        case "@type":
+                            CobblePediaViewModel.Model.SelectedTypeInList = infoDataItem;
+                            break;
+                        case "@pokemon":
+                            CobblePediaViewModel.Model.SelectedPokemonInList = infoDataItem;
+                            break;
+                        case "@trainer":
+                            CobblePediaViewModel.Model.SelectedTrainerInList = infoDataItem;
+                            break;
+                        default:
+                            break;
+                    }
+                    Type pageType = Type.GetType(infoDataItem.ViewType);
+                    if (pageType != null && navFrame.Content.GetType() != pageType)
+                    {
+                        navFrame.Navigate(pageType);
+                    }
+                }
             }
             else if (!string.IsNullOrEmpty(args.QueryText))
             {
@@ -218,5 +189,45 @@ namespace CobblePedia
                 CurrentUser.ProfilePicture = bmp; // PersonPicture affiche la photo si présente
             }
         }
+
+        //public void EnsureNavigationSelection(string id)
+        //{
+        //    foreach (object rawGroup in this.NavigationView.MenuItems)
+        //    {
+        //        if (rawGroup is NavigationViewItem group)
+        //        {
+        //            foreach (object rawItem in group.MenuItems)
+        //            {
+        //                if (rawItem is NavigationViewItem item)
+        //                {
+        //                    if ((string)item.Tag == id)
+        //                    {
+        //                        group.IsExpanded = true;
+        //                        NavigationView.SelectedItem = item;
+        //                        item.IsSelected = true;
+        //                        return;
+        //                    }
+        //                    else if (item.MenuItems.Count > 0)
+        //                    {
+        //                        foreach (var rawInnerItem in item.MenuItems)
+        //                        {
+        //                            if (rawInnerItem is NavigationViewItem innerItem)
+        //                            {
+        //                                if ((string)innerItem.Tag == id)
+        //                                {
+        //                                    group.IsExpanded = true;
+        //                                    item.IsExpanded = true;
+        //                                    NavigationView.SelectedItem = innerItem;
+        //                                    innerItem.IsSelected = true;
+        //                                    return;
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
