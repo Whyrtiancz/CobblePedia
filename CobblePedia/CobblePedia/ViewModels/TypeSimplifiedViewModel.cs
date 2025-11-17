@@ -8,7 +8,6 @@
     {
         [ObservableProperty] private string name;
         [ObservableProperty] private string icon;
-        [ObservableProperty] private string largeIcon;
 
         private PokemonType pType;
         private bool isEmpty = true;
@@ -17,7 +16,6 @@
         {
             name = string.Empty;
             icon = string.Format(Properties.Resources.TypeIconPath, "empty"); ;
-            largeIcon = string.Format(Properties.Resources.TypeLargeIconPath, "empty");
         }
 
         public TypeSimplifiedViewModel(PokemonType source)
@@ -25,7 +23,6 @@
             pType = source;
             name = "-";
             icon = string.Format(Properties.Resources.TypeIconPath, source.TypeId);
-            largeIcon = string.Format(Properties.Resources.TypeLargeIconPath, source.TypeId);
             isEmpty = false;
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
@@ -34,7 +31,7 @@
         internal TypeExtendedViewModel GetExtendedViewModel()
         {
             Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] = this.pType.TypeId;
-            return new TypeExtendedViewModel(this.pType);
+            return new TypeExtendedViewModel(this.pType, null, false);
         }
 
         internal void SetLanguage(string language)

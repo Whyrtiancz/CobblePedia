@@ -13,20 +13,12 @@
 
   <Page.Resources>
 
-    <DataTemplate x:Key="TypeSimplifiedView" x:DataType="model:TypeSimplifiedViewModel">
+    <DataTemplate x:Key="SimplifiedView" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Style="{StaticResource ItemCell}">
         <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
         <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
       </StackPanel>
     </DataTemplate>
-
-    <ItemsPanelTemplate x:Key="TypePanelTemplate">
-      <ItemsWrapGrid MaximumRowsOrColumns="3"
-                     Orientation="Horizontal"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     ItemWidth="92"/>
-    </ItemsPanelTemplate>
 
   </Page.Resources>
 
@@ -53,214 +45,18 @@
                   VerticalScrollMode="Auto">
       <ListView SelectedItem="{x:Bind ViewModel.SelectedTypeInList, Mode=TwoWay}"
                 ItemsSource="{x:Bind ViewModel.TypeViewModels}"
-                ItemTemplate="{StaticResource TypeSimplifiedView}"
+                ItemTemplate="{StaticResource SimplifiedView}"
                 SelectionMode="Single"
                 Style="{StaticResource LeftListView}" />
     </ScrollViewer>
 
     <!-- Type sélectionné -->
-    <TextBlock Text="{x:Bind ViewModel.SelectedType.Name}"
+    <TextBlock Text="{x:Bind ViewModel.SelectedType.PrimaryName}"
                Style="{ThemeResource TitleTextBlockStyle}"
                Margin="{ThemeResource ContentDialogTitleMargin}"
                Grid.Column="1" Grid.Row="1" />
     
     <!-- Tableau des forces et faiblesses -->
-    <ScrollViewer Grid.Column="1" Grid.Row="2"
-                  VerticalScrollBarVisibility="Auto"
-                  VerticalScrollMode="Auto">
-      <!--<DataTemplate x:DataType="model:TypeExtendedViewModel">-->
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="1*" />
-          <ColumnDefinition Width="3*" />
-          <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!-- Entête -->
-        <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}"
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="0">
-          <TextBlock x:Uid="TypesEfficiency"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="0">
-          <TextBlock x:Uid="TypesAttack" 
-                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="0">
-          <TextBlock x:Uid="TypesDefence"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
-        </Border>
-
-        <!-- Ligne 1 - Entête -->
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="1">
-          <TextBlock x:Uid="TypesVeryEfficient"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="1">
-          <TextBlock x:Uid="TypesDoubleDamageTo"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="1">
-          <TextBlock x:Uid="TypesNoDamageFrom"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <!-- Ligne 1 - Corps -->
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="2">
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}">
-            <GridView.ItemsPanel>
-              <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="3"
-                             Orientation="Horizontal"
-                             HorizontalAlignment="Left"
-                             VerticalAlignment="Top"
-                             ItemWidth="92"/>
-              </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-          </GridView>
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="2">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}"
-                    ItemsPanel="{StaticResource TypePanelTemplate}" />
-        </Border>
-        <!-- Ligne 2 - Entête -->
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="3">
-          <TextBlock x:Uid="TypesEfficient"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="3">
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="3">
-          <TextBlock x:Uid="TypesHalfDamageFrom"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <!-- Ligne 2 - Corps -->
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="4">
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="4">
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="4">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
-                    ItemsPanel="{StaticResource TypePanelTemplate}" />
-        </Border>
-        
-        <!-- Ligne 3 - Entête -->
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="5">
-          <TextBlock x:Uid="TypesWeak"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="5">
-          <TextBlock x:Uid="TypesHalfDamageTo"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="5">
-        </Border>
-        <!-- Ligne 3 - Corps -->
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="6">
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="6">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
-                    ItemsPanel="{StaticResource TypePanelTemplate}" />
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="6">
-        </Border>
-
-        <!-- Ligne 4 - Entête -->
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="7">
-          <TextBlock x:Uid="TypesVeryWeak"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="7">
-          <TextBlock x:Uid="TypesNoDamageTo"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="7">
-          <TextBlock x:Uid="TypesDoubleDamageFrom"
-                   Style="{ThemeResource BodyStrongTextBlockStyle}" />
-        </Border>
-        <!-- Ligne 4 - Corps -->
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="0" Grid.Row="8">
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="1" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
-                    ItemsPanel="{StaticResource TypePanelTemplate}" />
-        </Border>
-        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
-              Style="{StaticResource TableTitleBorder}"
-              Grid.Column="2" Grid.Row="8">
-          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}"
-                    ItemTemplate="{StaticResource TypeSimplifiedView}"                    
-                    ItemsPanel="{StaticResource TypePanelTemplate}" />
-        </Border>
-      </Grid>
-    </ScrollViewer>
+    <local:TypeExtendedViewModel Grid.Column="1" Grid.Row="2" />
   </Grid>
 </Page>

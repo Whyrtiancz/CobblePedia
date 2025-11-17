@@ -29,6 +29,8 @@
         internal List<Spawn> Spawns { get; private set; }
         internal JObject translationFR;
         internal JObject translationEN;
+        internal JObject minecraftFR;
+        internal JObject minecraftEN;
 
         public static CobblePedia Pedia
         {
@@ -174,17 +176,33 @@
             return loaded;
         }
 
-        public void BuildData(string pathToCobblemon, string pathToRtcmod)
+        public void BuildData(string basePath, string pathToCobblemon, string pathToRtcmod)
         {
             this.PokemonSpecies = new Dictionary<string, Species>();
 
             FR.Clear();
             EN.Clear();
 
+            string filePath = Path.Combine(basePath, "fr_fr.json");
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                minecraftFR = JObject.Parse(jsonContent);
+            }
+
+            filePath = Path.Combine(basePath, "en_us.json");
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                minecraftEN = JObject.Parse(jsonContent);
+            }
+
             string extractPath = LoadCobblemonPart1(pathToCobblemon);
             LoadPokeAPI();
             LoadCobblemonPart2(extractPath);
             LoadRtcMod(pathToRtcmod);
+
+            CompleteMissingL10N();
 
             CheckEvolutions();
             CheckTrainersTeam();
@@ -230,6 +248,92 @@
                     if (!Pokemon.ContainsKey(team.SpeciesId))
                     {
                         Console.WriteLine("  -> {0} / {1}", trainer.TrainerId, team.SpeciesId);
+                    }
+                }
+            }
+        }
+
+        private void CompleteMissingL10N()
+        {
+            foreach (Pokemon pokemon in Pokemon.Values)
+            {
+                foreach (Drop drop in pokemon.Drops)
+                {
+                    string key = string.Format("item.{0}", drop.DropId.Replace(':', '.'));
+
+                    if (drop.DropId.StartsWith("cobblemon:"))
+                    {
+                        if (!FR.ContainsKey(drop.DropId))
+                        {
+                            FR.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, key));
+                            EN.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, key));
+                        }
+                    }
+                    if (drop.DropId.StartsWith("minecraft:"))
+                    {
+                        if (!FR.ContainsKey(drop.DropId))
+                        {
+                            if (CobblePedia.Pedia.minecraftEN.ContainsKey(key))
+                            {
+                                FR.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftFR, key));
+                                EN.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftEN, key));
+                            }
+                            else
+                            {
+                                key = string.Format("block.{0}", drop.DropId.Replace(':', '.'));
+                                if (CobblePedia.Pedia.minecraftEN.ContainsKey(key))
+                                {
+                                    FR.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftFR, key));
+                                    EN.Add(drop.DropId, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftEN, key));
+                                }
+                                else
+                                {
+                                    FR.Add(drop.DropId, drop.DropId);
+                                    EN.Add(drop.DropId, drop.DropId);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (Trainer trainer in Trainers.Values)
+            {
+                if (null == trainer.SignatureItem)
+                    continue;
+
+                string key = string.Format("item.{0}", trainer.SignatureItem.Replace(':', '.'));
+
+                if (trainer.SignatureItem.StartsWith("cobblemon:"))
+                {
+                    if (!FR.ContainsKey(trainer.SignatureItem))
+                    {
+                        FR.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, key));
+                        EN.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, key));
+                    }
+                }
+                if (trainer.SignatureItem.StartsWith("minecraft:"))
+                {
+                    if (!FR.ContainsKey(trainer.SignatureItem))
+                    {
+                        if (CobblePedia.Pedia.minecraftEN.ContainsKey(key))
+                        {
+                            FR.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftFR, key));
+                            EN.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftEN, key));
+                        }
+                        else
+                        {
+                            key = string.Format("block.{0}", trainer.SignatureItem.Replace(':', '.'));
+                            if (CobblePedia.Pedia.minecraftEN.ContainsKey(key))
+                            {
+                                FR.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftFR, key));
+                                EN.Add(trainer.SignatureItem, JsonHelper.GetTranslation(CobblePedia.Pedia.minecraftEN, key));
+                            }
+                            else
+                            {
+                                FR.Add(trainer.SignatureItem, trainer.SignatureItem);
+                                EN.Add(trainer.SignatureItem, trainer.SignatureItem);
+                            }
+                        }
                     }
                 }
             }

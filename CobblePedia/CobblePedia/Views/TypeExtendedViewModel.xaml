@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CobblePedia.Views.TypeExtendedViewModel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:CobblePedia.Views"
+    xmlns:model="using:CobblePedia.ViewModels"
+    x:DataType="model:CobblePediaViewModel"
+    x:DefaultBindMode="OneWay"
+    mc:Ignorable="d">
+
+  <Page.Resources>
+
+    <DataTemplate x:Key="TypeSimplifiedView" x:DataType="model:TypeSimplifiedViewModel">
+      <StackPanel Style="{StaticResource ItemCell}">
+        <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
+      </StackPanel>
+    </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="TypePanelTemplate">
+      <ItemsWrapGrid MaximumRowsOrColumns="4"
+                     Orientation="Horizontal"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     ItemWidth="92"/>
+    </ItemsPanelTemplate>
+
+  </Page.Resources>
+
+  <Grid HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="1*" />
+      <ColumnDefinition Width="3*" />
+      <ColumnDefinition Width="3*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Entête -->
+    <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}"
+              Style="{StaticResource TableTitleBorder}"
+              Grid.Column="0" Grid.Row="0">
+      <TextBlock x:Uid="TypesEfficiency"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+    </Border>
+    <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Grid.Column="1" Grid.Row="0">
+      <TextBlock x:Uid="TypesAttack" 
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+    </Border>
+    <Border Background="{ThemeResource SolidBackgroundFillColorBaseAltBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Grid.Column="2" Grid.Row="0">
+      <TextBlock x:Uid="TypesDefence"
+                   Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+    </Border>
+
+    <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto"
+                  VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto"
+                  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="3*" />
+          <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ligne 1 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="0" Grid.Row="0">
+          <TextBlock x:Uid="TypesDamageFourfoldCaption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="1" Grid.Row="0">
+          <TextBlock x:Uid="TypesDamageFourfoldTo"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="2" Grid.Row="0">
+          <TextBlock x:Uid="TypesDamageNoFrom"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+
+        <!-- Ligne 1 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="0" Grid.Row="1">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="1" Grid.Row="1">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.FourfoldDamageTo}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
+              Grid.Column="2" Grid.Row="1">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+
+        <!-- Ligne 2 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="0" Grid.Row="2">
+          <TextBlock x:Uid="TypesDamageDoubleCaption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="1" Grid.Row="2">
+          <TextBlock x:Uid="TypesDamageDoubleTo"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="2" Grid.Row="2">
+          <TextBlock x:Uid="TypesDamageQuarterFrom"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+
+        <!-- Ligne 2 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="0" Grid.Row="3">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="1" Grid.Row="3">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
+              Grid.Column="2" Grid.Row="3">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.QuarterDamageFrom}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+
+        <!-- Ligne 3 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="0" Grid.Row="4">
+          <TextBlock x:Uid="TypesDamageHalfCaption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="1" Grid.Row="4">
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="2" Grid.Row="4">
+          <TextBlock x:Uid="TypesDamageHalfFrom"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+
+        <!-- Ligne 3 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="0" Grid.Row="5">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="1" Grid.Row="5">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
+              Grid.Column="2" Grid.Row="5">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+
+        <!-- Ligne 4 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="0" Grid.Row="6">
+          <TextBlock x:Uid="TypesDamageHalf2Caption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="1" Grid.Row="6">
+          <TextBlock x:Uid="TypesDamageHalfTo"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="2" Grid.Row="6">
+        </Border>
+
+        <!-- Ligne 4 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="0" Grid.Row="7">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="1" Grid.Row="7">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
+              Grid.Column="2" Grid.Row="7">
+        </Border>
+
+        <!-- Ligne 5 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="0" Grid.Row="8">
+          <TextBlock x:Uid="TypesDamageQuarterCaption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="1" Grid.Row="8">
+          <TextBlock x:Uid="TypesDamageQuarterTo"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="2" Grid.Row="8">
+          <TextBlock x:Uid="TypesDamageDoubleFrom"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+
+        <!-- Ligne 5 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="0" Grid.Row="9">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="1" Grid.Row="9">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.QuarterDamageTo}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
+              Grid.Column="2" Grid.Row="9">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+
+        <!-- Ligne 6 - Entête -->
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="0" Grid.Row="10">
+          <TextBlock x:Uid="TypesDamageNoCaption"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="1" Grid.Row="10">
+          <TextBlock x:Uid="TypesDamageNoTo"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+        <Border Background="{ThemeResource SolidBackgroundFillColorSecondaryBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="2" Grid.Row="10">
+          <TextBlock x:Uid="TypesDamageFourfoldFrom"
+                     Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+        </Border>
+
+        <!-- Ligne 6 - Corps -->
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="0" Grid.Row="11">
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="1" Grid.Row="11">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+              Style="{StaticResource TableTitleBorder}"
+              Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
+              Grid.Column="2" Grid.Row="11">
+          <GridView ItemsSource="{x:Bind ViewModel.SelectedType.FourfoldDamageFrom}"
+                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemsPanel="{StaticResource TypePanelTemplate}" />
+        </Border>
+      </Grid>
+    </ScrollViewer>
+  </Grid>
+</Page>

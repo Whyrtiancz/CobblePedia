@@ -19,7 +19,9 @@
     <None Remove="Assets\SVG\Pikachux880.svg" />
     <None Remove="Styles\Cards.xaml" />
     <None Remove="Styles\Pages.xaml" />
+    <None Remove="Views\PokemonTypeView.xaml" />
     <None Remove="Views\PokemonView.xaml" />
+    <None Remove="Views\TypeExtendedViewModel.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CobblePedia.ico" />
@@ -98,6 +100,19 @@
 
   <ItemGroup>
     <Folder Include="Assets\MoveTarget\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\PokemonTypeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\TypeExtendedViewModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
     <!-- Publish Properties -->

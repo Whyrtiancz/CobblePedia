@@ -14,14 +14,14 @@
   <Page.Resources>
     <x:Double x:Key="ProgressBarTrackHeight">18</x:Double>
 
-    <DataTemplate x:Key="PokemonSimplified" x:DataType="model:PokemonSimplifiedViewModel">
+    <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
-        <Image Source="{x:Bind FrontDefault}"
+        <Image Source="{x:Bind Icon}"
                Style="{StaticResource PokemonIcon}" />
         <StackPanel Orientation="vertical">
           <TextBlock Text="{x:Bind Name}"
                      Style="{StaticResource PokemonName}"/>
-          <TextBlock Text="{x:Bind Numero}"
+          <TextBlock Text="{x:Bind Label}"
                      FontSize="12epx"
                      Style="{StaticResource PokemonName}"/>
         </StackPanel>
@@ -158,6 +158,8 @@
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
@@ -454,11 +456,43 @@
           </Expander.Content>
         </Expander>
 
+        <Expander x:Uid="PokemonSpawnConditions"
+                  IsExpanded="True"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Left"
+                  Grid.Column="0" Grid.Row="2">
+
+          <Expander.Content>
+
+            <ScrollViewer>
+              <ItemsRepeater ItemsSource="{x:Bind ViewModel.SelectedPokemon.Spawns}">
+                <ItemsRepeater.Layout>
+                  <StackLayout Orientation="Vertical" Spacing="4"/>
+                </ItemsRepeater.Layout>
+
+                <ItemsRepeater.ItemTemplate>
+                  <DataTemplate x:DataType="model:SpawnConditionViewModel">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto,*" 
+                          Padding="4" Margin="4">
+                      <Image Grid.Column="0" Source="{x:Bind Context}" Width="16" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Text="{x:Bind Bucket}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Text="{x:Bind Presets}" Margin="8,0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Text="{x:Bind Biomes}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+              </ItemsRepeater>
+            </ScrollViewer>
+
+
+          </Expander.Content>
+        </Expander>
+
         <Expander x:Uid="PokemonStatisticalExpander"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
-                  Grid.Column="0" Grid.Row="2">
+                  Grid.Column="0" Grid.Row="3">
           <Expander.Content>
             <Grid HorizontalAlignment="Stretch">
               <Grid.ColumnDefinitions>
@@ -592,7 +626,7 @@
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
-                  Grid.Column="0" Grid.Row="3">
+                  Grid.Column="0" Grid.Row="4">
 
           <Expander.Content>
             <Grid>
@@ -625,11 +659,29 @@
           </Expander.Content>
         </Expander>
 
+        <Expander x:Uid="PokemonTypeEfficiency"
+                  IsExpanded="True"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Left"
+                  Grid.Column="0" Grid.Row="5">
+
+          <Expander.Content>
+            <ScrollViewer Margin="0,8,0,0"
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+
+              <local:PokemonTypeView />
+
+            </ScrollViewer>
+
+          </Expander.Content>
+        </Expander>
+
         <Expander x:Uid="PokemonMoves"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
-                  Grid.Column="0" Grid.Row="4">
+                  Grid.Column="0" Grid.Row="6">
 
           <Expander.Content>
             <Grid>
@@ -765,11 +817,11 @@
           </Expander.Content>
         </Expander>
 
-        <Expander Header="Loots"
+        <Expander x:Uid="PokemonDrops"
                   IsExpanded="True"
                   HorizontalAlignment="Stretch"
                   HorizontalContentAlignment="Left"
-                  Grid.Column="0" Grid.Row="5">
+                  Grid.Column="0" Grid.Row="7">
 
           <Expander.Content>
             <ScrollViewer>

@@ -10,15 +10,15 @@
 
     internal partial class CobblePediaViewModel : ObservableObject
     {
-        public ObservableCollection<TypeSimplifiedViewModel> TypeViewModels { get; }
-        public ObservableCollection<PokemonSimplifiedViewModel> PokemonViewModels { get; }
-        public ObservableCollection<TrainerSimplifiedViewModel> TrainerViewModels { get; }
+        public ObservableCollection<SearchableObjectViewModel> TypeViewModels { get; }
+        public ObservableCollection<SearchableObjectViewModel> PokemonViewModels { get; }
+        public ObservableCollection<SearchableObjectViewModel> TrainerViewModels { get; }
 
-        [ObservableProperty] private TypeSimplifiedViewModel selectedTypeInList;
-        [ObservableProperty] private TypeExtendedViewModel selectedType;
-        [ObservableProperty] private PokemonSimplifiedViewModel selectedPokemonInList;
-        [ObservableProperty] private PokemonExtendedViewModel selectedPokemon;
-        [ObservableProperty] private TrainerSimplifiedViewModel selectedTrainerInList;
+        [ObservableProperty] private SearchableObjectViewModel? selectedTypeInList;
+        [ObservableProperty] private TypeExtendedViewModel? selectedType;
+        [ObservableProperty] private SearchableObjectViewModel? selectedPokemonInList;
+        [ObservableProperty] private PokemonExtendedViewModel? selectedPokemon;
+        [ObservableProperty] private SearchableObjectViewModel selectedTrainerInList;
         [ObservableProperty] private TrainerExtendedViewModel selectedTrainer;
         [ObservableProperty] private MoveViewModel selectedMove;
         [ObservableProperty] private MoveViewModel selectedMoveLeveled;
@@ -39,8 +39,10 @@
         internal Dictionary<string, GenerationViewModel> generations;
         internal Dictionary<string, TypeSimplifiedViewModel> types;
         internal Dictionary<string, EggGroupViewModel> eggGroups;
-        private Dictionary<string, TrainerSimplifiedViewModel> trainers;
-        private Dictionary<string, PokemonSimplifiedViewModel> pokemon;
+        //private Dictionary<string, SearchableObjectViewModel> trainers;
+        //private Dictionary<string, SearchableObjectViewModel> pokemon;
+
+        List<SearchableObjectViewModel> searchableObjects;
 
         private static CobblePediaViewModel model;
 
@@ -59,9 +61,37 @@
         private CobblePediaViewModel()
         {
             // -------------------------------------------------
+            searchableObjects = new List<SearchableObjectViewModel>();
+            foreach (PokemonType item in CobblePedia.Pedia.Types.Values)
+            {
+                searchableObjects.Add(new SearchableObjectViewModel(item));
+            }
+            foreach (Pokemon item in CobblePedia.Pedia.Pokemon.Values)
+            {
+                searchableObjects.Add(new SearchableObjectViewModel(item));
+            }
+            foreach (Trainer item in CobblePedia.Pedia.Trainers.Values)
+            {
+                searchableObjects.Add(new SearchableObjectViewModel(item));
+            }
+
+            // -------------------------------------------------
+            maxBaseAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseAttack);
+            maxBaseDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseDefence);
+            maxBaseHP = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseHP);
+            maxBaseSpecialAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialAttack);
+            maxBaseSpecialDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialDefence);
+            maxBaseSpeed = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpeed);
+
+            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
+            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
+
+            maxHeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Height);
+            maxWeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Weight);
+
+            // -------------------------------------------------
             // Génération
             generations = new Dictionary<string, GenerationViewModel>();
-
             foreach (Generation item in CobblePedia.Pedia.Generations.Values)
             {
                 generations.Add(item.GenerationId, new GenerationViewModel(item));
@@ -70,51 +100,23 @@
             // -------------------------------------------------
             // Types
             types = new Dictionary<string, TypeSimplifiedViewModel>();
-
             foreach (PokemonType item in CobblePedia.Pedia.Types.Values)
             {
                 types.Add(item.TypeId, new TypeSimplifiedViewModel(item));
             }
-            this.TypeViewModels = new ObservableCollection<TypeSimplifiedViewModel>(types.Values);
 
             // -------------------------------------------------
             // EggGroups
             eggGroups = new Dictionary<string, EggGroupViewModel>();
-
             foreach (EggGroup item in CobblePedia.Pedia.EggGroups.Values)
             {
                 eggGroups.Add(item.EggGroupId, new EggGroupViewModel(item));
             }
 
             // -------------------------------------------------
-            // Pokemon
-            pokemon = new Dictionary<string, PokemonSimplifiedViewModel>();
-            foreach (Pokemon item in CobblePedia.Pedia.Pokemon.Values)
-            {
-                pokemon.Add(item.SpeciesId, new PokemonSimplifiedViewModel(item));
-            }
-            this.PokemonViewModels = new ObservableCollection<PokemonSimplifiedViewModel>(pokemon.Values.Where(item => !item.IsForm));
-
-            maxBaseAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseAttack);
-            maxBaseDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseDefence);
-            maxBaseHP = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseHP);
-            maxBaseSpecialAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialAttack);
-            maxBaseSpecialDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialDefence);
-            maxBaseSpeed = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpeed);
-            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
-            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
-            maxHeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Height);
-            maxWeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Weight);
-
-            // -------------------------------------------------
-            // Trainers
-            trainers = new Dictionary<string, TrainerSimplifiedViewModel>();
-
-            foreach (Trainer item in CobblePedia.Pedia.Trainers.Values)
-            {
-                trainers.Add(item.TrainerId, new TrainerSimplifiedViewModel(item));
-            }
-            this.TrainerViewModels = new ObservableCollection<TrainerSimplifiedViewModel>(trainers.Values);
+            this.TypeViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@type"));
+            this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@pokemon" && !((Pokemon)item.Source).IsForm));
+            this.TrainerViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@trainer"));
 
             // -------------------------------------------------
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
@@ -135,7 +137,7 @@
             }
             else
             {
-                SelectedTypeInList = new TypeSimplifiedViewModel(CobblePedia.Pedia.Types[typeId]);
+                SelectedTypeInList = new SearchableObjectViewModel(CobblePedia.Pedia.Types[typeId]);
 
             }
             if (pokemonId == null)
@@ -144,7 +146,7 @@
             }
             else
             {
-                SelectedPokemonInList = new PokemonSimplifiedViewModel(CobblePedia.Pedia.Pokemon[pokemonId]);
+                SelectedPokemonInList = new SearchableObjectViewModel(CobblePedia.Pedia.Pokemon[pokemonId]);
             }
             if (trainerId == null)
             {
@@ -152,8 +154,21 @@
             }
             else
             {
-                SelectedTrainerInList = new TrainerSimplifiedViewModel(CobblePedia.Pedia.Trainers[trainerId]);
+                SelectedTrainerInList = new SearchableObjectViewModel(CobblePedia.Pedia.Trainers[trainerId]);
             }
+        }
+
+        internal List<SearchableObjectViewModel> Filter(string searchPattern)
+        {
+            List<SearchableObjectViewModel> elligibles = new List<SearchableObjectViewModel>();
+
+            foreach (SearchableObjectViewModel item in searchableObjects)
+            {
+                if (item.IsElligible(searchPattern))
+                    elligibles.Add(item);
+            }
+
+            return elligibles;
         }
 
         #region Data Language
@@ -169,19 +184,11 @@
 
         private void SetLanguage(string language)
         {
-            foreach (TypeSimplifiedViewModel item in this.TypeViewModels)
-            {
-                item.SetLanguage(language);
-            }
             foreach (GenerationViewModel item in this.generations.Values)
             {
                 item.SetLanguage(language);
             }
-            foreach (PokemonSimplifiedViewModel item in this.PokemonViewModels)
-            {
-                item.SetLanguage(language);
-            }
-            foreach (TrainerSimplifiedViewModel item in this.TrainerViewModels)
+            foreach (SearchableObjectViewModel item in this.searchableObjects)
             {
                 item.SetLanguage(language);
             }
@@ -194,15 +201,18 @@
             switch (e.PropertyName)
             {
                 case "SelectedTypeInList":
-                    SelectedType = SelectedTypeInList.GetExtendedViewModel();
+                    SelectedType = SelectedTypeInList.GetExtendedViewModel() as TypeExtendedViewModel;
                     break;
                 case "SelectedPokemonInList":
-                    SelectedPokemon = SelectedPokemonInList.GetExtendedViewModel();
-                    SelectedMove = SelectedPokemon.LeveledMoves.First();
-                    SelectedAbility = SelectedPokemon.Abilities.First();
+                    SelectedPokemon = SelectedPokemonInList.GetExtendedViewModel() as PokemonExtendedViewModel;
+                    if (SelectedPokemon != null)
+                    {
+                        SelectedMove = SelectedPokemon.LeveledMoves.First();
+                        SelectedAbility = SelectedPokemon.Abilities.First();
+                    }
                     break;
                 case "SelectedTrainerInList":
-                    SelectedTrainer = SelectedTrainerInList.GetExtendedViewModel();
+                    SelectedTrainer = SelectedTrainerInList.GetExtendedViewModel() as TrainerExtendedViewModel;
                     break;
                 case "SelectedMoveLeveled":
                     SelectedMove = SelectedMoveLeveled;

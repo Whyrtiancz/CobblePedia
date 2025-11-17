@@ -38,14 +38,14 @@
                   ItemsSource="{x:Bind ViewModel.TrainerViewModels}"
                   SelectedItem="{x:Bind ViewModel.SelectedTrainerInList, Mode=TwoWay}">
           <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:TrainerSimplifiedViewModel">
+            <DataTemplate x:DataType="model:SearchableObjectViewModel">
               <StackPanel Orientation="Horizontal">
-                <Image Source="/Assets/Trainers/default.png"
-                     Style="{StaticResource TrainerIcon}" />
+                <Image Source="{x:Bind Icon}"
+                     Style="{StaticResource PokemonIcon}" />
                 <StackPanel Orientation="vertical">
                   <TextBlock Text="{x:Bind Name}"
                            Style="{StaticResource PokemonName}"/>
-                  <TextBlock Text="{x:Bind Series}"
+                  <TextBlock Text="{x:Bind Label}"
                            FontSize="12epx"
                            Style="{StaticResource PokemonName}"/>
                 </StackPanel>

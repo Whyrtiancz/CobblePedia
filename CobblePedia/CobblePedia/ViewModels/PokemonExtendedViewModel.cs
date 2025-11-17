@@ -20,6 +20,7 @@
         [ObservableProperty] private string numero;
         [ObservableProperty] private string name;
         [ObservableProperty] private string description;
+        public TypeExtendedViewModel TypeEfficiency { get; private set; }
         public GenerationViewModel Generation { get; private set; }
         public TypeSimplifiedViewModel PrimaryType { get; private set; }
         public TypeSimplifiedViewModel SecondaryType { get; private set; }
@@ -93,6 +94,10 @@
         public ObservableCollection<AbilityViewModel> Abilities { get; set; }
         #endregion Capacités
 
+        #region Drops
+        public ObservableCollection<SpawnConditionViewModel> Spawns { get; set; }
+        #endregion Drops
+
         [ObservableProperty] private bool isDynamaxBlocked;
 
         private Pokemon species;
@@ -110,12 +115,14 @@
             description = "-";
             Generation = CobblePediaViewModel.Model.generations[source.Generation];
             PrimaryType = CobblePediaViewModel.Model.types[source.PrimaryType];
+            TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], null, true);
             if (source.SecondaryType == null)
             {
                 SecondaryType = new TypeSimplifiedViewModel();
             }
             else
             {
+                TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], CobblePedia.Pedia.Types[species.SecondaryType], true);
                 SecondaryType = CobblePediaViewModel.Model.types[source.SecondaryType];
             }
 
@@ -277,6 +284,13 @@
             }
             #endregion Capacités
 
+            #region Spawn
+            Spawns = new ObservableCollection<SpawnConditionViewModel>();
+            foreach (Spawn item in species.Spawns)
+            {
+                Spawns.Add(new SpawnConditionViewModel(item));
+            }
+            #endregion Spawn
             isDynamaxBlocked = species.IsDynamaxBlocked;
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
@@ -345,10 +359,16 @@
             {
                 item.SetLanguage(language);
             }
+            foreach (SpawnConditionViewModel item in Spawns)
+            {
+                item.SetLanguage(language);
+            }
+
             if (!IsBreedable)
             {
-                ratio = primaryEggGroup.Name;
+                Ratio = primaryEggGroup.Name;
             }
+
             PreEvolution?.SetLanguage(language);
             PreEvolutionCondition?.SetLanguage(language);
         }

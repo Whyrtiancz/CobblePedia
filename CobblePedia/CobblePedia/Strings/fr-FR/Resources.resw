@@ -195,39 +195,6 @@
   <data name="TypesEfficiency.Text" xml:space="preserve">
     <value>Efficacité</value>
   </data>
-  <data name="TypesVeryWeak.Text" xml:space="preserve">
-    <value>Très faible</value>
-  </data>
-  <data name="TypesVeryEfficient.Text" xml:space="preserve">
-    <value>Très efficace</value>
-  </data>
-  <data name="TypesEfficient.Text" xml:space="preserve">
-    <value>Efficace</value>
-  </data>
-  <data name="TypesWeak.Text" xml:space="preserve">
-    <value>Faible</value>
-  </data>
-  <data name="TypesInefficient.Text" xml:space="preserve">
-    <value>Inefficace</value>
-  </data>
-  <data name="TypesNoDamageFrom.Text" xml:space="preserve">
-    <value>Ne reçoit aucun dommage</value>
-  </data>
-  <data name="TypesDoubleDamageTo.Text" xml:space="preserve">
-    <value>Inflige le double de dommage</value>
-  </data>
-  <data name="TypesHalfDamageFrom.Text" xml:space="preserve">
-    <value>Reçoit la moitié des dommages</value>
-  </data>
-  <data name="TypesHalfDamageTo.Text" xml:space="preserve">
-    <value>Inflige la moitié des dommages</value>
-  </data>
-  <data name="TypesNoDamageTo.Text" xml:space="preserve">
-    <value>Inflige aucun dommage</value>
-  </data>
-  <data name="typesDoubleDamageFrom.Text" xml:space="preserve">
-    <value>Reçoit le double de dommage</value>
-  </data>
   <data name="MainTitleBar.Title" xml:space="preserve">
     <value>CooblePédia</value>
   </data>
@@ -314,5 +281,62 @@
   </data>
   <data name="PokemonAbilities.Header" xml:space="preserve">
     <value>Capacités</value>
+  </data>
+  <data name="TypesDamageFourfoldCaption.Text" xml:space="preserve">
+    <value>Ultra efficace</value>
+  </data>
+  <data name="TypesDamageFourfoldTo.Text" xml:space="preserve">
+    <value>Inflige le quadruple de dommages</value>
+  </data>
+  <data name="TypesDamageFourfoldFrom.Text" xml:space="preserve">
+    <value>Reçoit le quadruple de dommages</value>
+  </data>
+  <data name="TypesDamageDoubleFrom.Text" xml:space="preserve">
+    <value>Reçoit le double de dommages</value>
+  </data>
+  <data name="TypesDamageDoubleTo.Text" xml:space="preserve">
+    <value>Inflige le double de dommages</value>
+  </data>
+  <data name="TypesDamageDoubleCaption.Text" xml:space="preserve">
+    <value>Très efficace</value>
+  </data>
+  <data name="TypesDamageHalfCaption.Text" xml:space="preserve">
+    <value>Efficace</value>
+  </data>
+  <data name="TypesDamageHalfFrom.Text" xml:space="preserve">
+    <value>Reçoit la moitié des dommages</value>
+  </data>
+  <data name="TypesDamageHalfTo.Text" xml:space="preserve">
+    <value>Inflige la moitié des dommages</value>
+  </data>
+  <data name="TypesDamageQuarterCaption.Text" xml:space="preserve">
+    <value>Très inefficace</value>
+  </data>
+  <data name="TypesDamageQuarterFrom.Text" xml:space="preserve">
+    <value>Reçoit le quart des dommages</value>
+  </data>
+  <data name="TypesDamageQuarterTo.Text" xml:space="preserve">
+    <value>Inflige le quart des dommages</value>
+  </data>
+  <data name="TypesDamageNoCaption.Text" xml:space="preserve">
+    <value>Ultra inefficace</value>
+  </data>
+  <data name="TypesDamageNoFrom.Text" xml:space="preserve">
+    <value>Reçoit aucun dommage</value>
+  </data>
+  <data name="TypesDamageNoTo.Text" xml:space="preserve">
+    <value>Inflige aucun dommage</value>
+  </data>
+  <data name="TypesDamageHalf2Caption.Text" xml:space="preserve">
+    <value>Inefficace</value>
+  </data>
+  <data name="PokemonDrops.Header" xml:space="preserve">
+    <value>Butin</value>
+  </data>
+  <data name="PokemonTypeEfficiency.Header" xml:space="preserve">
+    <value>Efficacité de type</value>
+  </data>
+  <data name="PokemonSpawnConditions.Header" xml:space="preserve">
+    <value>Conditions d'apparition</value>
   </data>
 </root>

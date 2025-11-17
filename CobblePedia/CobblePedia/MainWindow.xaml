@@ -30,18 +30,26 @@
                     Margin="8,0,8,0"
                     Source="/Assets/Square44x44Logo.png" />
       </TitleBar.LeftHeader>
-      <!--<TitleBar.RightHeader>
-        <PersonPicture
-                    Width="30"
-                    Height="30"
-                    Initials="JD" />
-      </TitleBar.RightHeader>-->
+      <TitleBar.RightHeader>
+        <PersonPicture x:Name="CurrentUser"
+                       Width="30" Height="30" />
+      </TitleBar.RightHeader>
       <TitleBar.Content>
-        <AutoSuggestBox
-                    Width="320"
-                    VerticalAlignment="Center"
-                    PlaceholderText="Search.."
-                    QueryIcon="Find" />
+        <AutoSuggestBox TextChanged="OnControlsSearchBoxTextChanged"
+                        QuerySubmitted="OnControlsSearchBoxQuerySubmitted"
+                        x:Name="controlsSearchBox"
+                        Width="320"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        x:FieldModifier="public"
+                        KeyboardAcceleratorPlacementMode="Hidden"
+                        PlaceholderText="Search controls and samples..."
+                        QueryIcon="Find">
+          <AutoSuggestBox.KeyboardAccelerators>
+          <KeyboardAccelerator Invoked="KeyboardAccelerator_Invoked"
+                               Key="F" Modifiers="Control" />
+          </AutoSuggestBox.KeyboardAccelerators>
+        </AutoSuggestBox>
       </TitleBar.Content>
     </TitleBar>
     
