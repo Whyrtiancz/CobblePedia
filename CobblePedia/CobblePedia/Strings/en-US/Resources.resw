@@ -339,4 +339,10 @@
   <data name="PokemonSpawnConditions.Header" xml:space="preserve">
     <value>Spawn conditions</value>
   </data>
+  <data name="TrainerProperties.Header" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="TrainerTeams.Header" xml:space="preserve">
+    <value>Team</value>
+  </data>
 </root>

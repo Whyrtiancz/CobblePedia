@@ -346,6 +346,7 @@
                       Margin="8"
                       Grid.Column="0" Grid.Row="2" Grid.RowSpan="3">
                 <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
                             Margin="0,8">
                   <StackPanel Orientation="Horizontal">
                     <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.EggIcon}"

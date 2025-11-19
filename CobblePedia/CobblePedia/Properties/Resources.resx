@@ -153,4 +153,13 @@
   <data name="TypeLargeIconPath" xml:space="preserve">
     <value>/Assets/Types/{0}.png</value>
   </data>
+  <data name="TrainerSeries_Description" xml:space="preserve">
+    <value>eries.rctmod.{0}.description</value>
+  </data>
+  <data name="TrainerSeries_Title" xml:space="preserve">
+    <value>series.rctmod.{0}.title</value>
+  </data>
+  <data name="TrainerType_Title" xml:space="preserve">
+    <value>trainer_type.rctmod.{0}.title</value>
+  </data>
 </root>

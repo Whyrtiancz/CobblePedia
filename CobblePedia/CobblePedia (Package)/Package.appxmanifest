@@ -10,7 +10,7 @@
   <Identity
     Name="1db667a5-3530-4205-b9f7-7f07754deb93"
     Publisher="CN=AlainGUEFFIER"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="1db667a5-3530-4205-b9f7-7f07754deb93" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

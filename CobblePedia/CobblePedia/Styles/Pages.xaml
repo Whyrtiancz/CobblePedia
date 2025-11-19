@@ -2,7 +2,8 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CobblePedia.Styles">
+    xmlns:local="using:CobblePedia.Styles"
+    xmlns:model="using:CobblePedia.ViewModels">
 
   <!-- Marges -->
   <Thickness x:Key="PokemonHeaderMargin">0,4,24,4</Thickness>
@@ -144,5 +145,5 @@
     <Setter Property="Margin" Value="2,2" />
     <Setter Property="HorizontalAlignment" Value="Center" />
   </Style>
-  
+
 </ResourceDictionary>

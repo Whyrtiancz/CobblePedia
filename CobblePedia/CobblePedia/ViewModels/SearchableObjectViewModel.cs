@@ -70,7 +70,7 @@
             keyName = trainer.KeyName;
             KeyType = "@trainer";
             label = string.Join(",", trainer.Series);
-            icon = "Assets/Trainers/default.png";
+            icon = "/Assets/Trainers/default.png";
             ViewType = "CobblePedia.Views.TrainerView";
 
             searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
@@ -174,6 +174,10 @@
             return result;
         }
 
+        internal object GetSource()
+        {
+            return Source;
+        }
 
         public override string ToString()
         {

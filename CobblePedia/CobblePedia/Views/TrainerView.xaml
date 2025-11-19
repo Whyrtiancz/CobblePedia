@@ -11,6 +11,32 @@
     x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
+  <Page.Resources>
+    
+    <DataTemplate x:Key="SimplifiedTrainerTemplate" x:DataType="model:SearchableObjectViewModel">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="{x:Bind Icon}"
+                     Style="{StaticResource PokemonIcon}" />
+        <StackPanel Orientation="vertical">
+          <TextBlock Text="{x:Bind Name}"
+                           Style="{StaticResource PokemonName}"/>
+          <TextBlock Text="{x:Bind Label}"
+                           FontSize="12epx"
+                           Style="{StaticResource PokemonName}"/>
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ItemTemplate" x:DataType="model:ItemViewModel">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="{x:Bind Icon}" />
+        <TextBlock Text="{x:Bind Name}"
+                   Style="{StaticResource PokemonName}"/>
+      </StackPanel>
+    </DataTemplate>
+
+  </Page.Resources>
+
   <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
@@ -30,28 +56,13 @@
 
     <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                   Style="{StaticResource LeftScrollviewer}"
-                  VerticalScrollBarVisibility="Auto"
-                  VerticalScrollMode="Auto">
+                  VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
       <Border>
         <ListView Style="{StaticResource LeftListView}"
                   SelectionMode="Single"
                   ItemsSource="{x:Bind ViewModel.TrainerViewModels}"
+                  ItemTemplate="{StaticResource SimplifiedTrainerTemplate}"
                   SelectedItem="{x:Bind ViewModel.SelectedTrainerInList, Mode=TwoWay}">
-          <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:SearchableObjectViewModel">
-              <StackPanel Orientation="Horizontal">
-                <Image Source="{x:Bind Icon}"
-                     Style="{StaticResource PokemonIcon}" />
-                <StackPanel Orientation="vertical">
-                  <TextBlock Text="{x:Bind Name}"
-                           Style="{StaticResource PokemonName}"/>
-                  <TextBlock Text="{x:Bind Label}"
-                           FontSize="12epx"
-                           Style="{StaticResource PokemonName}"/>
-                </StackPanel>
-              </StackPanel>
-            </DataTemplate>
-          </ListView.ItemTemplate>
         </ListView>
       </Border>
     </ScrollViewer>
@@ -62,42 +73,200 @@
                Margin="{ThemeResource ContentDialogTitleMargin}"
                Grid.Column="1" Grid.Row="1" />
 
-    <!-- Tableau des forces et faiblesses -->
-    <ScrollViewer Grid.Column="1" Grid.Row="2"
-                  VerticalScrollBarVisibility="Auto"
-                  VerticalScrollMode="Auto">
-      <GridView ItemsSource="{x:Bind ViewModel.SelectedTrainer.Teams}"
-                HorizontalAlignment="Stretch">
-        <GridView.ItemsPanel>
-          <ItemsPanelTemplate>
-            <ItemsWrapGrid MaximumRowsOrColumns="6"
+    <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto"
+                  Grid.Column="1" Grid.Row="2">
+
+      <StackPanel Orientation="Vertical">
+
+        <Expander x:Uid="TrainerProperties"
+              IsExpanded="True"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch">
+
+          <Expander.Content>
+            <Grid HorizontalAlignment="Stretch">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+
+              <TextBlock Text="Type de dresseur"
+                     Margin="0,4"
+                     Grid.Column="0" Grid.Row="0" />
+              <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.TrainerType}"
+                     Margin="8,4"
+                     Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" />
+
+              <TextBlock Text="Séries"
+                     Margin="0,4"
+                     Grid.Column="0" Grid.Row="1" />
+              <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.Series}"
+                     Margin="8,4"
+                     Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
+
+              <TextBlock Text="Objet signature"
+                     Margin="0,4"
+                     Grid.Column="0" Grid.Row="2" />
+              <Image Source="{x:Bind ViewModel.SelectedTrainer.SignatureItem.Icon}"
+                     Margin="8,4"
+                     Grid.Column="1" Grid.Row="2" />
+              <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.SignatureItem.Name}"
+                     Margin="0,4"
+                     Grid.Column="2" Grid.Row="2" />
+
+              <TextBlock Text="Objets utilisables"
+                     Margin="0,4"
+                     Grid.Column="0" Grid.Row="4" />
+              <GridView ItemsSource="{x:Bind ViewModel.SelectedTrainer.Bags}"
+                    HorizontalAlignment="Stretch"
+                    Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2">
+                <GridView.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <ItemsWrapGrid MaximumRowsOrColumns="6"
                              Orientation="Horizontal"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"/>
-          </ItemsPanelTemplate>
-        </GridView.ItemsPanel>
+                  </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
 
-        <GridView.ItemTemplate>
-          <DataTemplate x:DataType="model:TrainerTeamViewModel">
-            <StackPanel Orientation="Vertical"
-                        Style="{StaticResource ItemCell}">
-              <Image Source="{x:Bind Pokemon.Icon}" Style="{StaticResource PokemonLargeIcon}" />
-              <TextBlock Text="{x:Bind Pokemon.Name}" Style="{StaticResource TypeName}"/>
-              <Image Source="{x:Bind Move1.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
-              <TextBlock Text="{x:Bind Move1.Name}" Style="{StaticResource TypeName}"/>
-              <Image Source="{x:Bind Move2.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
-              <TextBlock Text="{x:Bind Move2.Name}" Style="{StaticResource TypeName}"/>
-              <Image Source="{x:Bind Move3.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
-              <TextBlock Text="{x:Bind Move3.Name}" Style="{StaticResource TypeName}"/>
-              <Image Source="{x:Bind Move4.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
-              <TextBlock Text="{x:Bind Move4.Name}" Style="{StaticResource TypeName}"/>
-            </StackPanel>
-          </DataTemplate>
-        </GridView.ItemTemplate>
-      </GridView>
+                <GridView.ItemTemplate>
+                  <DataTemplate x:DataType="model:BagViewModel">
+                    <StackPanel Orientation="Horizontal"
+                            Style="{StaticResource ItemCell}">
+                      <Image Source="{x:Bind Item.Icon}" />
+                      <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{x:Bind Item.Name}" Style="{StaticResource TypeName}"/>
+                        <TextBlock Text="{x:Bind Quantity}" Style="{StaticResource TypeName}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </DataTemplate>
+                </GridView.ItemTemplate>
+              </GridView>
 
+              <TextBlock Text="Interval d'attente"
+                     Margin="0,4"
+                     Grid.Column="0" Grid.Row="5" />
+              <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.BattleCountTicks}"
+                     Margin="8,4"
+                     Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" />
+            </Grid>
+          </Expander.Content>
+        </Expander>
+
+        <Expander x:Uid="TrainerTeams"
+              IsExpanded="True"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"
+              Grid.Column="1" Grid.Row="3">
+
+          <Expander.Content>
+
+            <ItemsRepeater ItemsSource="{x:Bind ViewModel.SelectedTrainer.Teams}">
+              <ItemsRepeater.Layout>
+                <StackLayout Orientation="Vertical" Spacing="4"/>
+              </ItemsRepeater.Layout>
+
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="model:TrainerTeamViewModel">
+                  <Grid HorizontalAlignment="Stretch"
+                        Padding="4" Margin="4">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                      <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Source="{x:Bind Pokemon.Icon}"
+                         Style="{StaticResource PokemonLargeIcon}"
+                         HorizontalAlignment="Left" VerticalAlignment="Center"
+                         Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+
+                    <TextBlock Text="{x:Bind Pokemon.Name}"
+                             Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="3" />
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                              Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3">
+                      <Image Source="{x:Bind PrimaryType.Icon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind PrimaryType.Name}" />
+                      <Image Source="{x:Bind SecondaryType.Icon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind SecondaryType.Name}" />
+                    </StackPanel>
+
+                    <TextBlock Text="Genre"
+                               Grid.Column="1" Grid.Row="1" />
+                    <TextBlock Text="{x:Bind Gender}"
+                               Grid.Column="2" Grid.Row="1" />
+
+                    <TextBlock Text="Niveau"
+                               Grid.Column="3" Grid.Row="1" />
+                    <TextBlock Text="{x:Bind Level}"
+                               Grid.Column="4" Grid.Row="1" />
+
+                    <TextBlock Text="Nature"
+                               Grid.Column="5" Grid.Row="1" />
+                    <TextBlock Text="{x:Bind Nature}"
+                               Grid.Column="6" Grid.Row="1" />
+
+                    <TextBlock Text="Capacité"
+                               Grid.Column="7" Grid.Row="1" />
+                    <TextBlock Text="{x:Bind Ability}"
+                               Grid.Column="8" Grid.Row="1" />
+
+                    <StackPanel Orientation="Horizontal"
+                              Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+                      <Image Source="{x:Bind Move1.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind Move1.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                              Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2">
+                      <Image Source="{x:Bind Move2.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind Move2.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                              Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2">
+                      <Image Source="{x:Bind Move3.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind Move3.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                              Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2">
+                      <Image Source="{x:Bind Move4.MoveTypeIcon}" Style="{StaticResource TypeIcon}" />
+                      <TextBlock Text="{x:Bind Move4.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                  </Grid>
+
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
+
+          </Expander.Content>
+        </Expander>
+
+      </StackPanel>
     </ScrollViewer>
-
   </Grid>
 
 </Page>

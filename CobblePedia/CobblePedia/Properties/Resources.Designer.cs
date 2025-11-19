@@ -142,11 +142,38 @@ namespace CobblePedia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to eries.rctmod.{0}.description.
+        /// </summary>
+        internal static string TrainerSeries_Description {
+            get {
+                return ResourceManager.GetString("TrainerSeries_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to series.rctmod.{0}.title.
+        /// </summary>
+        internal static string TrainerSeries_Title {
+            get {
+                return ResourceManager.GetString("TrainerSeries_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trainer_Type_{0}.
         /// </summary>
         internal static string TrainerType {
             get {
                 return ResourceManager.GetString("TrainerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trainer_type.rctmod.{0}.title.
+        /// </summary>
+        internal static string TrainerType_Title {
+            get {
+                return ResourceManager.GetString("TrainerType_Title", resourceCulture);
             }
         }
         
