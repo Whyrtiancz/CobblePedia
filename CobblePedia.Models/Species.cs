@@ -1,7 +1,5 @@
 ﻿namespace CobblePedia.Models
 {
-    using System;
-
     using global::CobblePedia.Models.Utils;
 
     using Newtonsoft.Json.Linq;
@@ -56,6 +54,19 @@
         public List<Drop> Drops { get; set; }
         public List<Spawn> Spawns { get; set; }
         public List<Species> Forms { get; set; }
+
+        private string spriteId;
+        private string? translateKey;
+
+        public string GetSpriteId()
+        {
+            return spriteId;
+        }
+        public string GetTranslateKey()
+        {
+            return translateKey;
+        }
+
         public string KeyName
         {
             get
@@ -75,11 +86,12 @@
 
         internal Species() { }
 
-        internal Species(JObject source, Species parent = null)
+        public Species(JObject source, Species parent = null)
         {
             Implemented = JsonHelper.GetBoolValue(source, "implemented");
             NationalPokedexNumber = JsonHelper.GetIntValue(source, "nationalPokedexNumber");
             SpeciesId = NamingHelper.RebuildPokemonName(JsonHelper.GetStringValue(source, "name"));
+            translateKey = (string?)source.SelectToken("pokedex[0]");
             if (JsonHelper.GetStringValue(source, "preEvolution") != null)
             {
                 string preEvolution = NamingHelper.RebuildPokemonName(JsonHelper.GetStringValue(source, "preEvolution"));
@@ -148,15 +160,6 @@
             if (null != parent)
             {
                 SpeciesId = string.Format("{0}-{1}", parent.SpeciesId, SpeciesId);
-            }
-
-            string translate = (string)source.SelectToken("pokedex[0]");
-            if (null != translate)
-            {
-                CobblePedia.Pedia.FR.Add(KeyDescription, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, translate));
-                CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, translate.Replace(".desc", ".name")));
-                CobblePedia.Pedia.EN.Add(KeyDescription, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, translate));
-                CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, translate.Replace(".desc", ".name")));
             }
 
             Generation = JsonHelper.GetStringValue(source, "labels", "labels[0]").Substring(0, 4);
@@ -276,9 +279,7 @@
                 }
             }
 
-            Spawns = CobblePedia.Pedia.Spawns.Where(item => item.NationalPokedexNumber == this.NationalPokedexNumber).ToList();
-
-            string spriteId = SpeciesId;
+            spriteId = SpeciesId;
             switch (SpeciesId)
             {
                 case "darmanitan":
@@ -601,16 +602,6 @@
                 case "basculin":
                     spriteId = "basculin-red-striped";
                     break;
-            }
-
-            if (CobblePedia.Pedia.Sprites.ContainsKey(spriteId))
-            {
-                Picture = CobblePedia.Pedia.Sprites[spriteId];
-            }
-            else
-            {
-                Console.WriteLine("  - {0}", this.SpeciesId);
-                Picture = CobblePedia.Pedia.Sprites["none"];
             }
 
             Forms = new List<Species>();

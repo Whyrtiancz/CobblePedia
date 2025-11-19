@@ -25,8 +25,8 @@
         public List<string> NeededNearbyBlocks { get; set; }
         public List<string> AntiConditionBiomes { get; set; }
 
-        internal Spawn() { }
-        internal Spawn(JToken token, int nationalPokedexNumber)
+        public Spawn() { }
+        public Spawn(JToken token, int nationalPokedexNumber)
         {
             SpawnId = token.Value<string>("id");
             NationalPokedexNumber = nationalPokedexNumber;

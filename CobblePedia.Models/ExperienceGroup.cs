@@ -20,15 +20,12 @@
             }
         }
 
-        internal ExperienceGroup() { }
+        public ExperienceGroup() { }
 
-        internal ExperienceGroup(JObject source)
+        public ExperienceGroup(JObject source)
         {
             ExperienceGroupId = JsonHelper.GetStringValue(source, "name").Replace("-", "_");
             Formula = JsonHelper.GetStringValue(source, "formula");
-
-            CobblePedia.Pedia.FR.Add(KeyDescription, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyDescription, JsonHelper.GetTranslation(source, "en", "name"));
         }
     }
 }

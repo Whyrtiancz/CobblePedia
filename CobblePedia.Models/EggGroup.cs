@@ -21,12 +21,9 @@
 
         public EggGroup() { }
 
-        internal EggGroup(JObject source)
+        public EggGroup(JObject source)
         {
             EggGroupId = JsonHelper.GetStringValue(source, "name");
-
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
         }
     }
 }

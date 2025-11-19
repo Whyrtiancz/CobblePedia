@@ -81,9 +81,9 @@
 
         public Sprite Picture { get; set; }
 
-        internal Pokemon() { }
+        public Pokemon() { }
 
-        internal Pokemon(Species species)
+        public Pokemon(Species species)
         {
             Initialize(species);
             Evolutions = species.Evolutions;
@@ -98,7 +98,7 @@
             IsForm = false;
         }
 
-        internal Pokemon(Species species, Species form, int formIndex)
+        public Pokemon(Species species, Species form, int formIndex)
         {
             Initialize(species);
 
@@ -111,14 +111,6 @@
             SecondaryType = form.SecondaryType;
             Height = form.Height;
             Weight = form.Weight;
-
-            if (!CobblePedia.Pedia.EN.ContainsKey(KeyName))
-            {
-                CobblePedia.Pedia.FR.Add(KeyDescription, "-");
-                CobblePedia.Pedia.FR.Add(KeyName, "-");
-                CobblePedia.Pedia.EN.Add(KeyDescription, "-");
-                CobblePedia.Pedia.EN.Add(KeyName, "-");
-            }
 
             BaseHP = form.BaseHP;
             BaseAttack = form.BaseAttack;

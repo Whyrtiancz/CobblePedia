@@ -28,13 +28,11 @@
             }
         }
 
-        internal PokemonType() { }
+        public PokemonType() { }
 
-        internal PokemonType(JObject source)
+        public PokemonType(JObject source)
         {
             TypeId = JsonHelper.GetStringValue(source, "name");
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
 
             DoubleDamageFrom = new List<string>();
             foreach (JToken token in source.SelectTokens("$.damage_relations.double_damage_from"))

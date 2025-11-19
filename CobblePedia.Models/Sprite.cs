@@ -34,7 +34,7 @@
         }
 
 
-        internal Sprite(JObject source)
+        public Sprite(JObject source)
         {
             SpriteId = JsonHelper.GetIntValue(source, "id");
             Name = JsonHelper.GetStringValue(source, "name");

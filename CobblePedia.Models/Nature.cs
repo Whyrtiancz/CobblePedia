@@ -25,11 +25,9 @@
 
         public Nature() { }
 
-        internal Nature(JObject source)
+        public Nature(JObject source)
         {
             NatureId = JsonHelper.GetStringValue(source, "name");
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
 
             DecreasedStat = JsonHelper.GetStringValue(source, "decreased_stat", "decreased_stat.name");
             HatesFlavor = JsonHelper.GetStringValue(source, "hates_flavor", "hates_flavor.name");

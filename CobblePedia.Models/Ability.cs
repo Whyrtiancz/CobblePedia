@@ -35,18 +35,11 @@
             }
         }
 
-        internal Ability() { }
+        public Ability() { }
 
-        internal Ability(JObject source)
+        public Ability(JObject source)
         {
             AbilityId = JsonHelper.GetStringValue(source, "name").Replace("-", string.Empty);
-
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
-            CobblePedia.Pedia.FR.Add(KeyEffect, JsonHelper.GetEffectEntry(source, "fr"));
-            CobblePedia.Pedia.EN.Add(KeyEffect, JsonHelper.GetEffectEntry(source, "en"));
-            CobblePedia.Pedia.FR.Add(KeyFlavor, JsonHelper.GetFlavorEntry(source, "fr"));
-            CobblePedia.Pedia.EN.Add(KeyFlavor, JsonHelper.GetFlavorEntry(source, "en"));
         }
     }
 }

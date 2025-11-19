@@ -20,15 +20,12 @@
             }
         }
 
-        internal Generation() { }
+        public Generation() { }
 
-        internal Generation(JObject source)
+        public Generation(JObject source)
         {
             GenerationId = string.Format(Properties.Resources.GenerationId, JsonHelper.GetStringValue(source, "id"));
             Region = JsonHelper.GetStringValue(source, "main_region", "main_region.name");
-
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
         }
     }
 }

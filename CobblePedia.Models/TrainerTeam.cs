@@ -153,17 +153,17 @@
                     }
                 }
             }
-            foreach (string s in MoveSet)
-            {
-                try
-                {
-                    Move move = CobblePedia.Pedia.Moves[s];
-                }
-                catch
-                {
-                    Console.WriteLine(s);
-                }
-            }
+            //foreach (string s in MoveSet)
+            //{
+            //    try
+            //    {
+            //        Move move = Builder.Instance.Moves[s];
+            //    }
+            //    catch
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+            //}
         }
     }
 }

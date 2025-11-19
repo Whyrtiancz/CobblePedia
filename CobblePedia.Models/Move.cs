@@ -43,22 +43,12 @@
             }
         }
 
-        internal Move() { }
+        public Move() { }
 
-        internal Move(JObject source)
+        public Move(JObject source)
         {
             Numero = JsonHelper.GetIntValue(source, "id");
             MoveId = JsonHelper.GetStringValue(source, "name").Replace("-", string.Empty);
-
-            //CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(source, "fr", "name"));
-            //CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(source, "en", "name"));
-
-            CobblePedia.Pedia.FR.Add(KeyName, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, string.Format("cobblemon.move.{0}", MoveId)));
-            CobblePedia.Pedia.EN.Add(KeyName, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, string.Format("cobblemon.move.{0}", MoveId)));
-            CobblePedia.Pedia.FR.Add(KeyFlavor, JsonHelper.GetTranslation(CobblePedia.Pedia.translationFR, string.Format("cobblemon.move.{0}.desc", MoveId)));
-            CobblePedia.Pedia.EN.Add(KeyFlavor, JsonHelper.GetTranslation(CobblePedia.Pedia.translationEN, string.Format("cobblemon.move.{0}.desc", MoveId)));
-            CobblePedia.Pedia.FR.Add(KeyEffect, JsonHelper.GetEffectEntry(source, "fr"));
-            CobblePedia.Pedia.EN.Add(KeyEffect, JsonHelper.GetEffectEntry(source, "en"));
 
             DamageClass = JsonHelper.GetStringValue(source, "damage_class", "damage_class.name");
             Target = JsonHelper.GetStringValue(source, "target", "target.name");
