@@ -7,16 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:CobblePedia.Views"
     xmlns:model="using:CobblePedia.ViewModels"
-    x:DataType="model:CobblePediaViewModel"
     x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
   <Page.Resources>
 
-    <DataTemplate x:Key="SimplifiedView" x:DataType="model:SearchableObjectViewModel">
+    <DataTemplate x:Key="TypeItem" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Style="{StaticResource ItemCell}">
-        <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
+        <Image Source="{x:Bind Icon}" Style="{StaticResource MediumIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
       </StackPanel>
     </DataTemplate>
 
@@ -45,7 +44,7 @@
                   VerticalScrollMode="Auto">
       <ListView SelectedItem="{x:Bind ViewModel.SelectedTypeInList, Mode=TwoWay}"
                 ItemsSource="{x:Bind ViewModel.TypeViewModels}"
-                ItemTemplate="{StaticResource SimplifiedView}"
+                ItemTemplate="{StaticResource TypeItem}"
                 SelectionMode="Single"
                 Style="{StaticResource LeftListView}" />
     </ScrollViewer>

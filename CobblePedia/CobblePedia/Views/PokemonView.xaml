@@ -14,6 +14,13 @@
   <Page.Resources>
     <x:Double x:Key="ProgressBarTrackHeight">18</x:Double>
 
+    <DataTemplate x:Key="TypeItem" x:DataType="model:SearchableObjectViewModel">
+      <StackPanel Style="{StaticResource ItemCell}">
+        <Image Source="{x:Bind Icon}" Style="{StaticResource MediumIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
+      </StackPanel>
+    </DataTemplate>
+    
     <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"

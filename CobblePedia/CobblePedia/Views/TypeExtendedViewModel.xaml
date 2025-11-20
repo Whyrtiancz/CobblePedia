@@ -13,10 +13,10 @@
 
   <Page.Resources>
 
-    <DataTemplate x:Key="TypeSimplifiedView" x:DataType="model:SearchableObjectViewModel">
+    <DataTemplate x:Key="TypeItem" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Style="{StaticResource ItemCell}">
-        <Image Source="{x:Bind Icon}" Style="{StaticResource TypeIcon}" />
-        <TextBlock Text="{x:Bind Name}" Style="{StaticResource TypeName}"/>
+        <Image Source="{x:Bind Icon}" Style="{StaticResource MediumIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
       </StackPanel>
     </DataTemplate>
 
@@ -123,7 +123,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
               Grid.Column="1" Grid.Row="1">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.FourfoldDamageTo}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemTemplate="{StaticResource TypeItem}"
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
@@ -131,7 +131,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level1Visibility}"
               Grid.Column="2" Grid.Row="1">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageFrom}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemTemplate="{StaticResource TypeItem}"
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
 
@@ -172,7 +172,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
               Grid.Column="1" Grid.Row="3">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageTo}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemTemplate="{StaticResource TypeItem}"
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
@@ -180,7 +180,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level2Visibility}"
               Grid.Column="2" Grid.Row="3">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.QuarterDamageFrom}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemTemplate="{StaticResource TypeItem}"
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
 
@@ -223,7 +223,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level3Visibility}"
               Grid.Column="2" Grid.Row="5">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageFrom}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemTemplate="{StaticResource TypeItem}"                    
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
 
@@ -261,7 +261,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level4Visibility}"
               Grid.Column="1" Grid.Row="7">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.HalfDamageTo}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemTemplate="{StaticResource TypeItem}"                    
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
@@ -307,7 +307,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
               Grid.Column="1" Grid.Row="9">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.QuarterDamageTo}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemTemplate="{StaticResource TypeItem}"                    
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
@@ -315,7 +315,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level5Visibility}"
               Grid.Column="2" Grid.Row="9">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.DoubleDamageFrom}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemTemplate="{StaticResource TypeItem}"                    
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
 
@@ -356,7 +356,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
               Grid.Column="1" Grid.Row="11">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.NoDamageTo}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"                    
+                  ItemTemplate="{StaticResource TypeItem}"                    
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
         <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
@@ -364,7 +364,7 @@
               Visibility="{x:Bind ViewModel.SelectedType.Level6Visibility}"
               Grid.Column="2" Grid.Row="11">
           <GridView ItemsSource="{x:Bind ViewModel.SelectedType.FourfoldDamageFrom}"
-                  ItemTemplate="{StaticResource TypeSimplifiedView}"
+                  ItemTemplate="{StaticResource TypeItem}"
                   ItemsPanel="{StaticResource TypePanelTemplate}" />
         </Border>
       </Grid>

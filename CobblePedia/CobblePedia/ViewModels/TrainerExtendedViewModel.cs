@@ -54,7 +54,7 @@
                 serieKey = string.Format(Properties.Resources.TrainerSeries_Title, source.Series[0]);
                 serieDescriptionKey = string.Format(Properties.Resources.TrainerSeries_Description, series);
             }
-            trainerTypeKey = string.Format(Properties.Resources.TrainerSeries_Title, "unknown");
+            trainerTypeKey = "trainer_type.rctmod.unknown.title";
             if (source.TrainerType != null)
             {
                 trainerTypeKey = string.Format(Properties.Resources.TrainerType_Title, source.TrainerType);

@@ -23,6 +23,7 @@
     <None Remove="Assets\SVG\Mewx880.svg" />
     <None Remove="Assets\SVG\Pikachux880.svg" />
     <None Remove="Styles\Cards.xaml" />
+    <None Remove="Styles\Icons.xaml" />
     <None Remove="Styles\Pages.xaml" />
     <None Remove="Views\PokemonTypeView.xaml" />
     <None Remove="Views\PokemonView.xaml" />
@@ -107,6 +108,12 @@
   <ItemGroup>
     <Folder Include="Assets\MoveTarget\" />
     <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
