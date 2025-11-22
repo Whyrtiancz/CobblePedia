@@ -1,5 +1,7 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using System.Collections.ObjectModel;
+
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -17,9 +19,7 @@
         [ObservableProperty] private MoveViewModel move3;
         [ObservableProperty] private MoveViewModel move4;
 
-        public SearchableObjectViewModel PrimaryType { get; private set; }
-        public SearchableObjectViewModel SecondaryType { get; private set; }
-
+        public ObservableCollection<SearchableObjectViewModel> Types { get; private set; }
 
         private TrainerTeamViewModel() { }
 
@@ -33,11 +33,10 @@
             pokemon = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.SpeciesId, "@pokemon");
 
             Pokemon detail = CobblePedia.Pedia.Pokemon[source.SpeciesId];
-            PrimaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(detail.PrimaryType, "@type");
-            SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty);
-            if (detail.SecondaryType != null)
+            Types = new ObservableCollection<SearchableObjectViewModel>();
+            foreach (string item in detail.Types)
             {
-                SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(detail.SecondaryType, "@type");
+                Types.Add( CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
             }
 
             if (source.MoveSet.Count > 0)

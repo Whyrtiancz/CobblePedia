@@ -2,6 +2,23 @@
 {
     public class Pokemon
     {
+        //private List<string> _types;
+
+        //public List<string> GetTypes()
+        //{
+        //    return _types; 
+        //}
+
+        //public void PopulateTypesList()
+        //{
+        //    _types = new List<string>();
+        //    _types.Add(PrimaryType);
+        //    if (SecondaryType != null)
+        //    {
+        //        _types.Add(SecondaryType);
+        //    }
+        //}
+
         public static string FileName { get; } = "pokemon.json";
 
         public bool Implemented { get; set; }
@@ -11,8 +28,9 @@
 
         #region General
         public string Generation { get; set; }
-        public string PrimaryType { get; set; }
-        public string SecondaryType { get; set; }
+        public List<string> Types { get; set; }
+        //public string PrimaryType { get; set; }
+        //public string SecondaryType { get; set; }
         #endregion General
 
         #region Physique
@@ -107,8 +125,15 @@
             NationalPokedexNumber = species.NationalPokedexNumber * 10000 + formIndex;
             PreEvolutionSpeciesId = form.PreEvolutionSpeciesId;
             Generation = form.Generation;
-            PrimaryType = form.PrimaryType;
-            SecondaryType = form.SecondaryType;
+            if (form.PrimaryType != null)
+            {
+                Types = new List<string>();
+                Types.Add(form.PrimaryType);
+                if (form.SecondaryType != null)
+                {
+                    Types.Add(form.SecondaryType);
+                }
+            }
             Height = form.Height;
             Weight = form.Weight;
 
@@ -166,8 +191,12 @@
             NationalPokedexNumber = species.NationalPokedexNumber;
             PreEvolutionSpeciesId = species.PreEvolutionSpeciesId;
             Generation = species.Generation;
-            PrimaryType = species.PrimaryType;
-            SecondaryType = species.SecondaryType;
+            Types = new List<string>();
+            Types.Add(species.PrimaryType);
+            if (species.SecondaryType != null)
+            {
+                Types.Add(species.SecondaryType);
+            }
             Height = species.Height;
             Weight = species.Weight;
 

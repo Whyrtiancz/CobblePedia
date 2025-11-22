@@ -50,7 +50,7 @@
     </ScrollViewer>
 
     <!-- Type sélectionné -->
-    <TextBlock Text="{x:Bind ViewModel.SelectedType.PrimaryName}"
+    <TextBlock Text="{x:Bind ViewModel.SelectedTypeInList.Name}"
                Style="{ThemeResource TitleTextBlockStyle}"
                Margin="{ThemeResource ContentDialogTitleMargin}"
                Grid.Column="1" Grid.Row="1" />

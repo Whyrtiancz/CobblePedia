@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
@@ -38,20 +39,85 @@
         private PokemonType primaryType;
         private PokemonType? secondaryType;
 
-
-        public TypeExtendedViewModel(PokemonType type1, PokemonType? type2, bool isPokemonCard)
+        public TypeExtendedViewModel(List<string> pokemontypes, bool isPokemonCard)
         {
-            primaryType = type1;
-            secondaryType = type2;
+            List<PokemonType> types = new List<PokemonType>();
+            Dictionary<string, float> calculationTo = new Dictionary<string, float>();
+            Dictionary<string, float> calculationFrom = new Dictionary<string, float>();
 
-            primaryIcon = string.Format(Properties.Resources.TypeIconPath, primaryType.TypeId);
-            if (secondaryType == null)
+            foreach (string item in pokemontypes)
             {
-                secondaryIcon = string.Format(Properties.Resources.TypeIconPath, "empty");
+                types.Add(CobblePedia.Pedia.Types[item]);
             }
-            else
+
+            foreach (PokemonType item in types) 
             {
-                secondaryIcon = string.Format(Properties.Resources.TypeIconPath, secondaryType.TypeId);
+                foreach (string subitem in item.DoubleDamageTo)
+                {
+                    if (calculationTo.ContainsKey(subitem))
+                    {
+                        calculationTo[subitem] = calculationTo[subitem] * 2.0f;
+                    }
+                    else
+                    {
+                        calculationTo.Add(subitem, 2.0f);
+                    }
+                }
+                foreach (string subitem in item.HalfDamageTo)
+                {
+                    if (calculationTo.ContainsKey(subitem))
+                    {
+                        calculationTo[subitem] = calculationTo[subitem] * 0.5f;
+                    }
+                    else
+                    {
+                        calculationTo.Add(subitem, 0.5f);
+                    }
+                }
+                foreach (string subitem in item.NoDamageTo)
+                {
+                    if (calculationTo.ContainsKey(subitem))
+                    {
+                        calculationTo[subitem] = calculationTo[subitem] * 0.0f;
+                    }
+                    else
+                    {
+                        calculationTo.Add(subitem, 0.0f);
+                    }
+                }
+                foreach (string subitem in item.DoubleDamageFrom)
+                {
+                    if (calculationFrom.ContainsKey(subitem))
+                    {
+                        calculationFrom[subitem] = calculationFrom[subitem] * 2.0f;
+                    }
+                    else
+                    {
+                        calculationFrom.Add(subitem, 2.0f);
+                    }
+                }
+                foreach (string subitem in item.HalfDamageFrom)
+                {
+                    if (calculationFrom.ContainsKey(subitem))
+                    {
+                        calculationFrom[subitem] = calculationFrom[subitem] * 0.5f;
+                    }
+                    else
+                    {
+                        calculationFrom.Add(subitem, 0.5f);
+                    }
+                }
+                foreach (string subitem in item.NoDamageFrom)
+                {
+                    if (calculationFrom.ContainsKey(subitem))
+                    {
+                        calculationFrom[subitem] = calculationFrom[subitem] * 0.0f;
+                    }
+                    else
+                    {
+                        calculationFrom.Add(subitem, 0.0f);
+                    }
+                }
             }
 
             FourfoldDamageTo = new ObservableCollection<SearchableObjectViewModel>();
@@ -60,19 +126,59 @@
             QuarterDamageTo = new ObservableCollection<SearchableObjectViewModel>();
             NoDamageTo = new ObservableCollection<SearchableObjectViewModel>();
 
+            foreach (string item in calculationTo.Keys)
+            {
+                switch (calculationTo[item])
+                {
+                    case 0.0f:
+                        NoDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 0.25f:
+                        QuarterDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 0.5f:
+                        HalfDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 2.0f:
+                        DoubleDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 4.0f:
+                        FourfoldDamageTo.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             FourfoldDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
             DoubleDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
             HalfDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
             QuarterDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
             NoDamageFrom = new ObservableCollection<SearchableObjectViewModel>();
 
-            CalculateForceAndWeakness(primaryType.DoubleDamageTo, primaryType.HalfDamageTo, primaryType.NoDamageTo,
-                secondaryType?.DoubleDamageTo, secondaryType?.HalfDamageTo, secondaryType?.NoDamageTo,
-                FourfoldDamageTo, DoubleDamageTo, HalfDamageTo, QuarterDamageTo, NoDamageTo);
-
-            CalculateForceAndWeakness(primaryType.DoubleDamageFrom, primaryType.HalfDamageFrom, primaryType.NoDamageFrom,
-                secondaryType?.DoubleDamageFrom, secondaryType?.HalfDamageFrom, secondaryType?.NoDamageFrom,
-                FourfoldDamageFrom, DoubleDamageFrom, HalfDamageFrom, QuarterDamageFrom, NoDamageFrom);
+            foreach (string item in calculationFrom.Keys)
+            {
+                switch (calculationFrom[item])
+                {
+                    case 0.0f:
+                        NoDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 0.25f:
+                        QuarterDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 0.5f:
+                        HalfDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 2.0f:
+                        DoubleDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    case 4.0f:
+                        FourfoldDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             level1Visibility = FourfoldDamageTo.Count > 0 || NoDamageFrom.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
             level2Visibility = DoubleDamageTo.Count > 0 || QuarterDamageFrom.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
@@ -131,154 +237,11 @@
             {
                 NoDamageFrom.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty));
             }
-
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
-        private void CalculateForceAndWeakness(List<string> primaryDouble, List<string> primaryHalf, List<string> primaryNo,
-                                               List<string>? secondaryDouble, List<string>? secondaryHalf, List<string>? secondaryNo,
-                                               ObservableCollection<SearchableObjectViewModel> fourths, ObservableCollection<SearchableObjectViewModel> doubles,
-                                               ObservableCollection<SearchableObjectViewModel> halfs, ObservableCollection<SearchableObjectViewModel> quarters,
-                                               ObservableCollection<SearchableObjectViewModel> nos)
+        public TypeExtendedViewModel(string pokemontype, bool isPokemonCard) :
+            this(new List<string> { pokemontype }, isPokemonCard)
         {
-            Dictionary<string, float> calculation = new Dictionary<string, float>();
-
-            foreach (string item in primaryDouble)
-            {
-                calculation.Add(item, 2.0f);
-            }
-            foreach (string item in primaryHalf)
-            {
-                calculation.Add(item, 0.5f);
-            }
-            foreach (string item in primaryNo)
-            {
-                calculation.Add(item, 0.0f);
-            }
-
-            if (secondaryDouble != null)
-            {
-                foreach (string item in secondaryDouble)
-                {
-                    if (calculation.ContainsKey(item))
-                    {
-                        calculation[item] = calculation[item] * 2.0f;
-                    }
-                    else
-                    {
-                        calculation.Add(item, 2.0f);
-                    }
-                }
-                foreach (string item in secondaryHalf)
-                {
-                    if (calculation.ContainsKey(item))
-                    {
-                        calculation[item] = calculation[item] * 0.5f;
-                    }
-                    else
-                    {
-                        calculation.Add(item, 0.5f);
-                    }
-                }
-                foreach (string item in secondaryNo)
-                {
-                    if (calculation.ContainsKey(item))
-                    {
-                        calculation[item] = calculation[item] * 0.0f;
-                    }
-                    else
-                    {
-                        calculation.Add(item, 0.0f);
-                    }
-                }
-            }
-
-            foreach (string item in calculation.Keys)
-            {
-                switch (calculation[item])
-                {
-                    case 0.0f:
-                        nos.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
-                        break;
-                    case 0.25f:
-                        quarters.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
-                        break;
-                    case 0.5f:
-                        halfs.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
-                        break;
-                    case 2.0f:
-                        doubles.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
-                        break;
-                    case 4.0f:
-                        fourths.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@type"));
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        internal void SetLanguage(string language)
-        {
-            switch (language)
-            {
-                case "fr":
-                    PrimaryName = CobblePedia.Pedia.FR[primaryType.KeyName];
-                    if (secondaryType != null)
-                    {
-                        SecondaryName = CobblePedia.Pedia.FR[secondaryType.KeyName];
-                    }
-                    break;
-                default:
-                    PrimaryName = CobblePedia.Pedia.EN[primaryType.KeyName];
-                    if (secondaryType != null)
-                    {
-                        SecondaryName = CobblePedia.Pedia.EN[secondaryType.KeyName];
-                    }
-                    break;
-            }
-
-            //foreach (SearchableObjectViewModel item in FourfoldDamageTo)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in DoubleDamageTo)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in HalfDamageTo)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in QuarterDamageTo)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in NoDamageTo)
-            //{
-            //    item.SetLanguage(language);
-            //}
-
-            //foreach (SearchableObjectViewModel item in NoDamageFrom)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in QuarterDamageFrom)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in HalfDamageFrom)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in DoubleDamageFrom)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (SearchableObjectViewModel item in FourfoldDamageFrom)
-            //{
-            //    item.SetLanguage(language);
-            //}
         }
     }
 }

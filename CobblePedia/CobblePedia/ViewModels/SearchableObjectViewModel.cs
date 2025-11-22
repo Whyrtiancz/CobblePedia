@@ -155,7 +155,7 @@
             {
                 case "@type":
                     Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] = ObjectId;
-                    result = new TypeExtendedViewModel(Source as PokemonType, null, false);
+                    result = new TypeExtendedViewModel(ObjectId, false);
                     break;
                 case "@pokemon":
                     Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedPokemon"] = ObjectId;

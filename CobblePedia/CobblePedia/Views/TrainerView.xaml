@@ -12,7 +12,14 @@
     mc:Ignorable="d">
 
   <Page.Resources>
-    
+
+    <DataTemplate x:Key="TypeItem" x:DataType="model:SearchableObjectViewModel">
+      <StackPanel Style="{StaticResource ItemCell}">
+        <Image Source="{x:Bind Icon}" Style="{StaticResource MediumIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
+      </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="SimplifiedTrainerTemplate" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"
@@ -204,14 +211,18 @@
                     <TextBlock Text="{x:Bind Pokemon.Name}"
                              Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="3" />
 
-                    <StackPanel Orientation="Horizontal"
+                    <GridView ItemsSource="{x:Bind Types}"
+                              ItemTemplate="{StaticResource TypeItem}"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"
+                              Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3"/>
+
+                    <!--<StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
-                              Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3">
                       <Image Source="{x:Bind PrimaryType.Icon}" Style="{StaticResource TypeIcon}" />
                       <TextBlock Text="{x:Bind PrimaryType.Name}" />
                       <Image Source="{x:Bind SecondaryType.Icon}" Style="{StaticResource TypeIcon}" />
                       <TextBlock Text="{x:Bind SecondaryType.Name}" />
-                    </StackPanel>
+                    </StackPanel>-->
 
                     <TextBlock Text="Genre"
                                Grid.Column="1" Grid.Row="1" />

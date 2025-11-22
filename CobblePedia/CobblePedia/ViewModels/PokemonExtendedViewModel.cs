@@ -1,6 +1,7 @@
 ﻿namespace CobblePedia.ViewModels
 {
     using System.Collections.ObjectModel;
+    using System.Reflection;
 
     using CobblePedia.Models;
 
@@ -22,9 +23,8 @@
         [ObservableProperty] private string description;
         public TypeExtendedViewModel TypeEfficiency { get; private set; }
         public GenerationViewModel Generation { get; private set; }
-        public SearchableObjectViewModel PrimaryType { get; private set; }
-        public SearchableObjectViewModel SecondaryType { get; private set; }
-        public ObservableCollection<SpriteViewModel> Sprites { get; set; }
+        public ObservableCollection<SpriteViewModel> Sprites { get; private set; }
+        public ObservableCollection<SearchableObjectViewModel> Types { get; private set; }
         #endregion General
 
         #region Physique
@@ -114,17 +114,12 @@
             name = "-";
             description = "-";
             Generation = CobblePediaViewModel.Model.generations[source.Generation];
-            PrimaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.PrimaryType, "@type");
-            TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], null, true);
-            if (source.SecondaryType == null)
+            Types = new ObservableCollection<SearchableObjectViewModel>();
+            foreach (string itemId in source.Types)
             {
-                SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty);
+                Types.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(itemId, "@type"));
             }
-            else
-            {
-                TypeEfficiency = new TypeExtendedViewModel(CobblePedia.Pedia.Types[species.PrimaryType], CobblePedia.Pedia.Types[species.SecondaryType], true);
-                SecondaryType = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.SecondaryType, "@type");
-            }
+            TypeEfficiency = new TypeExtendedViewModel(source.Types, true);
 
             Sprites = new ObservableCollection<SpriteViewModel>();
             if (source.Picture.FrontFemale != null)

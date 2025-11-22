@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:CobblePedia.Views"
     xmlns:model="using:CobblePedia.ViewModels"
-    x:DataType="model:CobblePediaViewModel"
     x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
@@ -24,13 +23,12 @@
     <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"
-               Style="{StaticResource PokemonIcon}" />
+               Style="{StaticResource NormalIcon}" />
         <StackPanel Orientation="vertical">
           <TextBlock Text="{x:Bind Name}"
-                     Style="{StaticResource PokemonName}"/>
+                     Style="{StaticResource NormalIconCaption}"/>
           <TextBlock Text="{x:Bind Label}"
-                     FontSize="12epx"
-                     Style="{StaticResource PokemonName}"/>
+                     Style="{StaticResource MediumIconCaption}"/>
         </StackPanel>
       </StackPanel>
     </DataTemplate>
@@ -142,21 +140,12 @@
                Style="{ThemeResource BodyTextBlockStyle}"
                VerticalAlignment="Center"
                Grid.Column="2" Grid.Row="2"/>
-    <StackPanel Orientation="Horizontal"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0, 0, 0, 8"
-                Grid.Column="3" Grid.Row="2">
-      <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Icon}"
-             Style="{StaticResource TypeIcon}" />
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PrimaryType.Name}"
-                 Style="{StaticResource TypeName}"/>
-      <Image Source="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Icon}"
-             Style="{StaticResource TypeIcon}" />
-      <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.SecondaryType.Name}"
-                 Style="{StaticResource TypeName}"/>
-    </StackPanel>
-
+    <GridView ItemsSource="{x:Bind ViewModel.SelectedPokemon.Types}"
+              ItemTemplate="{StaticResource TypeItem}"
+              Margin="0, 0, 0, 8"
+              HorizontalAlignment="Right" VerticalAlignment="Center"
+              Grid.Column="3" Grid.Row="2" />
+    
     <!-- Détails -->
     <ScrollViewer Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
                   VerticalScrollBarVisibility="Auto"
