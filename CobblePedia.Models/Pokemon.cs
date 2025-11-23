@@ -2,23 +2,6 @@
 {
     public class Pokemon
     {
-        //private List<string> _types;
-
-        //public List<string> GetTypes()
-        //{
-        //    return _types; 
-        //}
-
-        //public void PopulateTypesList()
-        //{
-        //    _types = new List<string>();
-        //    _types.Add(PrimaryType);
-        //    if (SecondaryType != null)
-        //    {
-        //        _types.Add(SecondaryType);
-        //    }
-        //}
-
         public static string FileName { get; } = "pokemon.json";
 
         public bool Implemented { get; set; }
@@ -29,8 +12,6 @@
         #region General
         public string Generation { get; set; }
         public List<string> Types { get; set; }
-        //public string PrimaryType { get; set; }
-        //public string SecondaryType { get; set; }
         #endregion General
 
         #region Physique

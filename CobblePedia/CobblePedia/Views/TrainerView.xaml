@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:CobblePedia.Views"
     xmlns:model="using:CobblePedia.ViewModels"
-    x:DataType="model:CobblePediaViewModel"
     x:DefaultBindMode="OneWay"
     mc:Ignorable="d">
 
