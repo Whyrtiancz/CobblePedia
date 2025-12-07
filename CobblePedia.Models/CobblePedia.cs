@@ -6,8 +6,7 @@
 
     public class CobblePedia
     {
-        public Dictionary<string, string> FR { get; private set; }
-        public Dictionary<string, string> EN { get; private set; }
+        public Dictionary<string, Dictionary<string, string>> Translations { get; private set; }
         public Dictionary<string, Generation> Generations { get; private set; }
         public Dictionary<string, PokemonType> Types { get; private set; }
         public Dictionary<string, Nature> Natures { get; private set; }
@@ -39,8 +38,7 @@
 
         private CobblePedia()
         {
-            this.FR = new Dictionary<string, string>();
-            this.EN = new Dictionary<string, string>();
+            Translations = new Dictionary<string, Dictionary<string, string>>();
 
             this.Generations = new Dictionary<string, Generation>();
             this.Types = new Dictionary<string, PokemonType>();
@@ -67,7 +65,7 @@
             if (loaded)
             {
                 string jsonContent = File.ReadAllText(filePath);
-                this.FR = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonContent);
+                this.Translations.Add("fr", JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonContent));
             }
 
             filePath = Path.Combine(ConfigurationHelper.CobblePediaDataPath, "en.json");
@@ -75,7 +73,7 @@
             if (loaded)
             {
                 string jsonContent = File.ReadAllText(filePath);
-                this.EN = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonContent);
+                this.Translations.Add("en", JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonContent));
             }
 
             filePath = Path.Combine(ConfigurationHelper.CobblePediaDataPath, Generation.FileName);

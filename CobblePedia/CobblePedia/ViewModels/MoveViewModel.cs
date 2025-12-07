@@ -33,7 +33,11 @@
         [ObservableProperty] private string damageClassIcon;
         [ObservableProperty] private string moveTargetIcon;
 
-        private Move move;
+        //private Move move;
+        private string translationKey;
+        private string translationEffectKey;
+        private string translationFlavorKey;
+
         private EMoveLearnType moveLearnType;
 
         public MoveViewModel(Move source, int level) : this(source, EMoveLearnType.Level)
@@ -43,17 +47,20 @@
 
         public MoveViewModel(Move source, EMoveLearnType moveLearn)
         {
-            move = source;
+            translationKey = source.KeyName;
+            translationEffectKey = source.KeyEffect;
+            translationFlavorKey = source.KeyFlavor;
             name = source.KeyName;
+            description = string.Empty;
             moveLearnType = moveLearn;
             atLevel = -1;
             accuracy = source.Accuracy;
             power = source.Power;
             pp = source.PP;
             priority = source.Priority;
-            damageClass = move.DamageClass;
-            target = move.Target;
-            moveType = move.MoveType;
+            damageClass = source.DamageClass;
+            target = source.Target;
+            moveType = source.MoveType;
             moveTypeIcon = string.Format(Properties.Resources.TypeIconPath, moveType);
             damageClassIcon = string.Format(Properties.Resources.DamageClassPicture, damageClass);
             moveTargetIcon = string.Format(Properties.Resources.MoveTargetPicture, target);
@@ -63,53 +70,25 @@
 
         internal void SetLanguage(string language)
         {
-            switch (language)
+            Name = CobblePedia.Pedia.Translations[language][translationKey];
+            Effect = CobblePedia.Pedia.Translations[language][translationEffectKey];
+            Flavor = CobblePedia.Pedia.Translations[language][translationFlavorKey];
+            switch (moveLearnType)
             {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[move.KeyName];
-                    Effect = CobblePedia.Pedia.FR[move.KeyEffect];
-                    Flavor = CobblePedia.Pedia.FR[move.KeyFlavor];
-                    switch (moveLearnType)
-                    {
-                        case EMoveLearnType.Level:
-                            Description = string.Format(CobblePedia.Pedia.FR["Moves_Level"], AtLevel);
-                            break;
-                        case EMoveLearnType.Egg:
-                            Description = CobblePedia.Pedia.FR["Moves_Egg"];
-                            break;
-                        case EMoveLearnType.CT_CM:
-                            Description = CobblePedia.Pedia.FR["Moves_TM"];
-                            break;
-                        case EMoveLearnType.Tutor:
-                            Description = CobblePedia.Pedia.FR["Moves_Tutor"];
-                            break;
-                        default:
-                            Description = string.Empty;
-                            break;
-                    }
+                case EMoveLearnType.Level:
+                    Description = string.Format(CobblePedia.Pedia.Translations[language]["Moves_Level"], AtLevel);
+                    break;
+                case EMoveLearnType.Egg:
+                    Description = CobblePedia.Pedia.Translations[language]["Moves_Egg"];
+                    break;
+                case EMoveLearnType.CT_CM:
+                    Description = CobblePedia.Pedia.Translations[language]["Moves_TM"];
+                    break;
+                case EMoveLearnType.Tutor:
+                    Description = CobblePedia.Pedia.Translations[language]["Moves_Tutor"];
                     break;
                 default:
-                    Name = CobblePedia.Pedia.EN[move.KeyName];
-                    Effect = CobblePedia.Pedia.EN[move.KeyEffect];
-                    Flavor = CobblePedia.Pedia.EN[move.KeyFlavor];
-                    switch (moveLearnType)
-                    {
-                        case EMoveLearnType.Level:
-                            Description = string.Format(CobblePedia.Pedia.EN["Moves_Level"], AtLevel);
-                            break;
-                        case EMoveLearnType.Egg:
-                            Description = CobblePedia.Pedia.EN["Moves_Egg"];
-                            break;
-                        case EMoveLearnType.CT_CM:
-                            Description = CobblePedia.Pedia.EN["Moves_TM"];
-                            break;
-                        case EMoveLearnType.Tutor:
-                            Description = CobblePedia.Pedia.EN["Moves_Tutor"];
-                            break;
-                        default:
-                            Description = string.Empty;
-                            break;
-                    }
+                    Description = string.Empty;
                     break;
             }
         }

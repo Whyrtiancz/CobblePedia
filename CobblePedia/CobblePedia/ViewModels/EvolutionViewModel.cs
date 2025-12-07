@@ -12,56 +12,56 @@
         [ObservableProperty] private string method;
 
         private string methodKey;
-        private Evolution evolution;
+        private string methodValue;
+        private int minLevel;
+        private int minFriendship;
+        private int minBattleCriticalHits;
+        private string itemKey;
 
         public EvolutionViewModel()
         {
-            method = "";
+            method = string.Empty;
+            methodKey = string.Empty;
+            methodValue = string.Empty;
+            minLevel = 0;
+            minFriendship = 0;
+            minBattleCriticalHits = 0;
+            itemKey = string.Empty;
         }
 
         public EvolutionViewModel(Evolution source)
         {
-            evolution = source;
-            methodKey = string.Format("Evolution_Method_{0}", evolution.Method);
+            method = string.Empty;
+            methodKey = string.Format("Evolution_Method_{0}", source.Method);
+            methodValue = source.Method;
+            minLevel = source.MinLevel;
+            minFriendship = source.MinFriendship;
+            minBattleCriticalHits = source.MinBattleCriticalHits;
+            itemKey = source.ItemKey;
 
-            evolveTo = CobblePediaViewModel.Model.GetSearchableObjectViewModel(evolution.EvolveTo, "@pokemon");
+            evolveTo = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.EvolveTo, "@pokemon");
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
-            if (evolution == null)
-                return;
-
-            Dictionary<string, string> translation = new Dictionary<string, string>();
-
-            switch (language)
-            {
-                case "fr":
-                    translation = CobblePedia.Pedia.FR;
-                    break;
-                default:
-                    translation = CobblePedia.Pedia.EN;
-                    break;
-            }
-
-            switch (evolution.Method)
+            switch (methodValue)
             {
                 case "level_up":
-                    Method = string.Format(translation[methodKey], evolution.MinLevel);
+                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minLevel);
                     break;
                 case "friendship":
-                    Method = string.Format(translation[methodKey], evolution.MinFriendship);
+                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minFriendship);
                     break;
                 case "battle_critical_hits":
-                    Method = string.Format(translation[methodKey], evolution.MinBattleCriticalHits);
+                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minBattleCriticalHits);
                     break;
                 case "item_interact":
-                    Method = string.Format(translation[methodKey], translation[evolution.ItemKey]);
+                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], CobblePedia.Pedia.Translations[language][itemKey]);
                     break;
                 case "trade":
-                    Method = string.Format(translation[methodKey], "");
+                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], "");
                     break;
             }
         }

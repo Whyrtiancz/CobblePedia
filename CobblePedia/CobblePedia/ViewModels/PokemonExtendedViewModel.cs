@@ -14,7 +14,6 @@
     internal partial class PokemonExtendedViewModel : ObservableObject
     {
 
-        #region General
         [ObservableProperty] private bool isImplemented;
         [ObservableProperty] private bool isForm;
         [ObservableProperty] private int nationalPokedexNumber;
@@ -25,45 +24,34 @@
         public GenerationViewModel Generation { get; private set; }
         public ObservableCollection<SpriteViewModel> Sprites { get; private set; }
         public ObservableCollection<SearchableObjectViewModel> Types { get; private set; }
-        #endregion General
 
-        #region Physique
         [ObservableProperty] private string height;
         [ObservableProperty] private string heightIcon;
         [ObservableProperty] private string weight;
         [ObservableProperty] private string weightIcon;
-        #endregion Physique
 
-        #region Reproduction
         [ObservableProperty] private bool isBreedable;
         [ObservableProperty] private Brush background;
         [ObservableProperty] private Brush foreground;
         [ObservableProperty] private float maleRatio;
         [ObservableProperty] private string ratio;
         [ObservableProperty] private int eggCycles;
+        public ObservableCollection<EggGroupViewModel> EggGroups { get; private set; }
         [ObservableProperty] private EggGroupViewModel primaryEggGroup;
         [ObservableProperty] private EggGroupViewModel secondaryEggGroup;
-        #endregion Reproduction
 
-        #region Evolution
         [ObservableProperty] private string frontDefault;
         [ObservableProperty] private SearchableObjectViewModel preEvolution;
         [ObservableProperty] private EvolutionViewModel preEvolutionCondition;
         public ObservableCollection<EvolutionViewModel> Evolutions { get; set; }
-        #endregion Evolution
 
-        #region Formes
         public ObservableCollection<SearchableObjectViewModel> Forms { get; set; }
-        #endregion Formes
 
-        #region Entrainement et capture
         [ObservableProperty] private int baseExperienceYield;
         [ObservableProperty] private string baseExperienceGroup;
         [ObservableProperty] private int baseFriendship;
         [ObservableProperty] private int catchRate;
-        #endregion Entrainement et capture
 
-        #region Statistiques
         [ObservableProperty] private int baseHP;
         [ObservableProperty] private int baseAttack;
         [ObservableProperty] private int baseDefence;
@@ -78,41 +66,32 @@
         [ObservableProperty] private int evSpecialAttack;
         [ObservableProperty] private int evSpecialDefence;
         [ObservableProperty] private int evSpeed;
-        #endregion Statistiques
 
-        #region Attaques
         public ObservableCollection<MoveViewModel> LeveledMoves { get; set; }
         public ObservableCollection<MoveViewModel> TMMoves { get; set; }
         public ObservableCollection<MoveViewModel> TutorMoves { get; set; }
-        #endregion Attaques
 
-        #region Drops
         public ObservableCollection<DropViewModel> Drops { get; set; }
-        #endregion Drops
 
-        #region Capacités
         public ObservableCollection<AbilityViewModel> Abilities { get; set; }
-        #endregion Capacités
 
-        #region Drops
         public ObservableCollection<SpawnConditionViewModel> Spawns { get; set; }
-        #endregion Drops
 
         [ObservableProperty] private bool isDynamaxBlocked;
 
-        private Pokemon species;
+        private string keyName;
+        private string keyDescription;
 
         public PokemonExtendedViewModel(Pokemon source)
         {
-            species = source;
-
-            #region General
-            isImplemented = species.Implemented;
-            isForm = species.IsForm;
+            keyName = source.KeyName;
+            keyDescription = source.KeyDescription;
+            isImplemented = source.Implemented;
+            isForm = source.IsForm;
             nationalPokedexNumber = source.NationalPokedexNumber;
             numero = "#" + nationalPokedexNumber.ToString("D4");
-            name = "-";
-            description = "-";
+            name = string.Empty;
+            description = string.Empty;
             Generation = CobblePediaViewModel.Model.generations[source.Generation];
             Types = new ObservableCollection<SearchableObjectViewModel>();
             foreach (string itemId in source.Types)
@@ -140,26 +119,28 @@
             {
                 Sprites.Add(new SpriteViewModel(SpriteViewModel.SpriteCategory.DefaultShiny, source.Picture.FrontShiny, source.Picture.BackShiny));
             }
-            #endregion General
 
-            #region Physique
-            height = string.Format("{0:F1} m.", species.Height / 10.0);
-            heightIcon = string.Format(Properties.Resources.PokemonHeightPicture, GetHeightIndex(species.Height));
-            weight = string.Format("{0:F1} kg.", species.Weight / 10.0);
-            weightIcon = string.Format(Properties.Resources.PokemonWeightPicture, GetWeightIndex(species.Weight));
-            #endregion Physique
+            height = string.Format("{0:F1} m.", source.Height / 10.0);
+            heightIcon = string.Format(Properties.Resources.PokemonHeightPicture, GetHeightIndex(source.Height));
+            weight = string.Format("{0:F1} kg.", source.Weight / 10.0);
+            weightIcon = string.Format(Properties.Resources.PokemonWeightPicture, GetWeightIndex(source.Weight));
 
-            #region Reproduction
-            IsBreedable = species.EggGroups is not null && species.EggGroups.Count > 0 && species.EggGroups[0] != "no-eggs";
-            switch (species.EggGroups.Count)
+            IsBreedable = source.EggGroups is not null && source.EggGroups.Count > 0 && source.EggGroups[0] != "no-eggs";
+            EggGroups = new ObservableCollection<EggGroupViewModel>();
+            foreach (string item in source.EggGroups)
+            {
+                EggGroups.Add(new EggGroupViewModel(CobblePedia.Pedia.EggGroups[item]));
+            }
+
+            switch (source.EggGroups.Count)
             {
                 case 1:
-                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[0]];
+                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[source.EggGroups[0]];
                     secondaryEggGroup = new EggGroupViewModel();
                     break;
                 case 2:
-                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[0]];
-                    secondaryEggGroup = CobblePediaViewModel.Model.eggGroups[species.EggGroups[1]];
+                    primaryEggGroup = CobblePediaViewModel.Model.eggGroups[source.EggGroups[0]];
+                    secondaryEggGroup = CobblePediaViewModel.Model.eggGroups[source.EggGroups[1]];
                     break;
                 default:
                     primaryEggGroup = new EggGroupViewModel();
@@ -171,8 +152,8 @@
             {
                 foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x00, 0x8B));
                 background = new SolidColorBrush(Color.FromArgb(0xFF, 0x8B, 0x00, 0x00));
-                ratio = string.Format("{0:P1}", species.MaleRatio);
-                maleRatio = species.MaleRatio;
+                ratio = string.Format("{0:P1}", source.MaleRatio);
+                maleRatio = source.MaleRatio;
             }
             else
             {
@@ -181,112 +162,95 @@
                 ratio = primaryEggGroup.Name;
                 maleRatio = 0;
             }
-            eggCycles = species.EggCycles;
-            #endregion Reproduction
+            eggCycles = source.EggCycles;
 
-            #region Evolution
-            frontDefault = string.Format(Properties.Resources.PokemonPicturePath, species.Picture.FrontDefault);
+            frontDefault = string.Format(Properties.Resources.PokemonPicturePath, source.Picture.FrontDefault);
             preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(string.Empty, string.Empty);
             preEvolutionCondition = new EvolutionViewModel();
-            if (species.PreEvolutionSpeciesId != null)
+            if (source.PreEvolutionSpeciesId != null)
             {
-                if (CobblePedia.Pedia.Pokemon.ContainsKey(species.PreEvolutionSpeciesId))
+                if (CobblePedia.Pedia.Pokemon.ContainsKey(source.PreEvolutionSpeciesId))
                 {
-                    preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(species.PreEvolutionSpeciesId, "@pokemon");
-                    preEvolutionCondition = new EvolutionViewModel(CobblePedia.Pedia.Pokemon[species.PreEvolutionSpeciesId].GetEvolutionTo(species.SpeciesId)[0]);
+                    preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.PreEvolutionSpeciesId, "@pokemon");
+                    preEvolutionCondition = new EvolutionViewModel(CobblePedia.Pedia.Pokemon[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId)[0]);
                 }
             }
             Evolutions = new ObservableCollection<EvolutionViewModel>();
-            foreach (Evolution evolution in species.Evolutions)
+            foreach (Evolution evolution in source.Evolutions)
             {
                 Evolutions.Add(new EvolutionViewModel(evolution));
             }
             Forms = new ObservableCollection<SearchableObjectViewModel>();
-            foreach (string item in species.Forms)
+            foreach (string item in source.Forms)
             {
                 Forms.Add(CobblePediaViewModel.Model.GetSearchableObjectViewModel(item, "@pokemon"));
             }
-            #endregion Evolution
 
-            #region Formes
-            #endregion Formes
+            baseExperienceYield = source.BaseExperienceYield;
+            baseExperienceGroup = source.BaseExperienceGroup;
+            baseFriendship = source.BaseFriendship;
+            catchRate = source.CatchRate;
 
-            #region Entrainement et capture
-            baseExperienceYield = species.BaseExperienceYield;
-            baseExperienceGroup = species.BaseExperienceGroup;
-            baseFriendship = species.BaseFriendship;
-            catchRate = species.CatchRate;
-            #endregion Entrainement et capture
+            baseExperienceGroup = source.BaseExperienceGroup;
+            baseExperienceYield = source.BaseExperienceYield;
+            baseFriendship = source.BaseFriendship;
+            catchRate = source.CatchRate;
 
-            #region Statistiques
-            baseExperienceGroup = species.BaseExperienceGroup;
-            baseExperienceYield = species.BaseExperienceYield;
-            baseFriendship = species.BaseFriendship;
-            catchRate = species.CatchRate;
+            baseAttack = source.BaseAttack;
+            baseDefence = source.BaseDefence;
+            baseHP = source.BaseHP;
+            baseSpecialAttack = source.BaseSpecialAttack;
+            baseSpecialDefence = source.BaseSpecialDefence;
+            baseSpeed = source.BaseSpeed;
+            BaseTotal = source.BaseTotal;
 
-            baseAttack = species.BaseAttack;
-            baseDefence = species.BaseDefence;
-            baseHP = species.BaseHP;
-            baseSpecialAttack = species.BaseSpecialAttack;
-            baseSpecialDefence = species.BaseSpecialDefence;
-            baseSpeed = species.BaseSpeed;
-            BaseTotal = species.BaseTotal;
+            evAttack = source.EvAttack;
+            evDefence = source.EvDefence;
+            evHP = source.EvHP;
+            evSpecialAttack = source.EvSpecialAttack;
+            evSpecialDefence = source.EvSpecialDefence;
+            evSpeed = source.EvSpeed;
 
-            evAttack = species.EvAttack;
-            evDefence = species.EvDefence;
-            evHP = species.EvHP;
-            evSpecialAttack = species.EvSpecialAttack;
-            evSpecialDefence = species.EvSpecialDefence;
-            evSpeed = species.EvSpeed;
-            #endregion Statistiques
-
-            #region Attaques
             LeveledMoves = new ObservableCollection<MoveViewModel>();
             TMMoves = new ObservableCollection<MoveViewModel>();
             TutorMoves = new ObservableCollection<MoveViewModel>();
 
-            foreach (PokemonMove item in species.EggMoves)
+            foreach (PokemonMove item in source.EggMoves)
             {
                 LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Egg));
             }
-            foreach (PokemonMove item in species.LeveledMoves)
+            foreach (PokemonMove item in source.LeveledMoves)
             {
                 LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], item.Level));
             }
-            foreach (PokemonMove item in species.TMMoves)
+            foreach (PokemonMove item in source.TMMoves)
             {
                 TMMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.CT_CM));
             }
-            foreach (PokemonMove item in species.TutorMoves)
+            foreach (PokemonMove item in source.TutorMoves)
             {
                 TutorMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Tutor));
             }
-            #endregion Attaques
 
-            #region Drops
             Drops = new ObservableCollection<DropViewModel>();
-            foreach (Drop item in species.Drops)
+            foreach (Drop item in source.Drops)
             {
                 Drops.Add(new DropViewModel(item));
             }
-            #endregion Drops
 
-            #region Capacités
             Abilities = new ObservableCollection<AbilityViewModel>();
-            foreach (PokemonAbility item in species.Abilities)
+            foreach (PokemonAbility item in source.Abilities)
             {
                 Abilities.Add(new AbilityViewModel(item));
             }
-            #endregion Capacités
 
-            #region Spawn
             Spawns = new ObservableCollection<SpawnConditionViewModel>();
-            foreach (Spawn item in species.Spawns)
+            foreach (Spawn item in source.Spawns)
             {
                 Spawns.Add(new SpawnConditionViewModel(item));
             }
-            #endregion Spawn
-            isDynamaxBlocked = species.IsDynamaxBlocked;
+
+            isDynamaxBlocked = source.IsDynamaxBlocked;
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
@@ -312,40 +276,21 @@
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[species.KeyName];
-                    Description = CobblePedia.Pedia.FR[species.KeyDescription];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[species.KeyName];
-                    Description = CobblePedia.Pedia.EN[species.KeyDescription];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][keyName];
+            Description = CobblePedia.Pedia.Translations[language][keyDescription];
 
             Generation.SetLanguage(language);
-            //PrimaryType.SetLanguage(language);
-            //SecondaryType.SetLanguage(language);
-            primaryEggGroup.SetLanguage(language);
-            secondaryEggGroup.SetLanguage(language);
+            PrimaryEggGroup.SetLanguage(language);
+            SecondaryEggGroup.SetLanguage(language);
 
+            foreach (EggGroupViewModel item in EggGroups)
+            {
+                item.SetLanguage(language);
+            }
             foreach (SpriteViewModel item in Sprites)
             {
                 item.SetLanguage(language);
             }
-            //foreach (MoveViewModel item in LeveledMoves)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (MoveViewModel item in TMMoves)
-            //{
-            //    item.SetLanguage(language);
-            //}
-            //foreach (MoveViewModel item in TutorMoves)
-            //{
-            //    item.SetLanguage(language);
-            //}
             foreach (AbilityViewModel item in Abilities)
             {
                 item.SetLanguage(language);
@@ -361,11 +306,8 @@
 
             if (!IsBreedable)
             {
-                Ratio = primaryEggGroup.Name;
+                Ratio = EggGroups[0].Name;
             }
-
-            //PreEvolution?.SetLanguage(language);
-            //PreEvolutionCondition?.SetLanguage(language);
         }
     }
 }

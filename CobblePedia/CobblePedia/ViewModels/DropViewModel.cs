@@ -12,11 +12,11 @@
         [ObservableProperty] private string chance;
         [ObservableProperty] private string icon;
 
-        private Drop drop;
+        private string translationKey;
 
         public DropViewModel(Drop source)
         {
-            drop = source;
+            translationKey = source.DropId;
             name = source.DropId;
             quantityRange = source.QuantityRange;
             percentage = source.Percentage;
@@ -28,16 +28,7 @@
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[drop.DropId];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[drop.DropId];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][translationKey];
         }
-
     }
 }

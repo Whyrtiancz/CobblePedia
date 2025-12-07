@@ -9,27 +9,19 @@
         [ObservableProperty] private string name;
         [ObservableProperty] private string region;
 
-        private Generation generation;
+        private string translationKey;
 
         public GenerationViewModel(Generation source)
         {
-            generation = source;
-            region = generation.Region;
+            translationKey = source.KeyName;
+            region = source.Region;
             name = "-";
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[generation.KeyName];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[generation.KeyName];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][translationKey];
         }
     }
 }

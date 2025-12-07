@@ -4,6 +4,8 @@
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
+    using Windows.Globalization;
+
     public partial class SearchableObjectViewModel : ObservableObject
     {
         [ObservableProperty] private string name;
@@ -43,9 +45,9 @@
             icon = string.Format(Properties.Resources.PokemonPicturePath, pokemon.Picture.FrontDefault);
             ViewType = "CobblePedia.Views.PokemonView";
 
-            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePedia.Pedia.FR[keyName]).ToLower();
-
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
+            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            SetLanguage(language);
         }
 
         public SearchableObjectViewModel(PokemonType pokemonType)
@@ -58,9 +60,9 @@
             icon = string.Format(Properties.Resources.TypeIconPath, pokemonType.TypeId);
             ViewType = "CobblePedia.Views.TypeView";
 
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
-
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
+            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            SetLanguage(language);
         }
 
         public SearchableObjectViewModel(Trainer trainer)
@@ -73,9 +75,9 @@
             icon = "/Assets/Trainers/default.png";
             ViewType = "CobblePedia.Views.TrainerView";
 
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
-
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
+            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            SetLanguage(language);
         }
         public SearchableObjectViewModel(Move move)
         {
@@ -87,9 +89,9 @@
             icon = string.Format(Properties.Resources.TypeIconPath, move.MoveType);
             ViewType = string.Empty;
 
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.FR[keyName]).ToLower();
-
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
+            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            SetLanguage(language);
         }
 
         public bool IsElligible(string searchPattern)
@@ -135,18 +137,10 @@
                 return;
             }
 
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[keyName];
-                    SearchLabel = string.Format("{0}: {1}", KeyType, Name);
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[keyName];
-                    SearchLabel = string.Format("{0}: {1}", KeyType, Name);
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][keyName];
+            SearchLabel = string.Format("{0} {1}", KeyType, Name);
         }
+
         internal ObservableObject GetExtendedViewModel()
         {
             ObservableObject result = null;

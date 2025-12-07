@@ -12,32 +12,24 @@
         [ObservableProperty] private string increasedStat;
         [ObservableProperty] private string likesFlavor;
 
-        private Nature nature;
+        private string translationKey;
 
         public NatureViewModel(Nature source)
         {
-            nature = source;
+            translationKey = source.KeyName;
             name = "-";
 
-            decreasedStat = nature.DecreasedStat;
-            hatesFlavor = nature.HatesFlavor;
-            increasedStat = nature.IncreasedStat;
-            likesFlavor = nature.LikesFlavor;
+            decreasedStat = source.DecreasedStat;
+            hatesFlavor = source.HatesFlavor;
+            increasedStat = source.IncreasedStat;
+            likesFlavor = source.LikesFlavor;
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[nature.KeyName];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[nature.KeyName];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][translationKey];
         }
     }
 }

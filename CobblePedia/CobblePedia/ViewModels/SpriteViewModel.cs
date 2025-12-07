@@ -36,37 +36,25 @@
 
         internal void SetLanguage(string language)
         {
-            Dictionary<string, string> translation = new Dictionary<string, string>();
-
-            switch (language)
-            {
-                case "fr":
-                    translation = CobblePedia.Pedia.FR;
-                    break;
-                default:
-                    translation = CobblePedia.Pedia.EN;
-                    break;
-            }
-
             switch (spriteCategory)
             {
                 case SpriteCategory.Default:
-                    Name = translation["SpriteDefault"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteDefault"];
                     break;
                 case SpriteCategory.Male:
-                    Name = translation["SpriteMale"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteMale"];
                     break;
                 case SpriteCategory.Female:
-                    Name = translation["SpriteFemale"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteFemale"];
                     break;
                 case SpriteCategory.DefaultShiny:
-                    Name = translation["SpriteDefaultShiny"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteDefaultShiny"];
                     break;
                 case SpriteCategory.MaleShiny:
-                    Name = translation["SpriteMaleShiny"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteMaleShiny"];
                     break;
                 case SpriteCategory.FemaleShiny:
-                    Name = translation["SpriteFemaleShiny"];
+                    Name = CobblePedia.Pedia.Translations[language]["SpriteFemaleShiny"];
                     break;
             }
         }

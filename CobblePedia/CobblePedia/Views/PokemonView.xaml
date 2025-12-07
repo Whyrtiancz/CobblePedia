@@ -19,7 +19,14 @@
         <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
       </StackPanel>
     </DataTemplate>
-    
+
+    <DataTemplate x:Key="EggGroupItem" x:DataType="model:EggGroupViewModel">
+      <StackPanel Style="{StaticResource ItemCell}">
+        <Image Source="{x:Bind EggIcon}" Style="{StaticResource MediumIcon}" />
+        <TextBlock Text="{x:Bind Name}" Style="{StaticResource MediumIconCaption}"/>
+      </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"
@@ -344,6 +351,10 @@
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             Margin="0,8">
+                  <GridView ItemsSource="{x:Bind ViewModel.SelectedPokemon.EggGroups}"
+                            ItemTemplate="{StaticResource EggGroupItem}"
+                            Margin="0, 0, 0, 8"
+                            HorizontalAlignment="Right" VerticalAlignment="Center" />
                   <StackPanel Orientation="Horizontal">
                     <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.EggIcon}"
                        Style="{StaticResource TypeIcon}" />

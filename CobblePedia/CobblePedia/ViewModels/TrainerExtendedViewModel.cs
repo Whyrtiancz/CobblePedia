@@ -84,19 +84,9 @@
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[KeyName];
-                    Series = CobblePedia.Pedia.FR[serieKey];
-                    TrainerType = CobblePedia.Pedia.FR[trainerTypeKey];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[KeyName];
-                    Series = CobblePedia.Pedia.EN[serieKey];
-                    TrainerType = CobblePedia.Pedia.EN[trainerTypeKey];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][KeyName];
+            Series = CobblePedia.Pedia.Translations[language][serieKey];
+            TrainerType = CobblePedia.Pedia.Translations[language][trainerTypeKey];
         }
     }
 }

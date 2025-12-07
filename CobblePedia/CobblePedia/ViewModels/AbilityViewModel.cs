@@ -15,14 +15,19 @@
         [ObservableProperty] private Visibility visibleVisibility;
         [ObservableProperty] private Visibility hiddenVisibility;
 
-        private PokemonAbility pokemonAbility;
-        private Ability ability;
+        private string translationKey;
+        private string translationEffectKey;
+        private string translationFlavorKey;
 
         public AbilityViewModel(PokemonAbility source)
         {
-            pokemonAbility = source;
-            ability = CobblePedia.Pedia.Abilities[pokemonAbility.AbilityId];
-            isHidden = pokemonAbility.IsHidden;
+            Ability ability = CobblePedia.Pedia.Abilities[source.AbilityId];
+
+            translationKey = ability.KeyName;
+            translationEffectKey = ability.KeyEffect;
+            translationFlavorKey = ability.KeyFlavor;
+
+            isHidden = source.IsHidden;
             visibleVisibility = Visibility.Visible;
             hiddenVisibility = Visibility.Collapsed;
             if (isHidden)
@@ -30,27 +35,18 @@
                 visibleVisibility = Visibility.Collapsed;
                 hiddenVisibility = Visibility.Visible;
             }
-            name = "-";
-
+            name = string.Empty;
+            effect = string.Empty;
+            flavor = string.Empty;
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    Name = CobblePedia.Pedia.FR[ability.KeyName];
-                    Effect = CobblePedia.Pedia.FR[ability.KeyEffect];
-                    Flavor = CobblePedia.Pedia.FR[ability.KeyFlavor];
-                    break;
-                default:
-                    Name = CobblePedia.Pedia.EN[ability.KeyName];
-                    Effect = CobblePedia.Pedia.EN[ability.KeyEffect];
-                    Flavor = CobblePedia.Pedia.EN[ability.KeyFlavor];
-                    break;
-            }
+            Name = CobblePedia.Pedia.Translations[language][translationKey];
+            Effect = CobblePedia.Pedia.Translations[language][translationEffectKey];
+            Flavor = CobblePedia.Pedia.Translations[language][translationFlavorKey];
         }
     }
 }

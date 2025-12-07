@@ -14,7 +14,7 @@
         //                      nether_fossil, nether_structures, ocean_monument, ocean_ruins, pillager_outpost, redstone,
         //                      treetop, urban, wild, ancient_city, derelict, illager_structures, lava, mansion, natural,
         //                      redstone, ruined_portal, salt, stronghold, trail_ruins, urban, water, webs, {null}
-        //                      https://gitlab.com/cable-mc/cobblemon/-/blob/main/docs/cobblemon-tags/1.6.1/spawnPresetList.md
+        //                      https://gitlab.com/cable-mc/cobblemon/-/blob/main/docs/cobblemon-tags/1.6.1/sourcePresetList.md
         // Biomes x5 : https://gitlab.com/cable-mc/cobblemon/-/blob/main/docs/cobblemon-tags/1.6.1/BiomeTags.md
 
         [ObservableProperty] private string context;
@@ -28,37 +28,24 @@
         [ObservableProperty] private string isRaining;
         [ObservableProperty] private string maxY;
 
-        private Spawn spawn;
-
         public SpawnConditionViewModel(Spawn source)
         {
-            spawn = source;
-
-            context = spawn.Context;
-            bucket = spawn.Bucket;
-            presets = string.Join(", ", spawn.Presets);
-            biomes = string.Join(", ", spawn.Biomes);
-            level = spawn.Level;
-            minSkylight = spawn.MinSkyLight.ToString("D2");
-            maxSkyLight = spawn.MaxSkyLight.ToString("D2");
-            canSeeSky = spawn.CanSeeSky.ToString();
-            isRaining = spawn.IsRaining.ToString();
-            maxY = spawn.MaxY.ToString("D2");
+            context = source.Context;
+            bucket = source.Bucket;
+            presets = string.Join(", ", source.Presets);
+            biomes = string.Join(", ", source.Biomes);
+            level = source.Level;
+            minSkylight = source.MinSkyLight.ToString("D2");
+            maxSkyLight = source.MaxSkyLight.ToString("D2");
+            canSeeSky = source.CanSeeSky.ToString();
+            isRaining = source.IsRaining.ToString();
+            maxY = source.MaxY.ToString("D2");
 
             SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
         }
 
         internal void SetLanguage(string language)
         {
-            switch (language)
-            {
-                case "fr":
-                    //Name = CobblePedia.Pedia.FR[ability.KeyName];
-                    break;
-                default:
-                    //Name = CobblePedia.Pedia.EN[ability.KeyName];
-                    break;
-            }
         }
     }
 }
