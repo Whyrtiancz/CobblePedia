@@ -84,9 +84,9 @@
 
         internal void SetLanguage(string language)
         {
-            Name = CobblePedia.Pedia.Translations[language][KeyName];
-            Series = CobblePedia.Pedia.Translations[language][serieKey];
-            TrainerType = CobblePedia.Pedia.Translations[language][trainerTypeKey];
+            Name = CobblePediaModel.Pedia.Translations[language][KeyName];
+            Series = CobblePediaModel.Pedia.Translations[language][serieKey];
+            TrainerType = CobblePediaModel.Pedia.Translations[language][trainerTypeKey];
         }
     }
 }

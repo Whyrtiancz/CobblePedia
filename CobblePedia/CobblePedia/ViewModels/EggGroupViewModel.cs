@@ -31,7 +31,7 @@
             if (translationKey == string.Empty)
                 return;
 
-            Name = CobblePedia.Pedia.Translations[language][translationKey];
+            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
         }
     }
 

@@ -1,0 +1,202 @@
+{
+  "hardy": {
+    "NatureId": "hardy",
+    "DecreasedStat": null,
+    "HatesFlavor": null,
+    "IncreasedStat": null,
+    "LikesFlavor": null,
+    "KeyName": "Nature_hardy"
+  },
+  "hasty": {
+    "NatureId": "hasty",
+    "DecreasedStat": "defense",
+    "HatesFlavor": "sour",
+    "IncreasedStat": "speed",
+    "LikesFlavor": "sweet",
+    "KeyName": "Nature_hasty"
+  },
+  "adamant": {
+    "NatureId": "adamant",
+    "DecreasedStat": "special-attack",
+    "HatesFlavor": "dry",
+    "IncreasedStat": "attack",
+    "LikesFlavor": "spicy",
+    "KeyName": "Nature_adamant"
+  },
+  "impish": {
+    "NatureId": "impish",
+    "DecreasedStat": "special-attack",
+    "HatesFlavor": "dry",
+    "IncreasedStat": "defense",
+    "LikesFlavor": "sour",
+    "KeyName": "Nature_impish"
+  },
+  "bashful": {
+    "NatureId": "bashful",
+    "DecreasedStat": null,
+    "HatesFlavor": null,
+    "IncreasedStat": null,
+    "LikesFlavor": null,
+    "KeyName": "Nature_bashful"
+  },
+  "careful": {
+    "NatureId": "careful",
+    "DecreasedStat": "special-attack",
+    "HatesFlavor": "dry",
+    "IncreasedStat": "special-defense",
+    "LikesFlavor": "bitter",
+    "KeyName": "Nature_careful"
+  },
+  "rash": {
+    "NatureId": "rash",
+    "DecreasedStat": "special-defense",
+    "HatesFlavor": "bitter",
+    "IncreasedStat": "special-attack",
+    "LikesFlavor": "dry",
+    "KeyName": "Nature_rash"
+  },
+  "jolly": {
+    "NatureId": "jolly",
+    "DecreasedStat": "special-attack",
+    "HatesFlavor": "dry",
+    "IncreasedStat": "speed",
+    "LikesFlavor": "sweet",
+    "KeyName": "Nature_jolly"
+  },
+  "naughty": {
+    "NatureId": "naughty",
+    "DecreasedStat": "special-defense",
+    "HatesFlavor": "bitter",
+    "IncreasedStat": "attack",
+    "LikesFlavor": "spicy",
+    "KeyName": "Nature_naughty"
+  },
+  "lax": {
+    "NatureId": "lax",
+    "DecreasedStat": "special-defense",
+    "HatesFlavor": "bitter",
+    "IncreasedStat": "defense",
+    "LikesFlavor": "sour",
+    "KeyName": "Nature_lax"
+  },
+  "quirky": {
+    "NatureId": "quirky",
+    "DecreasedStat": null,
+    "HatesFlavor": null,
+    "IncreasedStat": null,
+    "LikesFlavor": null,
+    "KeyName": "Nature_quirky"
+  },
+  "bold": {
+    "NatureId": "bold",
+    "DecreasedStat": "attack",
+    "HatesFlavor": "spicy",
+    "IncreasedStat": "defense",
+    "LikesFlavor": "sour",
+    "KeyName": "Nature_bold"
+  },
+  "naive": {
+    "NatureId": "naive",
+    "DecreasedStat": "special-defense",
+    "HatesFlavor": "bitter",
+    "IncreasedStat": "speed",
+    "LikesFlavor": "sweet",
+    "KeyName": "Nature_naive"
+  },
+  "brave": {
+    "NatureId": "brave",
+    "DecreasedStat": "speed",
+    "HatesFlavor": "sweet",
+    "IncreasedStat": "attack",
+    "LikesFlavor": "spicy",
+    "KeyName": "Nature_brave"
+  },
+  "relaxed": {
+    "NatureId": "relaxed",
+    "DecreasedStat": "speed",
+    "HatesFlavor": "sweet",
+    "IncreasedStat": "defense",
+    "LikesFlavor": "sour",
+    "KeyName": "Nature_relaxed"
+  },
+  "quiet": {
+    "NatureId": "quiet",
+    "DecreasedStat": "speed",
+    "HatesFlavor": "sweet",
+    "IncreasedStat": "special-attack",
+    "LikesFlavor": "dry",
+    "KeyName": "Nature_quiet"
+  },
+  "sassy": {
+    "NatureId": "sassy",
+    "DecreasedStat": "speed",
+    "HatesFlavor": "sweet",
+    "IncreasedStat": "special-defense",
+    "LikesFlavor": "bitter",
+    "KeyName": "Nature_sassy"
+  },
+  "serious": {
+    "NatureId": "serious",
+    "DecreasedStat": null,
+    "HatesFlavor": null,
+    "IncreasedStat": null,
+    "LikesFlavor": null,
+    "KeyName": "Nature_serious"
+  },
+  "modest": {
+    "NatureId": "modest",
+    "DecreasedStat": "attack",
+    "HatesFlavor": "spicy",
+    "IncreasedStat": "special-attack",
+    "LikesFlavor": "dry",
+    "KeyName": "Nature_modest"
+  },
+  "calm": {
+    "NatureId": "calm",
+    "DecreasedStat": "attack",
+    "HatesFlavor": "spicy",
+    "IncreasedStat": "special-defense",
+    "LikesFlavor": "bitter",
+    "KeyName": "Nature_calm"
+  },
+  "timid": {
+    "NatureId": "timid",
+    "DecreasedStat": "attack",
+    "HatesFlavor": "spicy",
+    "IncreasedStat": "speed",
+    "LikesFlavor": "sweet",
+    "KeyName": "Nature_timid"
+  },
+  "lonely": {
+    "NatureId": "lonely",
+    "DecreasedStat": "defense",
+    "HatesFlavor": "sour",
+    "IncreasedStat": "attack",
+    "LikesFlavor": "spicy",
+    "KeyName": "Nature_lonely"
+  },
+  "docile": {
+    "NatureId": "docile",
+    "DecreasedStat": null,
+    "HatesFlavor": null,
+    "IncreasedStat": null,
+    "LikesFlavor": null,
+    "KeyName": "Nature_docile"
+  },
+  "mild": {
+    "NatureId": "mild",
+    "DecreasedStat": "defense",
+    "HatesFlavor": "sour",
+    "IncreasedStat": "special-attack",
+    "LikesFlavor": "dry",
+    "KeyName": "Nature_mild"
+  },
+  "gentle": {
+    "NatureId": "gentle",
+    "DecreasedStat": "defense",
+    "HatesFlavor": "sour",
+    "IncreasedStat": "special-defense",
+    "LikesFlavor": "bitter",
+    "KeyName": "Nature_gentle"
+  }
+}

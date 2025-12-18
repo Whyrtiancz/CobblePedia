@@ -7,7 +7,7 @@
     public partial class SpawnConditionViewModel : ObservableObject
     {
         // https://gitlab.com/cable-mc/cobblemon/-/tree/main/docs/cobblemon-tags/1.6.1
-        // Type : toujours Pokemon
+        // Type : toujours Pokemons
         // Context : grounded, submerged, fishing, surface, seafloor, 
         // Bucket : ultra-rare, rare, uncommon, common
         // Presets x0-x1-x2-x3: desert_pyramid, end_city, foliage, illager_structures, jungle_pyramid

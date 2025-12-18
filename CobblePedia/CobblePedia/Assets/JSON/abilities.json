@@ -1,0 +1,1844 @@
+{
+  "stench": {
+    "AbilityId": "stench",
+    "KeyName": "Ability_stench_Name",
+    "KeyEffect": "Ability_stench_Effect",
+    "KeyFlavor": "Ability_stench_Flavor"
+  },
+  "voltabsorb": {
+    "AbilityId": "voltabsorb",
+    "KeyName": "Ability_voltabsorb_Name",
+    "KeyEffect": "Ability_voltabsorb_Effect",
+    "KeyFlavor": "Ability_voltabsorb_Flavor"
+  },
+  "stall": {
+    "AbilityId": "stall",
+    "KeyName": "Ability_stall_Name",
+    "KeyEffect": "Ability_stall_Effect",
+    "KeyFlavor": "Ability_stall_Flavor"
+  },
+  "technician": {
+    "AbilityId": "technician",
+    "KeyName": "Ability_technician_Name",
+    "KeyEffect": "Ability_technician_Effect",
+    "KeyFlavor": "Ability_technician_Flavor"
+  },
+  "leafguard": {
+    "AbilityId": "leafguard",
+    "KeyName": "Ability_leafguard_Name",
+    "KeyEffect": "Ability_leafguard_Effect",
+    "KeyFlavor": "Ability_leafguard_Flavor"
+  },
+  "klutz": {
+    "AbilityId": "klutz",
+    "KeyName": "Ability_klutz_Name",
+    "KeyEffect": "Ability_klutz_Effect",
+    "KeyFlavor": "Ability_klutz_Flavor"
+  },
+  "moldbreaker": {
+    "AbilityId": "moldbreaker",
+    "KeyName": "Ability_moldbreaker_Name",
+    "KeyEffect": "Ability_moldbreaker_Effect",
+    "KeyFlavor": "Ability_moldbreaker_Flavor"
+  },
+  "superluck": {
+    "AbilityId": "superluck",
+    "KeyName": "Ability_superluck_Name",
+    "KeyEffect": "Ability_superluck_Effect",
+    "KeyFlavor": "Ability_superluck_Flavor"
+  },
+  "aftermath": {
+    "AbilityId": "aftermath",
+    "KeyName": "Ability_aftermath_Name",
+    "KeyEffect": "Ability_aftermath_Effect",
+    "KeyFlavor": "Ability_aftermath_Flavor"
+  },
+  "anticipation": {
+    "AbilityId": "anticipation",
+    "KeyName": "Ability_anticipation_Name",
+    "KeyEffect": "Ability_anticipation_Effect",
+    "KeyFlavor": "Ability_anticipation_Flavor"
+  },
+  "forewarn": {
+    "AbilityId": "forewarn",
+    "KeyName": "Ability_forewarn_Name",
+    "KeyEffect": "Ability_forewarn_Effect",
+    "KeyFlavor": "Ability_forewarn_Flavor"
+  },
+  "unaware": {
+    "AbilityId": "unaware",
+    "KeyName": "Ability_unaware_Name",
+    "KeyEffect": "Ability_unaware_Effect",
+    "KeyFlavor": "Ability_unaware_Flavor"
+  },
+  "waterabsorb": {
+    "AbilityId": "waterabsorb",
+    "KeyName": "Ability_waterabsorb_Name",
+    "KeyEffect": "Ability_waterabsorb_Effect",
+    "KeyFlavor": "Ability_waterabsorb_Flavor"
+  },
+  "tintedlens": {
+    "AbilityId": "tintedlens",
+    "KeyName": "Ability_tintedlens_Name",
+    "KeyEffect": "Ability_tintedlens_Effect",
+    "KeyFlavor": "Ability_tintedlens_Flavor"
+  },
+  "filter": {
+    "AbilityId": "filter",
+    "KeyName": "Ability_filter_Name",
+    "KeyEffect": "Ability_filter_Effect",
+    "KeyFlavor": "Ability_filter_Flavor"
+  },
+  "slowstart": {
+    "AbilityId": "slowstart",
+    "KeyName": "Ability_slowstart_Name",
+    "KeyEffect": "Ability_slowstart_Effect",
+    "KeyFlavor": "Ability_slowstart_Flavor"
+  },
+  "scrappy": {
+    "AbilityId": "scrappy",
+    "KeyName": "Ability_scrappy_Name",
+    "KeyEffect": "Ability_scrappy_Effect",
+    "KeyFlavor": "Ability_scrappy_Flavor"
+  },
+  "stormdrain": {
+    "AbilityId": "stormdrain",
+    "KeyName": "Ability_stormdrain_Name",
+    "KeyEffect": "Ability_stormdrain_Effect",
+    "KeyFlavor": "Ability_stormdrain_Flavor"
+  },
+  "icebody": {
+    "AbilityId": "icebody",
+    "KeyName": "Ability_icebody_Name",
+    "KeyEffect": "Ability_icebody_Effect",
+    "KeyFlavor": "Ability_icebody_Flavor"
+  },
+  "solidrock": {
+    "AbilityId": "solidrock",
+    "KeyName": "Ability_solidrock_Name",
+    "KeyEffect": "Ability_solidrock_Effect",
+    "KeyFlavor": "Ability_solidrock_Flavor"
+  },
+  "snowwarning": {
+    "AbilityId": "snowwarning",
+    "KeyName": "Ability_snowwarning_Name",
+    "KeyEffect": "Ability_snowwarning_Effect",
+    "KeyFlavor": "Ability_snowwarning_Flavor"
+  },
+  "honeygather": {
+    "AbilityId": "honeygather",
+    "KeyName": "Ability_honeygather_Name",
+    "KeyEffect": "Ability_honeygather_Effect",
+    "KeyFlavor": "Ability_honeygather_Flavor"
+  },
+  "frisk": {
+    "AbilityId": "frisk",
+    "KeyName": "Ability_frisk_Name",
+    "KeyEffect": "Ability_frisk_Effect",
+    "KeyFlavor": "Ability_frisk_Flavor"
+  },
+  "oblivious": {
+    "AbilityId": "oblivious",
+    "KeyName": "Ability_oblivious_Name",
+    "KeyEffect": "Ability_oblivious_Effect",
+    "KeyFlavor": "Ability_oblivious_Flavor"
+  },
+  "reckless": {
+    "AbilityId": "reckless",
+    "KeyName": "Ability_reckless_Name",
+    "KeyEffect": "Ability_reckless_Effect",
+    "KeyFlavor": "Ability_reckless_Flavor"
+  },
+  "multitype": {
+    "AbilityId": "multitype",
+    "KeyName": "Ability_multitype_Name",
+    "KeyEffect": "Ability_multitype_Effect",
+    "KeyFlavor": "Ability_multitype_Flavor"
+  },
+  "flowergift": {
+    "AbilityId": "flowergift",
+    "KeyName": "Ability_flowergift_Name",
+    "KeyEffect": "Ability_flowergift_Effect",
+    "KeyFlavor": "Ability_flowergift_Flavor"
+  },
+  "baddreams": {
+    "AbilityId": "baddreams",
+    "KeyName": "Ability_baddreams_Name",
+    "KeyEffect": "Ability_baddreams_Effect",
+    "KeyFlavor": "Ability_baddreams_Flavor"
+  },
+  "pickpocket": {
+    "AbilityId": "pickpocket",
+    "KeyName": "Ability_pickpocket_Name",
+    "KeyEffect": "Ability_pickpocket_Effect",
+    "KeyFlavor": "Ability_pickpocket_Flavor"
+  },
+  "sheerforce": {
+    "AbilityId": "sheerforce",
+    "KeyName": "Ability_sheerforce_Name",
+    "KeyEffect": "Ability_sheerforce_Effect",
+    "KeyFlavor": "Ability_sheerforce_Flavor"
+  },
+  "contrary": {
+    "AbilityId": "contrary",
+    "KeyName": "Ability_contrary_Name",
+    "KeyEffect": "Ability_contrary_Effect",
+    "KeyFlavor": "Ability_contrary_Flavor"
+  },
+  "unnerve": {
+    "AbilityId": "unnerve",
+    "KeyName": "Ability_unnerve_Name",
+    "KeyEffect": "Ability_unnerve_Effect",
+    "KeyFlavor": "Ability_unnerve_Flavor"
+  },
+  "defiant": {
+    "AbilityId": "defiant",
+    "KeyName": "Ability_defiant_Name",
+    "KeyEffect": "Ability_defiant_Effect",
+    "KeyFlavor": "Ability_defiant_Flavor"
+  },
+  "defeatist": {
+    "AbilityId": "defeatist",
+    "KeyName": "Ability_defeatist_Name",
+    "KeyEffect": "Ability_defeatist_Effect",
+    "KeyFlavor": "Ability_defeatist_Flavor"
+  },
+  "cloudnine": {
+    "AbilityId": "cloudnine",
+    "KeyName": "Ability_cloudnine_Name",
+    "KeyEffect": "Ability_cloudnine_Effect",
+    "KeyFlavor": "Ability_cloudnine_Flavor"
+  },
+  "cursedbody": {
+    "AbilityId": "cursedbody",
+    "KeyName": "Ability_cursedbody_Name",
+    "KeyEffect": "Ability_cursedbody_Effect",
+    "KeyFlavor": "Ability_cursedbody_Flavor"
+  },
+  "healer": {
+    "AbilityId": "healer",
+    "KeyName": "Ability_healer_Name",
+    "KeyEffect": "Ability_healer_Effect",
+    "KeyFlavor": "Ability_healer_Flavor"
+  },
+  "friendguard": {
+    "AbilityId": "friendguard",
+    "KeyName": "Ability_friendguard_Name",
+    "KeyEffect": "Ability_friendguard_Effect",
+    "KeyFlavor": "Ability_friendguard_Flavor"
+  },
+  "weakarmor": {
+    "AbilityId": "weakarmor",
+    "KeyName": "Ability_weakarmor_Name",
+    "KeyEffect": "Ability_weakarmor_Effect",
+    "KeyFlavor": "Ability_weakarmor_Flavor"
+  },
+  "heavymetal": {
+    "AbilityId": "heavymetal",
+    "KeyName": "Ability_heavymetal_Name",
+    "KeyEffect": "Ability_heavymetal_Effect",
+    "KeyFlavor": "Ability_heavymetal_Flavor"
+  },
+  "lightmetal": {
+    "AbilityId": "lightmetal",
+    "KeyName": "Ability_lightmetal_Name",
+    "KeyEffect": "Ability_lightmetal_Effect",
+    "KeyFlavor": "Ability_lightmetal_Flavor"
+  },
+  "multiscale": {
+    "AbilityId": "multiscale",
+    "KeyName": "Ability_multiscale_Name",
+    "KeyEffect": "Ability_multiscale_Effect",
+    "KeyFlavor": "Ability_multiscale_Flavor"
+  },
+  "toxicboost": {
+    "AbilityId": "toxicboost",
+    "KeyName": "Ability_toxicboost_Name",
+    "KeyEffect": "Ability_toxicboost_Effect",
+    "KeyFlavor": "Ability_toxicboost_Flavor"
+  },
+  "flareboost": {
+    "AbilityId": "flareboost",
+    "KeyName": "Ability_flareboost_Name",
+    "KeyEffect": "Ability_flareboost_Effect",
+    "KeyFlavor": "Ability_flareboost_Flavor"
+  },
+  "harvest": {
+    "AbilityId": "harvest",
+    "KeyName": "Ability_harvest_Name",
+    "KeyEffect": "Ability_harvest_Effect",
+    "KeyFlavor": "Ability_harvest_Flavor"
+  },
+  "compoundeyes": {
+    "AbilityId": "compoundeyes",
+    "KeyName": "Ability_compoundeyes_Name",
+    "KeyEffect": "Ability_compoundeyes_Effect",
+    "KeyFlavor": "Ability_compoundeyes_Flavor"
+  },
+  "telepathy": {
+    "AbilityId": "telepathy",
+    "KeyName": "Ability_telepathy_Name",
+    "KeyEffect": "Ability_telepathy_Effect",
+    "KeyFlavor": "Ability_telepathy_Flavor"
+  },
+  "moody": {
+    "AbilityId": "moody",
+    "KeyName": "Ability_moody_Name",
+    "KeyEffect": "Ability_moody_Effect",
+    "KeyFlavor": "Ability_moody_Flavor"
+  },
+  "overcoat": {
+    "AbilityId": "overcoat",
+    "KeyName": "Ability_overcoat_Name",
+    "KeyEffect": "Ability_overcoat_Effect",
+    "KeyFlavor": "Ability_overcoat_Flavor"
+  },
+  "poisontouch": {
+    "AbilityId": "poisontouch",
+    "KeyName": "Ability_poisontouch_Name",
+    "KeyEffect": "Ability_poisontouch_Effect",
+    "KeyFlavor": "Ability_poisontouch_Flavor"
+  },
+  "regenerator": {
+    "AbilityId": "regenerator",
+    "KeyName": "Ability_regenerator_Name",
+    "KeyEffect": "Ability_regenerator_Effect",
+    "KeyFlavor": "Ability_regenerator_Flavor"
+  },
+  "bigpecks": {
+    "AbilityId": "bigpecks",
+    "KeyName": "Ability_bigpecks_Name",
+    "KeyEffect": "Ability_bigpecks_Effect",
+    "KeyFlavor": "Ability_bigpecks_Flavor"
+  },
+  "sandrush": {
+    "AbilityId": "sandrush",
+    "KeyName": "Ability_sandrush_Name",
+    "KeyEffect": "Ability_sandrush_Effect",
+    "KeyFlavor": "Ability_sandrush_Flavor"
+  },
+  "wonderskin": {
+    "AbilityId": "wonderskin",
+    "KeyName": "Ability_wonderskin_Name",
+    "KeyEffect": "Ability_wonderskin_Effect",
+    "KeyFlavor": "Ability_wonderskin_Flavor"
+  },
+  "analytic": {
+    "AbilityId": "analytic",
+    "KeyName": "Ability_analytic_Name",
+    "KeyEffect": "Ability_analytic_Effect",
+    "KeyFlavor": "Ability_analytic_Flavor"
+  },
+  "illusion": {
+    "AbilityId": "illusion",
+    "KeyName": "Ability_illusion_Name",
+    "KeyEffect": "Ability_illusion_Effect",
+    "KeyFlavor": "Ability_illusion_Flavor"
+  },
+  "insomnia": {
+    "AbilityId": "insomnia",
+    "KeyName": "Ability_insomnia_Name",
+    "KeyEffect": "Ability_insomnia_Effect",
+    "KeyFlavor": "Ability_insomnia_Flavor"
+  },
+  "imposter": {
+    "AbilityId": "imposter",
+    "KeyName": "Ability_imposter_Name",
+    "KeyEffect": "Ability_imposter_Effect",
+    "KeyFlavor": "Ability_imposter_Flavor"
+  },
+  "infiltrator": {
+    "AbilityId": "infiltrator",
+    "KeyName": "Ability_infiltrator_Name",
+    "KeyEffect": "Ability_infiltrator_Effect",
+    "KeyFlavor": "Ability_infiltrator_Flavor"
+  },
+  "mummy": {
+    "AbilityId": "mummy",
+    "KeyName": "Ability_mummy_Name",
+    "KeyEffect": "Ability_mummy_Effect",
+    "KeyFlavor": "Ability_mummy_Flavor"
+  },
+  "moxie": {
+    "AbilityId": "moxie",
+    "KeyName": "Ability_moxie_Name",
+    "KeyEffect": "Ability_moxie_Effect",
+    "KeyFlavor": "Ability_moxie_Flavor"
+  },
+  "justified": {
+    "AbilityId": "justified",
+    "KeyName": "Ability_justified_Name",
+    "KeyEffect": "Ability_justified_Effect",
+    "KeyFlavor": "Ability_justified_Flavor"
+  },
+  "rattled": {
+    "AbilityId": "rattled",
+    "KeyName": "Ability_rattled_Name",
+    "KeyEffect": "Ability_rattled_Effect",
+    "KeyFlavor": "Ability_rattled_Flavor"
+  },
+  "magicbounce": {
+    "AbilityId": "magicbounce",
+    "KeyName": "Ability_magicbounce_Name",
+    "KeyEffect": "Ability_magicbounce_Effect",
+    "KeyFlavor": "Ability_magicbounce_Flavor"
+  },
+  "sapsipper": {
+    "AbilityId": "sapsipper",
+    "KeyName": "Ability_sapsipper_Name",
+    "KeyEffect": "Ability_sapsipper_Effect",
+    "KeyFlavor": "Ability_sapsipper_Flavor"
+  },
+  "prankster": {
+    "AbilityId": "prankster",
+    "KeyName": "Ability_prankster_Name",
+    "KeyEffect": "Ability_prankster_Effect",
+    "KeyFlavor": "Ability_prankster_Flavor"
+  },
+  "sandforce": {
+    "AbilityId": "sandforce",
+    "KeyName": "Ability_sandforce_Name",
+    "KeyEffect": "Ability_sandforce_Effect",
+    "KeyFlavor": "Ability_sandforce_Flavor"
+  },
+  "colorchange": {
+    "AbilityId": "colorchange",
+    "KeyName": "Ability_colorchange_Name",
+    "KeyEffect": "Ability_colorchange_Effect",
+    "KeyFlavor": "Ability_colorchange_Flavor"
+  },
+  "ironbarbs": {
+    "AbilityId": "ironbarbs",
+    "KeyName": "Ability_ironbarbs_Name",
+    "KeyEffect": "Ability_ironbarbs_Effect",
+    "KeyFlavor": "Ability_ironbarbs_Flavor"
+  },
+  "zenmode": {
+    "AbilityId": "zenmode",
+    "KeyName": "Ability_zenmode_Name",
+    "KeyEffect": "Ability_zenmode_Effect",
+    "KeyFlavor": "Ability_zenmode_Flavor"
+  },
+  "victorystar": {
+    "AbilityId": "victorystar",
+    "KeyName": "Ability_victorystar_Name",
+    "KeyEffect": "Ability_victorystar_Effect",
+    "KeyFlavor": "Ability_victorystar_Flavor"
+  },
+  "turboblaze": {
+    "AbilityId": "turboblaze",
+    "KeyName": "Ability_turboblaze_Name",
+    "KeyEffect": "Ability_turboblaze_Effect",
+    "KeyFlavor": "Ability_turboblaze_Flavor"
+  },
+  "teravolt": {
+    "AbilityId": "teravolt",
+    "KeyName": "Ability_teravolt_Name",
+    "KeyEffect": "Ability_teravolt_Effect",
+    "KeyFlavor": "Ability_teravolt_Flavor"
+  },
+  "aromaveil": {
+    "AbilityId": "aromaveil",
+    "KeyName": "Ability_aromaveil_Name",
+    "KeyEffect": "Ability_aromaveil_Effect",
+    "KeyFlavor": "Ability_aromaveil_Flavor"
+  },
+  "flowerveil": {
+    "AbilityId": "flowerveil",
+    "KeyName": "Ability_flowerveil_Name",
+    "KeyEffect": "Ability_flowerveil_Effect",
+    "KeyFlavor": "Ability_flowerveil_Flavor"
+  },
+  "cheekpouch": {
+    "AbilityId": "cheekpouch",
+    "KeyName": "Ability_cheekpouch_Name",
+    "KeyEffect": "Ability_cheekpouch_Effect",
+    "KeyFlavor": "Ability_cheekpouch_Flavor"
+  },
+  "protean": {
+    "AbilityId": "protean",
+    "KeyName": "Ability_protean_Name",
+    "KeyEffect": "Ability_protean_Effect",
+    "KeyFlavor": "Ability_protean_Flavor"
+  },
+  "furcoat": {
+    "AbilityId": "furcoat",
+    "KeyName": "Ability_furcoat_Name",
+    "KeyEffect": "Ability_furcoat_Effect",
+    "KeyFlavor": "Ability_furcoat_Flavor"
+  },
+  "immunity": {
+    "AbilityId": "immunity",
+    "KeyName": "Ability_immunity_Name",
+    "KeyEffect": "Ability_immunity_Effect",
+    "KeyFlavor": "Ability_immunity_Flavor"
+  },
+  "magician": {
+    "AbilityId": "magician",
+    "KeyName": "Ability_magician_Name",
+    "KeyEffect": "Ability_magician_Effect",
+    "KeyFlavor": "Ability_magician_Flavor"
+  },
+  "bulletproof": {
+    "AbilityId": "bulletproof",
+    "KeyName": "Ability_bulletproof_Name",
+    "KeyEffect": "Ability_bulletproof_Effect",
+    "KeyFlavor": "Ability_bulletproof_Flavor"
+  },
+  "competitive": {
+    "AbilityId": "competitive",
+    "KeyName": "Ability_competitive_Name",
+    "KeyEffect": "Ability_competitive_Effect",
+    "KeyFlavor": "Ability_competitive_Flavor"
+  },
+  "strongjaw": {
+    "AbilityId": "strongjaw",
+    "KeyName": "Ability_strongjaw_Name",
+    "KeyEffect": "Ability_strongjaw_Effect",
+    "KeyFlavor": "Ability_strongjaw_Flavor"
+  },
+  "refrigerate": {
+    "AbilityId": "refrigerate",
+    "KeyName": "Ability_refrigerate_Name",
+    "KeyEffect": "Ability_refrigerate_Effect",
+    "KeyFlavor": "Ability_refrigerate_Flavor"
+  },
+  "sweetveil": {
+    "AbilityId": "sweetveil",
+    "KeyName": "Ability_sweetveil_Name",
+    "KeyEffect": "Ability_sweetveil_Effect",
+    "KeyFlavor": "Ability_sweetveil_Flavor"
+  },
+  "stancechange": {
+    "AbilityId": "stancechange",
+    "KeyName": "Ability_stancechange_Name",
+    "KeyEffect": "Ability_stancechange_Effect",
+    "KeyFlavor": "Ability_stancechange_Flavor"
+  },
+  "galewings": {
+    "AbilityId": "galewings",
+    "KeyName": "Ability_galewings_Name",
+    "KeyEffect": "Ability_galewings_Effect",
+    "KeyFlavor": "Ability_galewings_Flavor"
+  },
+  "megalauncher": {
+    "AbilityId": "megalauncher",
+    "KeyName": "Ability_megalauncher_Name",
+    "KeyEffect": "Ability_megalauncher_Effect",
+    "KeyFlavor": "Ability_megalauncher_Flavor"
+  },
+  "grasspelt": {
+    "AbilityId": "grasspelt",
+    "KeyName": "Ability_grasspelt_Name",
+    "KeyEffect": "Ability_grasspelt_Effect",
+    "KeyFlavor": "Ability_grasspelt_Flavor"
+  },
+  "flashfire": {
+    "AbilityId": "flashfire",
+    "KeyName": "Ability_flashfire_Name",
+    "KeyEffect": "Ability_flashfire_Effect",
+    "KeyFlavor": "Ability_flashfire_Flavor"
+  },
+  "symbiosis": {
+    "AbilityId": "symbiosis",
+    "KeyName": "Ability_symbiosis_Name",
+    "KeyEffect": "Ability_symbiosis_Effect",
+    "KeyFlavor": "Ability_symbiosis_Flavor"
+  },
+  "toughclaws": {
+    "AbilityId": "toughclaws",
+    "KeyName": "Ability_toughclaws_Name",
+    "KeyEffect": "Ability_toughclaws_Effect",
+    "KeyFlavor": "Ability_toughclaws_Flavor"
+  },
+  "pixilate": {
+    "AbilityId": "pixilate",
+    "KeyName": "Ability_pixilate_Name",
+    "KeyEffect": "Ability_pixilate_Effect",
+    "KeyFlavor": "Ability_pixilate_Flavor"
+  },
+  "gooey": {
+    "AbilityId": "gooey",
+    "KeyName": "Ability_gooey_Name",
+    "KeyEffect": "Ability_gooey_Effect",
+    "KeyFlavor": "Ability_gooey_Flavor"
+  },
+  "aerilate": {
+    "AbilityId": "aerilate",
+    "KeyName": "Ability_aerilate_Name",
+    "KeyEffect": "Ability_aerilate_Effect",
+    "KeyFlavor": "Ability_aerilate_Flavor"
+  },
+  "parentalbond": {
+    "AbilityId": "parentalbond",
+    "KeyName": "Ability_parentalbond_Name",
+    "KeyEffect": "Ability_parentalbond_Effect",
+    "KeyFlavor": "Ability_parentalbond_Flavor"
+  },
+  "darkaura": {
+    "AbilityId": "darkaura",
+    "KeyName": "Ability_darkaura_Name",
+    "KeyEffect": "Ability_darkaura_Effect",
+    "KeyFlavor": "Ability_darkaura_Flavor"
+  },
+  "fairyaura": {
+    "AbilityId": "fairyaura",
+    "KeyName": "Ability_fairyaura_Name",
+    "KeyEffect": "Ability_fairyaura_Effect",
+    "KeyFlavor": "Ability_fairyaura_Flavor"
+  },
+  "aurabreak": {
+    "AbilityId": "aurabreak",
+    "KeyName": "Ability_aurabreak_Name",
+    "KeyEffect": "Ability_aurabreak_Effect",
+    "KeyFlavor": "Ability_aurabreak_Flavor"
+  },
+  "primordialsea": {
+    "AbilityId": "primordialsea",
+    "KeyName": "Ability_primordialsea_Name",
+    "KeyEffect": "Ability_primordialsea_Effect",
+    "KeyFlavor": "Ability_primordialsea_Flavor"
+  },
+  "shielddust": {
+    "AbilityId": "shielddust",
+    "KeyName": "Ability_shielddust_Name",
+    "KeyEffect": "Ability_shielddust_Effect",
+    "KeyFlavor": "Ability_shielddust_Flavor"
+  },
+  "desolateland": {
+    "AbilityId": "desolateland",
+    "KeyName": "Ability_desolateland_Name",
+    "KeyEffect": "Ability_desolateland_Effect",
+    "KeyFlavor": "Ability_desolateland_Flavor"
+  },
+  "deltastream": {
+    "AbilityId": "deltastream",
+    "KeyName": "Ability_deltastream_Name",
+    "KeyEffect": "Ability_deltastream_Effect",
+    "KeyFlavor": "Ability_deltastream_Flavor"
+  },
+  "stamina": {
+    "AbilityId": "stamina",
+    "KeyName": "Ability_stamina_Name",
+    "KeyEffect": "Ability_stamina_Effect",
+    "KeyFlavor": "Ability_stamina_Flavor"
+  },
+  "wimpout": {
+    "AbilityId": "wimpout",
+    "KeyName": "Ability_wimpout_Name",
+    "KeyEffect": "Ability_wimpout_Effect",
+    "KeyFlavor": "Ability_wimpout_Flavor"
+  },
+  "emergencyexit": {
+    "AbilityId": "emergencyexit",
+    "KeyName": "Ability_emergencyexit_Name",
+    "KeyEffect": "Ability_emergencyexit_Effect",
+    "KeyFlavor": "Ability_emergencyexit_Flavor"
+  },
+  "watercompaction": {
+    "AbilityId": "watercompaction",
+    "KeyName": "Ability_watercompaction_Name",
+    "KeyEffect": "Ability_watercompaction_Effect",
+    "KeyFlavor": "Ability_watercompaction_Flavor"
+  },
+  "merciless": {
+    "AbilityId": "merciless",
+    "KeyName": "Ability_merciless_Name",
+    "KeyEffect": "Ability_merciless_Effect",
+    "KeyFlavor": "Ability_merciless_Flavor"
+  },
+  "shieldsdown": {
+    "AbilityId": "shieldsdown",
+    "KeyName": "Ability_shieldsdown_Name",
+    "KeyEffect": "Ability_shieldsdown_Effect",
+    "KeyFlavor": "Ability_shieldsdown_Flavor"
+  },
+  "stakeout": {
+    "AbilityId": "stakeout",
+    "KeyName": "Ability_stakeout_Name",
+    "KeyEffect": "Ability_stakeout_Effect",
+    "KeyFlavor": "Ability_stakeout_Flavor"
+  },
+  "waterbubble": {
+    "AbilityId": "waterbubble",
+    "KeyName": "Ability_waterbubble_Name",
+    "KeyEffect": "Ability_waterbubble_Effect",
+    "KeyFlavor": "Ability_waterbubble_Flavor"
+  },
+  "drizzle": {
+    "AbilityId": "drizzle",
+    "KeyName": "Ability_drizzle_Name",
+    "KeyEffect": "Ability_drizzle_Effect",
+    "KeyFlavor": "Ability_drizzle_Flavor"
+  },
+  "owntempo": {
+    "AbilityId": "owntempo",
+    "KeyName": "Ability_owntempo_Name",
+    "KeyEffect": "Ability_owntempo_Effect",
+    "KeyFlavor": "Ability_owntempo_Flavor"
+  },
+  "steelworker": {
+    "AbilityId": "steelworker",
+    "KeyName": "Ability_steelworker_Name",
+    "KeyEffect": "Ability_steelworker_Effect",
+    "KeyFlavor": "Ability_steelworker_Flavor"
+  },
+  "berserk": {
+    "AbilityId": "berserk",
+    "KeyName": "Ability_berserk_Name",
+    "KeyEffect": "Ability_berserk_Effect",
+    "KeyFlavor": "Ability_berserk_Flavor"
+  },
+  "slushrush": {
+    "AbilityId": "slushrush",
+    "KeyName": "Ability_slushrush_Name",
+    "KeyEffect": "Ability_slushrush_Effect",
+    "KeyFlavor": "Ability_slushrush_Flavor"
+  },
+  "longreach": {
+    "AbilityId": "longreach",
+    "KeyName": "Ability_longreach_Name",
+    "KeyEffect": "Ability_longreach_Effect",
+    "KeyFlavor": "Ability_longreach_Flavor"
+  },
+  "liquidvoice": {
+    "AbilityId": "liquidvoice",
+    "KeyName": "Ability_liquidvoice_Name",
+    "KeyEffect": "Ability_liquidvoice_Effect",
+    "KeyFlavor": "Ability_liquidvoice_Flavor"
+  },
+  "triage": {
+    "AbilityId": "triage",
+    "KeyName": "Ability_triage_Name",
+    "KeyEffect": "Ability_triage_Effect",
+    "KeyFlavor": "Ability_triage_Flavor"
+  },
+  "galvanize": {
+    "AbilityId": "galvanize",
+    "KeyName": "Ability_galvanize_Name",
+    "KeyEffect": "Ability_galvanize_Effect",
+    "KeyFlavor": "Ability_galvanize_Flavor"
+  },
+  "surgesurfer": {
+    "AbilityId": "surgesurfer",
+    "KeyName": "Ability_surgesurfer_Name",
+    "KeyEffect": "Ability_surgesurfer_Effect",
+    "KeyFlavor": "Ability_surgesurfer_Flavor"
+  },
+  "schooling": {
+    "AbilityId": "schooling",
+    "KeyName": "Ability_schooling_Name",
+    "KeyEffect": "Ability_schooling_Effect",
+    "KeyFlavor": "Ability_schooling_Flavor"
+  },
+  "disguise": {
+    "AbilityId": "disguise",
+    "KeyName": "Ability_disguise_Name",
+    "KeyEffect": "Ability_disguise_Effect",
+    "KeyFlavor": "Ability_disguise_Flavor"
+  },
+  "suctioncups": {
+    "AbilityId": "suctioncups",
+    "KeyName": "Ability_suctioncups_Name",
+    "KeyEffect": "Ability_suctioncups_Effect",
+    "KeyFlavor": "Ability_suctioncups_Flavor"
+  },
+  "battlebond": {
+    "AbilityId": "battlebond",
+    "KeyName": "Ability_battlebond_Name",
+    "KeyEffect": "Ability_battlebond_Effect",
+    "KeyFlavor": "Ability_battlebond_Flavor"
+  },
+  "powerconstruct": {
+    "AbilityId": "powerconstruct",
+    "KeyName": "Ability_powerconstruct_Name",
+    "KeyEffect": "Ability_powerconstruct_Effect",
+    "KeyFlavor": "Ability_powerconstruct_Flavor"
+  },
+  "corrosion": {
+    "AbilityId": "corrosion",
+    "KeyName": "Ability_corrosion_Name",
+    "KeyEffect": "Ability_corrosion_Effect",
+    "KeyFlavor": "Ability_corrosion_Flavor"
+  },
+  "comatose": {
+    "AbilityId": "comatose",
+    "KeyName": "Ability_comatose_Name",
+    "KeyEffect": "Ability_comatose_Effect",
+    "KeyFlavor": "Ability_comatose_Flavor"
+  },
+  "queenlymajesty": {
+    "AbilityId": "queenlymajesty",
+    "KeyName": "Ability_queenlymajesty_Name",
+    "KeyEffect": "Ability_queenlymajesty_Effect",
+    "KeyFlavor": "Ability_queenlymajesty_Flavor"
+  },
+  "innardsout": {
+    "AbilityId": "innardsout",
+    "KeyName": "Ability_innardsout_Name",
+    "KeyEffect": "Ability_innardsout_Effect",
+    "KeyFlavor": "Ability_innardsout_Flavor"
+  },
+  "dancer": {
+    "AbilityId": "dancer",
+    "KeyName": "Ability_dancer_Name",
+    "KeyEffect": "Ability_dancer_Effect",
+    "KeyFlavor": "Ability_dancer_Flavor"
+  },
+  "battery": {
+    "AbilityId": "battery",
+    "KeyName": "Ability_battery_Name",
+    "KeyEffect": "Ability_battery_Effect",
+    "KeyFlavor": "Ability_battery_Flavor"
+  },
+  "fluffy": {
+    "AbilityId": "fluffy",
+    "KeyName": "Ability_fluffy_Name",
+    "KeyEffect": "Ability_fluffy_Effect",
+    "KeyFlavor": "Ability_fluffy_Flavor"
+  },
+  "dazzling": {
+    "AbilityId": "dazzling",
+    "KeyName": "Ability_dazzling_Name",
+    "KeyEffect": "Ability_dazzling_Effect",
+    "KeyFlavor": "Ability_dazzling_Flavor"
+  },
+  "intimidate": {
+    "AbilityId": "intimidate",
+    "KeyName": "Ability_intimidate_Name",
+    "KeyEffect": "Ability_intimidate_Effect",
+    "KeyFlavor": "Ability_intimidate_Flavor"
+  },
+  "soulheart": {
+    "AbilityId": "soulheart",
+    "KeyName": "Ability_soulheart_Name",
+    "KeyEffect": "Ability_soulheart_Effect",
+    "KeyFlavor": "Ability_soulheart_Flavor"
+  },
+  "tanglinghair": {
+    "AbilityId": "tanglinghair",
+    "KeyName": "Ability_tanglinghair_Name",
+    "KeyEffect": "Ability_tanglinghair_Effect",
+    "KeyFlavor": "Ability_tanglinghair_Flavor"
+  },
+  "receiver": {
+    "AbilityId": "receiver",
+    "KeyName": "Ability_receiver_Name",
+    "KeyEffect": "Ability_receiver_Effect",
+    "KeyFlavor": "Ability_receiver_Flavor"
+  },
+  "powerofalchemy": {
+    "AbilityId": "powerofalchemy",
+    "KeyName": "Ability_powerofalchemy_Name",
+    "KeyEffect": "Ability_powerofalchemy_Effect",
+    "KeyFlavor": "Ability_powerofalchemy_Flavor"
+  },
+  "beastboost": {
+    "AbilityId": "beastboost",
+    "KeyName": "Ability_beastboost_Name",
+    "KeyEffect": "Ability_beastboost_Effect",
+    "KeyFlavor": "Ability_beastboost_Flavor"
+  },
+  "rkssystem": {
+    "AbilityId": "rkssystem",
+    "KeyName": "Ability_rkssystem_Name",
+    "KeyEffect": "Ability_rkssystem_Effect",
+    "KeyFlavor": "Ability_rkssystem_Flavor"
+  },
+  "electricsurge": {
+    "AbilityId": "electricsurge",
+    "KeyName": "Ability_electricsurge_Name",
+    "KeyEffect": "Ability_electricsurge_Effect",
+    "KeyFlavor": "Ability_electricsurge_Flavor"
+  },
+  "psychicsurge": {
+    "AbilityId": "psychicsurge",
+    "KeyName": "Ability_psychicsurge_Name",
+    "KeyEffect": "Ability_psychicsurge_Effect",
+    "KeyFlavor": "Ability_psychicsurge_Flavor"
+  },
+  "mistysurge": {
+    "AbilityId": "mistysurge",
+    "KeyName": "Ability_mistysurge_Name",
+    "KeyEffect": "Ability_mistysurge_Effect",
+    "KeyFlavor": "Ability_mistysurge_Flavor"
+  },
+  "grassysurge": {
+    "AbilityId": "grassysurge",
+    "KeyName": "Ability_grassysurge_Name",
+    "KeyEffect": "Ability_grassysurge_Effect",
+    "KeyFlavor": "Ability_grassysurge_Flavor"
+  },
+  "shadowtag": {
+    "AbilityId": "shadowtag",
+    "KeyName": "Ability_shadowtag_Name",
+    "KeyEffect": "Ability_shadowtag_Effect",
+    "KeyFlavor": "Ability_shadowtag_Flavor"
+  },
+  "fullmetalbody": {
+    "AbilityId": "fullmetalbody",
+    "KeyName": "Ability_fullmetalbody_Name",
+    "KeyEffect": "Ability_fullmetalbody_Effect",
+    "KeyFlavor": "Ability_fullmetalbody_Flavor"
+  },
+  "shadowshield": {
+    "AbilityId": "shadowshield",
+    "KeyName": "Ability_shadowshield_Name",
+    "KeyEffect": "Ability_shadowshield_Effect",
+    "KeyFlavor": "Ability_shadowshield_Flavor"
+  },
+  "prismarmor": {
+    "AbilityId": "prismarmor",
+    "KeyName": "Ability_prismarmor_Name",
+    "KeyEffect": "Ability_prismarmor_Effect",
+    "KeyFlavor": "Ability_prismarmor_Flavor"
+  },
+  "neuroforce": {
+    "AbilityId": "neuroforce",
+    "KeyName": "Ability_neuroforce_Name",
+    "KeyEffect": "Ability_neuroforce_Effect",
+    "KeyFlavor": "Ability_neuroforce_Flavor"
+  },
+  "intrepidsword": {
+    "AbilityId": "intrepidsword",
+    "KeyName": "Ability_intrepidsword_Name",
+    "KeyEffect": "Ability_intrepidsword_Effect",
+    "KeyFlavor": "Ability_intrepidsword_Flavor"
+  },
+  "dauntlessshield": {
+    "AbilityId": "dauntlessshield",
+    "KeyName": "Ability_dauntlessshield_Name",
+    "KeyEffect": "Ability_dauntlessshield_Effect",
+    "KeyFlavor": "Ability_dauntlessshield_Flavor"
+  },
+  "libero": {
+    "AbilityId": "libero",
+    "KeyName": "Ability_libero_Name",
+    "KeyEffect": "Ability_libero_Effect",
+    "KeyFlavor": "Ability_libero_Flavor"
+  },
+  "ballfetch": {
+    "AbilityId": "ballfetch",
+    "KeyName": "Ability_ballfetch_Name",
+    "KeyEffect": "Ability_ballfetch_Effect",
+    "KeyFlavor": "Ability_ballfetch_Flavor"
+  },
+  "cottondown": {
+    "AbilityId": "cottondown",
+    "KeyName": "Ability_cottondown_Name",
+    "KeyEffect": "Ability_cottondown_Effect",
+    "KeyFlavor": "Ability_cottondown_Flavor"
+  },
+  "propellertail": {
+    "AbilityId": "propellertail",
+    "KeyName": "Ability_propellertail_Name",
+    "KeyEffect": "Ability_propellertail_Effect",
+    "KeyFlavor": "Ability_propellertail_Flavor"
+  },
+  "roughskin": {
+    "AbilityId": "roughskin",
+    "KeyName": "Ability_roughskin_Name",
+    "KeyEffect": "Ability_roughskin_Effect",
+    "KeyFlavor": "Ability_roughskin_Flavor"
+  },
+  "mirrorarmor": {
+    "AbilityId": "mirrorarmor",
+    "KeyName": "Ability_mirrorarmor_Name",
+    "KeyEffect": "Ability_mirrorarmor_Effect",
+    "KeyFlavor": "Ability_mirrorarmor_Flavor"
+  },
+  "gulpmissile": {
+    "AbilityId": "gulpmissile",
+    "KeyName": "Ability_gulpmissile_Name",
+    "KeyEffect": "Ability_gulpmissile_Effect",
+    "KeyFlavor": "Ability_gulpmissile_Flavor"
+  },
+  "stalwart": {
+    "AbilityId": "stalwart",
+    "KeyName": "Ability_stalwart_Name",
+    "KeyEffect": "Ability_stalwart_Effect",
+    "KeyFlavor": "Ability_stalwart_Flavor"
+  },
+  "steamengine": {
+    "AbilityId": "steamengine",
+    "KeyName": "Ability_steamengine_Name",
+    "KeyEffect": "Ability_steamengine_Effect",
+    "KeyFlavor": "Ability_steamengine_Flavor"
+  },
+  "punkrock": {
+    "AbilityId": "punkrock",
+    "KeyName": "Ability_punkrock_Name",
+    "KeyEffect": "Ability_punkrock_Effect",
+    "KeyFlavor": "Ability_punkrock_Flavor"
+  },
+  "sandspit": {
+    "AbilityId": "sandspit",
+    "KeyName": "Ability_sandspit_Name",
+    "KeyEffect": "Ability_sandspit_Effect",
+    "KeyFlavor": "Ability_sandspit_Flavor"
+  },
+  "icescales": {
+    "AbilityId": "icescales",
+    "KeyName": "Ability_icescales_Name",
+    "KeyEffect": "Ability_icescales_Effect",
+    "KeyFlavor": "Ability_icescales_Flavor"
+  },
+  "ripen": {
+    "AbilityId": "ripen",
+    "KeyName": "Ability_ripen_Name",
+    "KeyEffect": "Ability_ripen_Effect",
+    "KeyFlavor": "Ability_ripen_Flavor"
+  },
+  "iceface": {
+    "AbilityId": "iceface",
+    "KeyName": "Ability_iceface_Name",
+    "KeyEffect": "Ability_iceface_Effect",
+    "KeyFlavor": "Ability_iceface_Flavor"
+  },
+  "powerspot": {
+    "AbilityId": "powerspot",
+    "KeyName": "Ability_powerspot_Name",
+    "KeyEffect": "Ability_powerspot_Effect",
+    "KeyFlavor": "Ability_powerspot_Flavor"
+  },
+  "wonderguard": {
+    "AbilityId": "wonderguard",
+    "KeyName": "Ability_wonderguard_Name",
+    "KeyEffect": "Ability_wonderguard_Effect",
+    "KeyFlavor": "Ability_wonderguard_Flavor"
+  },
+  "mimicry": {
+    "AbilityId": "mimicry",
+    "KeyName": "Ability_mimicry_Name",
+    "KeyEffect": "Ability_mimicry_Effect",
+    "KeyFlavor": "Ability_mimicry_Flavor"
+  },
+  "screencleaner": {
+    "AbilityId": "screencleaner",
+    "KeyName": "Ability_screencleaner_Name",
+    "KeyEffect": "Ability_screencleaner_Effect",
+    "KeyFlavor": "Ability_screencleaner_Flavor"
+  },
+  "steelyspirit": {
+    "AbilityId": "steelyspirit",
+    "KeyName": "Ability_steelyspirit_Name",
+    "KeyEffect": "Ability_steelyspirit_Effect",
+    "KeyFlavor": "Ability_steelyspirit_Flavor"
+  },
+  "perishbody": {
+    "AbilityId": "perishbody",
+    "KeyName": "Ability_perishbody_Name",
+    "KeyEffect": "Ability_perishbody_Effect",
+    "KeyFlavor": "Ability_perishbody_Flavor"
+  },
+  "wanderingspirit": {
+    "AbilityId": "wanderingspirit",
+    "KeyName": "Ability_wanderingspirit_Name",
+    "KeyEffect": "Ability_wanderingspirit_Effect",
+    "KeyFlavor": "Ability_wanderingspirit_Flavor"
+  },
+  "gorillatactics": {
+    "AbilityId": "gorillatactics",
+    "KeyName": "Ability_gorillatactics_Name",
+    "KeyEffect": "Ability_gorillatactics_Effect",
+    "KeyFlavor": "Ability_gorillatactics_Flavor"
+  },
+  "neutralizinggas": {
+    "AbilityId": "neutralizinggas",
+    "KeyName": "Ability_neutralizinggas_Name",
+    "KeyEffect": "Ability_neutralizinggas_Effect",
+    "KeyFlavor": "Ability_neutralizinggas_Flavor"
+  },
+  "pastelveil": {
+    "AbilityId": "pastelveil",
+    "KeyName": "Ability_pastelveil_Name",
+    "KeyEffect": "Ability_pastelveil_Effect",
+    "KeyFlavor": "Ability_pastelveil_Flavor"
+  },
+  "hungerswitch": {
+    "AbilityId": "hungerswitch",
+    "KeyName": "Ability_hungerswitch_Name",
+    "KeyEffect": "Ability_hungerswitch_Effect",
+    "KeyFlavor": "Ability_hungerswitch_Flavor"
+  },
+  "quickdraw": {
+    "AbilityId": "quickdraw",
+    "KeyName": "Ability_quickdraw_Name",
+    "KeyEffect": "Ability_quickdraw_Effect",
+    "KeyFlavor": "Ability_quickdraw_Flavor"
+  },
+  "levitate": {
+    "AbilityId": "levitate",
+    "KeyName": "Ability_levitate_Name",
+    "KeyEffect": "Ability_levitate_Effect",
+    "KeyFlavor": "Ability_levitate_Flavor"
+  },
+  "unseenfist": {
+    "AbilityId": "unseenfist",
+    "KeyName": "Ability_unseenfist_Name",
+    "KeyEffect": "Ability_unseenfist_Effect",
+    "KeyFlavor": "Ability_unseenfist_Flavor"
+  },
+  "curiousmedicine": {
+    "AbilityId": "curiousmedicine",
+    "KeyName": "Ability_curiousmedicine_Name",
+    "KeyEffect": "Ability_curiousmedicine_Effect",
+    "KeyFlavor": "Ability_curiousmedicine_Flavor"
+  },
+  "transistor": {
+    "AbilityId": "transistor",
+    "KeyName": "Ability_transistor_Name",
+    "KeyEffect": "Ability_transistor_Effect",
+    "KeyFlavor": "Ability_transistor_Flavor"
+  },
+  "dragonsmaw": {
+    "AbilityId": "dragonsmaw",
+    "KeyName": "Ability_dragonsmaw_Name",
+    "KeyEffect": "Ability_dragonsmaw_Effect",
+    "KeyFlavor": "Ability_dragonsmaw_Flavor"
+  },
+  "chillingneigh": {
+    "AbilityId": "chillingneigh",
+    "KeyName": "Ability_chillingneigh_Name",
+    "KeyEffect": "Ability_chillingneigh_Effect",
+    "KeyFlavor": "Ability_chillingneigh_Flavor"
+  },
+  "grimneigh": {
+    "AbilityId": "grimneigh",
+    "KeyName": "Ability_grimneigh_Name",
+    "KeyEffect": "Ability_grimneigh_Effect",
+    "KeyFlavor": "Ability_grimneigh_Flavor"
+  },
+  "asoneglastrier": {
+    "AbilityId": "asoneglastrier",
+    "KeyName": "Ability_asoneglastrier_Name",
+    "KeyEffect": "Ability_asoneglastrier_Effect",
+    "KeyFlavor": "Ability_asoneglastrier_Flavor"
+  },
+  "asonespectrier": {
+    "AbilityId": "asonespectrier",
+    "KeyName": "Ability_asonespectrier_Name",
+    "KeyEffect": "Ability_asonespectrier_Effect",
+    "KeyFlavor": "Ability_asonespectrier_Flavor"
+  },
+  "lingeringaroma": {
+    "AbilityId": "lingeringaroma",
+    "KeyName": "Ability_lingeringaroma_Name",
+    "KeyEffect": "Ability_lingeringaroma_Effect",
+    "KeyFlavor": "Ability_lingeringaroma_Flavor"
+  },
+  "seedsower": {
+    "AbilityId": "seedsower",
+    "KeyName": "Ability_seedsower_Name",
+    "KeyEffect": "Ability_seedsower_Effect",
+    "KeyFlavor": "Ability_seedsower_Flavor"
+  },
+  "effectspore": {
+    "AbilityId": "effectspore",
+    "KeyName": "Ability_effectspore_Name",
+    "KeyEffect": "Ability_effectspore_Effect",
+    "KeyFlavor": "Ability_effectspore_Flavor"
+  },
+  "thermalexchange": {
+    "AbilityId": "thermalexchange",
+    "KeyName": "Ability_thermalexchange_Name",
+    "KeyEffect": "Ability_thermalexchange_Effect",
+    "KeyFlavor": "Ability_thermalexchange_Flavor"
+  },
+  "angershell": {
+    "AbilityId": "angershell",
+    "KeyName": "Ability_angershell_Name",
+    "KeyEffect": "Ability_angershell_Effect",
+    "KeyFlavor": "Ability_angershell_Flavor"
+  },
+  "purifyingsalt": {
+    "AbilityId": "purifyingsalt",
+    "KeyName": "Ability_purifyingsalt_Name",
+    "KeyEffect": "Ability_purifyingsalt_Effect",
+    "KeyFlavor": "Ability_purifyingsalt_Flavor"
+  },
+  "wellbakedbody": {
+    "AbilityId": "wellbakedbody",
+    "KeyName": "Ability_wellbakedbody_Name",
+    "KeyEffect": "Ability_wellbakedbody_Effect",
+    "KeyFlavor": "Ability_wellbakedbody_Flavor"
+  },
+  "windrider": {
+    "AbilityId": "windrider",
+    "KeyName": "Ability_windrider_Name",
+    "KeyEffect": "Ability_windrider_Effect",
+    "KeyFlavor": "Ability_windrider_Flavor"
+  },
+  "guarddog": {
+    "AbilityId": "guarddog",
+    "KeyName": "Ability_guarddog_Name",
+    "KeyEffect": "Ability_guarddog_Effect",
+    "KeyFlavor": "Ability_guarddog_Flavor"
+  },
+  "rockypayload": {
+    "AbilityId": "rockypayload",
+    "KeyName": "Ability_rockypayload_Name",
+    "KeyEffect": "Ability_rockypayload_Effect",
+    "KeyFlavor": "Ability_rockypayload_Flavor"
+  },
+  "windpower": {
+    "AbilityId": "windpower",
+    "KeyName": "Ability_windpower_Name",
+    "KeyEffect": "Ability_windpower_Effect",
+    "KeyFlavor": "Ability_windpower_Flavor"
+  },
+  "zerotohero": {
+    "AbilityId": "zerotohero",
+    "KeyName": "Ability_zerotohero_Name",
+    "KeyEffect": "Ability_zerotohero_Effect",
+    "KeyFlavor": "Ability_zerotohero_Flavor"
+  },
+  "commander": {
+    "AbilityId": "commander",
+    "KeyName": "Ability_commander_Name",
+    "KeyEffect": "Ability_commander_Effect",
+    "KeyFlavor": "Ability_commander_Flavor"
+  },
+  "synchronize": {
+    "AbilityId": "synchronize",
+    "KeyName": "Ability_synchronize_Name",
+    "KeyEffect": "Ability_synchronize_Effect",
+    "KeyFlavor": "Ability_synchronize_Flavor"
+  },
+  "electromorphosis": {
+    "AbilityId": "electromorphosis",
+    "KeyName": "Ability_electromorphosis_Name",
+    "KeyEffect": "Ability_electromorphosis_Effect",
+    "KeyFlavor": "Ability_electromorphosis_Flavor"
+  },
+  "protosynthesis": {
+    "AbilityId": "protosynthesis",
+    "KeyName": "Ability_protosynthesis_Name",
+    "KeyEffect": "Ability_protosynthesis_Effect",
+    "KeyFlavor": "Ability_protosynthesis_Flavor"
+  },
+  "quarkdrive": {
+    "AbilityId": "quarkdrive",
+    "KeyName": "Ability_quarkdrive_Name",
+    "KeyEffect": "Ability_quarkdrive_Effect",
+    "KeyFlavor": "Ability_quarkdrive_Flavor"
+  },
+  "goodasgold": {
+    "AbilityId": "goodasgold",
+    "KeyName": "Ability_goodasgold_Name",
+    "KeyEffect": "Ability_goodasgold_Effect",
+    "KeyFlavor": "Ability_goodasgold_Flavor"
+  },
+  "vesselofruin": {
+    "AbilityId": "vesselofruin",
+    "KeyName": "Ability_vesselofruin_Name",
+    "KeyEffect": "Ability_vesselofruin_Effect",
+    "KeyFlavor": "Ability_vesselofruin_Flavor"
+  },
+  "swordofruin": {
+    "AbilityId": "swordofruin",
+    "KeyName": "Ability_swordofruin_Name",
+    "KeyEffect": "Ability_swordofruin_Effect",
+    "KeyFlavor": "Ability_swordofruin_Flavor"
+  },
+  "tabletsofruin": {
+    "AbilityId": "tabletsofruin",
+    "KeyName": "Ability_tabletsofruin_Name",
+    "KeyEffect": "Ability_tabletsofruin_Effect",
+    "KeyFlavor": "Ability_tabletsofruin_Flavor"
+  },
+  "beadsofruin": {
+    "AbilityId": "beadsofruin",
+    "KeyName": "Ability_beadsofruin_Name",
+    "KeyEffect": "Ability_beadsofruin_Effect",
+    "KeyFlavor": "Ability_beadsofruin_Flavor"
+  },
+  "orichalcumpulse": {
+    "AbilityId": "orichalcumpulse",
+    "KeyName": "Ability_orichalcumpulse_Name",
+    "KeyEffect": "Ability_orichalcumpulse_Effect",
+    "KeyFlavor": "Ability_orichalcumpulse_Flavor"
+  },
+  "hadronengine": {
+    "AbilityId": "hadronengine",
+    "KeyName": "Ability_hadronengine_Name",
+    "KeyEffect": "Ability_hadronengine_Effect",
+    "KeyFlavor": "Ability_hadronengine_Flavor"
+  },
+  "clearbody": {
+    "AbilityId": "clearbody",
+    "KeyName": "Ability_clearbody_Name",
+    "KeyEffect": "Ability_clearbody_Effect",
+    "KeyFlavor": "Ability_clearbody_Flavor"
+  },
+  "opportunist": {
+    "AbilityId": "opportunist",
+    "KeyName": "Ability_opportunist_Name",
+    "KeyEffect": "Ability_opportunist_Effect",
+    "KeyFlavor": "Ability_opportunist_Flavor"
+  },
+  "cudchew": {
+    "AbilityId": "cudchew",
+    "KeyName": "Ability_cudchew_Name",
+    "KeyEffect": "Ability_cudchew_Effect",
+    "KeyFlavor": "Ability_cudchew_Flavor"
+  },
+  "sharpness": {
+    "AbilityId": "sharpness",
+    "KeyName": "Ability_sharpness_Name",
+    "KeyEffect": "Ability_sharpness_Effect",
+    "KeyFlavor": "Ability_sharpness_Flavor"
+  },
+  "supremeoverlord": {
+    "AbilityId": "supremeoverlord",
+    "KeyName": "Ability_supremeoverlord_Name",
+    "KeyEffect": "Ability_supremeoverlord_Effect",
+    "KeyFlavor": "Ability_supremeoverlord_Flavor"
+  },
+  "costar": {
+    "AbilityId": "costar",
+    "KeyName": "Ability_costar_Name",
+    "KeyEffect": "Ability_costar_Effect",
+    "KeyFlavor": "Ability_costar_Flavor"
+  },
+  "toxicdebris": {
+    "AbilityId": "toxicdebris",
+    "KeyName": "Ability_toxicdebris_Name",
+    "KeyEffect": "Ability_toxicdebris_Effect",
+    "KeyFlavor": "Ability_toxicdebris_Flavor"
+  },
+  "armortail": {
+    "AbilityId": "armortail",
+    "KeyName": "Ability_armortail_Name",
+    "KeyEffect": "Ability_armortail_Effect",
+    "KeyFlavor": "Ability_armortail_Flavor"
+  },
+  "eartheater": {
+    "AbilityId": "eartheater",
+    "KeyName": "Ability_eartheater_Name",
+    "KeyEffect": "Ability_eartheater_Effect",
+    "KeyFlavor": "Ability_eartheater_Flavor"
+  },
+  "myceliummight": {
+    "AbilityId": "myceliummight",
+    "KeyName": "Ability_myceliummight_Name",
+    "KeyEffect": "Ability_myceliummight_Effect",
+    "KeyFlavor": "Ability_myceliummight_Flavor"
+  },
+  "mindseye": {
+    "AbilityId": "mindseye",
+    "KeyName": "Ability_mindseye_Name",
+    "KeyEffect": "Ability_mindseye_Effect",
+    "KeyFlavor": "Ability_mindseye_Flavor"
+  },
+  "speedboost": {
+    "AbilityId": "speedboost",
+    "KeyName": "Ability_speedboost_Name",
+    "KeyEffect": "Ability_speedboost_Effect",
+    "KeyFlavor": "Ability_speedboost_Flavor"
+  },
+  "naturalcure": {
+    "AbilityId": "naturalcure",
+    "KeyName": "Ability_naturalcure_Name",
+    "KeyEffect": "Ability_naturalcure_Effect",
+    "KeyFlavor": "Ability_naturalcure_Flavor"
+  },
+  "supersweetsyrup": {
+    "AbilityId": "supersweetsyrup",
+    "KeyName": "Ability_supersweetsyrup_Name",
+    "KeyEffect": "Ability_supersweetsyrup_Effect",
+    "KeyFlavor": "Ability_supersweetsyrup_Flavor"
+  },
+  "hospitality": {
+    "AbilityId": "hospitality",
+    "KeyName": "Ability_hospitality_Name",
+    "KeyEffect": "Ability_hospitality_Effect",
+    "KeyFlavor": "Ability_hospitality_Flavor"
+  },
+  "toxicchain": {
+    "AbilityId": "toxicchain",
+    "KeyName": "Ability_toxicchain_Name",
+    "KeyEffect": "Ability_toxicchain_Effect",
+    "KeyFlavor": "Ability_toxicchain_Flavor"
+  },
+  "embodyaspect": {
+    "AbilityId": "embodyaspect",
+    "KeyName": "Ability_embodyaspect_Name",
+    "KeyEffect": "Ability_embodyaspect_Effect",
+    "KeyFlavor": "Ability_embodyaspect_Flavor"
+  },
+  "terashift": {
+    "AbilityId": "terashift",
+    "KeyName": "Ability_terashift_Name",
+    "KeyEffect": "Ability_terashift_Effect",
+    "KeyFlavor": "Ability_terashift_Flavor"
+  },
+  "terashell": {
+    "AbilityId": "terashell",
+    "KeyName": "Ability_terashell_Name",
+    "KeyEffect": "Ability_terashell_Effect",
+    "KeyFlavor": "Ability_terashell_Flavor"
+  },
+  "teraformzero": {
+    "AbilityId": "teraformzero",
+    "KeyName": "Ability_teraformzero_Name",
+    "KeyEffect": "Ability_teraformzero_Effect",
+    "KeyFlavor": "Ability_teraformzero_Flavor"
+  },
+  "poisonpuppeteer": {
+    "AbilityId": "poisonpuppeteer",
+    "KeyName": "Ability_poisonpuppeteer_Name",
+    "KeyEffect": "Ability_poisonpuppeteer_Effect",
+    "KeyFlavor": "Ability_poisonpuppeteer_Flavor"
+  },
+  "lightningrod": {
+    "AbilityId": "lightningrod",
+    "KeyName": "Ability_lightningrod_Name",
+    "KeyEffect": "Ability_lightningrod_Effect",
+    "KeyFlavor": "Ability_lightningrod_Flavor"
+  },
+  "serenegrace": {
+    "AbilityId": "serenegrace",
+    "KeyName": "Ability_serenegrace_Name",
+    "KeyEffect": "Ability_serenegrace_Effect",
+    "KeyFlavor": "Ability_serenegrace_Flavor"
+  },
+  "swiftswim": {
+    "AbilityId": "swiftswim",
+    "KeyName": "Ability_swiftswim_Name",
+    "KeyEffect": "Ability_swiftswim_Effect",
+    "KeyFlavor": "Ability_swiftswim_Flavor"
+  },
+  "chlorophyll": {
+    "AbilityId": "chlorophyll",
+    "KeyName": "Ability_chlorophyll_Name",
+    "KeyEffect": "Ability_chlorophyll_Effect",
+    "KeyFlavor": "Ability_chlorophyll_Flavor"
+  },
+  "illuminate": {
+    "AbilityId": "illuminate",
+    "KeyName": "Ability_illuminate_Name",
+    "KeyEffect": "Ability_illuminate_Effect",
+    "KeyFlavor": "Ability_illuminate_Flavor"
+  },
+  "trace": {
+    "AbilityId": "trace",
+    "KeyName": "Ability_trace_Name",
+    "KeyEffect": "Ability_trace_Effect",
+    "KeyFlavor": "Ability_trace_Flavor"
+  },
+  "hugepower": {
+    "AbilityId": "hugepower",
+    "KeyName": "Ability_hugepower_Name",
+    "KeyEffect": "Ability_hugepower_Effect",
+    "KeyFlavor": "Ability_hugepower_Flavor"
+  },
+  "poisonpoint": {
+    "AbilityId": "poisonpoint",
+    "KeyName": "Ability_poisonpoint_Name",
+    "KeyEffect": "Ability_poisonpoint_Effect",
+    "KeyFlavor": "Ability_poisonpoint_Flavor"
+  },
+  "innerfocus": {
+    "AbilityId": "innerfocus",
+    "KeyName": "Ability_innerfocus_Name",
+    "KeyEffect": "Ability_innerfocus_Effect",
+    "KeyFlavor": "Ability_innerfocus_Flavor"
+  },
+  "battlearmor": {
+    "AbilityId": "battlearmor",
+    "KeyName": "Ability_battlearmor_Name",
+    "KeyEffect": "Ability_battlearmor_Effect",
+    "KeyFlavor": "Ability_battlearmor_Flavor"
+  },
+  "magmaarmor": {
+    "AbilityId": "magmaarmor",
+    "KeyName": "Ability_magmaarmor_Name",
+    "KeyEffect": "Ability_magmaarmor_Effect",
+    "KeyFlavor": "Ability_magmaarmor_Flavor"
+  },
+  "waterveil": {
+    "AbilityId": "waterveil",
+    "KeyName": "Ability_waterveil_Name",
+    "KeyEffect": "Ability_waterveil_Effect",
+    "KeyFlavor": "Ability_waterveil_Flavor"
+  },
+  "magnetpull": {
+    "AbilityId": "magnetpull",
+    "KeyName": "Ability_magnetpull_Name",
+    "KeyEffect": "Ability_magnetpull_Effect",
+    "KeyFlavor": "Ability_magnetpull_Flavor"
+  },
+  "soundproof": {
+    "AbilityId": "soundproof",
+    "KeyName": "Ability_soundproof_Name",
+    "KeyEffect": "Ability_soundproof_Effect",
+    "KeyFlavor": "Ability_soundproof_Flavor"
+  },
+  "raindish": {
+    "AbilityId": "raindish",
+    "KeyName": "Ability_raindish_Name",
+    "KeyEffect": "Ability_raindish_Effect",
+    "KeyFlavor": "Ability_raindish_Flavor"
+  },
+  "sandstream": {
+    "AbilityId": "sandstream",
+    "KeyName": "Ability_sandstream_Name",
+    "KeyEffect": "Ability_sandstream_Effect",
+    "KeyFlavor": "Ability_sandstream_Flavor"
+  },
+  "pressure": {
+    "AbilityId": "pressure",
+    "KeyName": "Ability_pressure_Name",
+    "KeyEffect": "Ability_pressure_Effect",
+    "KeyFlavor": "Ability_pressure_Flavor"
+  },
+  "thickfat": {
+    "AbilityId": "thickfat",
+    "KeyName": "Ability_thickfat_Name",
+    "KeyEffect": "Ability_thickfat_Effect",
+    "KeyFlavor": "Ability_thickfat_Flavor"
+  },
+  "earlybird": {
+    "AbilityId": "earlybird",
+    "KeyName": "Ability_earlybird_Name",
+    "KeyEffect": "Ability_earlybird_Effect",
+    "KeyFlavor": "Ability_earlybird_Flavor"
+  },
+  "flamebody": {
+    "AbilityId": "flamebody",
+    "KeyName": "Ability_flamebody_Name",
+    "KeyEffect": "Ability_flamebody_Effect",
+    "KeyFlavor": "Ability_flamebody_Flavor"
+  },
+  "sturdy": {
+    "AbilityId": "sturdy",
+    "KeyName": "Ability_sturdy_Name",
+    "KeyEffect": "Ability_sturdy_Effect",
+    "KeyFlavor": "Ability_sturdy_Flavor"
+  },
+  "runaway": {
+    "AbilityId": "runaway",
+    "KeyName": "Ability_runaway_Name",
+    "KeyEffect": "Ability_runaway_Effect",
+    "KeyFlavor": "Ability_runaway_Flavor"
+  },
+  "keeneye": {
+    "AbilityId": "keeneye",
+    "KeyName": "Ability_keeneye_Name",
+    "KeyEffect": "Ability_keeneye_Effect",
+    "KeyFlavor": "Ability_keeneye_Flavor"
+  },
+  "hypercutter": {
+    "AbilityId": "hypercutter",
+    "KeyName": "Ability_hypercutter_Name",
+    "KeyEffect": "Ability_hypercutter_Effect",
+    "KeyFlavor": "Ability_hypercutter_Flavor"
+  },
+  "pickup": {
+    "AbilityId": "pickup",
+    "KeyName": "Ability_pickup_Name",
+    "KeyEffect": "Ability_pickup_Effect",
+    "KeyFlavor": "Ability_pickup_Flavor"
+  },
+  "truant": {
+    "AbilityId": "truant",
+    "KeyName": "Ability_truant_Name",
+    "KeyEffect": "Ability_truant_Effect",
+    "KeyFlavor": "Ability_truant_Flavor"
+  },
+  "hustle": {
+    "AbilityId": "hustle",
+    "KeyName": "Ability_hustle_Name",
+    "KeyEffect": "Ability_hustle_Effect",
+    "KeyFlavor": "Ability_hustle_Flavor"
+  },
+  "cutecharm": {
+    "AbilityId": "cutecharm",
+    "KeyName": "Ability_cutecharm_Name",
+    "KeyEffect": "Ability_cutecharm_Effect",
+    "KeyFlavor": "Ability_cutecharm_Flavor"
+  },
+  "plus": {
+    "AbilityId": "plus",
+    "KeyName": "Ability_plus_Name",
+    "KeyEffect": "Ability_plus_Effect",
+    "KeyFlavor": "Ability_plus_Flavor"
+  },
+  "minus": {
+    "AbilityId": "minus",
+    "KeyName": "Ability_minus_Name",
+    "KeyEffect": "Ability_minus_Effect",
+    "KeyFlavor": "Ability_minus_Flavor"
+  },
+  "forecast": {
+    "AbilityId": "forecast",
+    "KeyName": "Ability_forecast_Name",
+    "KeyEffect": "Ability_forecast_Effect",
+    "KeyFlavor": "Ability_forecast_Flavor"
+  },
+  "damp": {
+    "AbilityId": "damp",
+    "KeyName": "Ability_damp_Name",
+    "KeyEffect": "Ability_damp_Effect",
+    "KeyFlavor": "Ability_damp_Flavor"
+  },
+  "stickyhold": {
+    "AbilityId": "stickyhold",
+    "KeyName": "Ability_stickyhold_Name",
+    "KeyEffect": "Ability_stickyhold_Effect",
+    "KeyFlavor": "Ability_stickyhold_Flavor"
+  },
+  "shedskin": {
+    "AbilityId": "shedskin",
+    "KeyName": "Ability_shedskin_Name",
+    "KeyEffect": "Ability_shedskin_Effect",
+    "KeyFlavor": "Ability_shedskin_Flavor"
+  },
+  "guts": {
+    "AbilityId": "guts",
+    "KeyName": "Ability_guts_Name",
+    "KeyEffect": "Ability_guts_Effect",
+    "KeyFlavor": "Ability_guts_Flavor"
+  },
+  "marvelscale": {
+    "AbilityId": "marvelscale",
+    "KeyName": "Ability_marvelscale_Name",
+    "KeyEffect": "Ability_marvelscale_Effect",
+    "KeyFlavor": "Ability_marvelscale_Flavor"
+  },
+  "liquidooze": {
+    "AbilityId": "liquidooze",
+    "KeyName": "Ability_liquidooze_Name",
+    "KeyEffect": "Ability_liquidooze_Effect",
+    "KeyFlavor": "Ability_liquidooze_Flavor"
+  },
+  "overgrow": {
+    "AbilityId": "overgrow",
+    "KeyName": "Ability_overgrow_Name",
+    "KeyEffect": "Ability_overgrow_Effect",
+    "KeyFlavor": "Ability_overgrow_Flavor"
+  },
+  "blaze": {
+    "AbilityId": "blaze",
+    "KeyName": "Ability_blaze_Name",
+    "KeyEffect": "Ability_blaze_Effect",
+    "KeyFlavor": "Ability_blaze_Flavor"
+  },
+  "torrent": {
+    "AbilityId": "torrent",
+    "KeyName": "Ability_torrent_Name",
+    "KeyEffect": "Ability_torrent_Effect",
+    "KeyFlavor": "Ability_torrent_Flavor"
+  },
+  "swarm": {
+    "AbilityId": "swarm",
+    "KeyName": "Ability_swarm_Name",
+    "KeyEffect": "Ability_swarm_Effect",
+    "KeyFlavor": "Ability_swarm_Flavor"
+  },
+  "rockhead": {
+    "AbilityId": "rockhead",
+    "KeyName": "Ability_rockhead_Name",
+    "KeyEffect": "Ability_rockhead_Effect",
+    "KeyFlavor": "Ability_rockhead_Flavor"
+  },
+  "limber": {
+    "AbilityId": "limber",
+    "KeyName": "Ability_limber_Name",
+    "KeyEffect": "Ability_limber_Effect",
+    "KeyFlavor": "Ability_limber_Flavor"
+  },
+  "drought": {
+    "AbilityId": "drought",
+    "KeyName": "Ability_drought_Name",
+    "KeyEffect": "Ability_drought_Effect",
+    "KeyFlavor": "Ability_drought_Flavor"
+  },
+  "arenatrap": {
+    "AbilityId": "arenatrap",
+    "KeyName": "Ability_arenatrap_Name",
+    "KeyEffect": "Ability_arenatrap_Effect",
+    "KeyFlavor": "Ability_arenatrap_Flavor"
+  },
+  "vitalspirit": {
+    "AbilityId": "vitalspirit",
+    "KeyName": "Ability_vitalspirit_Name",
+    "KeyEffect": "Ability_vitalspirit_Effect",
+    "KeyFlavor": "Ability_vitalspirit_Flavor"
+  },
+  "whitesmoke": {
+    "AbilityId": "whitesmoke",
+    "KeyName": "Ability_whitesmoke_Name",
+    "KeyEffect": "Ability_whitesmoke_Effect",
+    "KeyFlavor": "Ability_whitesmoke_Flavor"
+  },
+  "purepower": {
+    "AbilityId": "purepower",
+    "KeyName": "Ability_purepower_Name",
+    "KeyEffect": "Ability_purepower_Effect",
+    "KeyFlavor": "Ability_purepower_Flavor"
+  },
+  "shellarmor": {
+    "AbilityId": "shellarmor",
+    "KeyName": "Ability_shellarmor_Name",
+    "KeyEffect": "Ability_shellarmor_Effect",
+    "KeyFlavor": "Ability_shellarmor_Flavor"
+  },
+  "airlock": {
+    "AbilityId": "airlock",
+    "KeyName": "Ability_airlock_Name",
+    "KeyEffect": "Ability_airlock_Effect",
+    "KeyFlavor": "Ability_airlock_Flavor"
+  },
+  "tangledfeet": {
+    "AbilityId": "tangledfeet",
+    "KeyName": "Ability_tangledfeet_Name",
+    "KeyEffect": "Ability_tangledfeet_Effect",
+    "KeyFlavor": "Ability_tangledfeet_Flavor"
+  },
+  "motordrive": {
+    "AbilityId": "motordrive",
+    "KeyName": "Ability_motordrive_Name",
+    "KeyEffect": "Ability_motordrive_Effect",
+    "KeyFlavor": "Ability_motordrive_Flavor"
+  },
+  "rivalry": {
+    "AbilityId": "rivalry",
+    "KeyName": "Ability_rivalry_Name",
+    "KeyEffect": "Ability_rivalry_Effect",
+    "KeyFlavor": "Ability_rivalry_Flavor"
+  },
+  "sandveil": {
+    "AbilityId": "sandveil",
+    "KeyName": "Ability_sandveil_Name",
+    "KeyEffect": "Ability_sandveil_Effect",
+    "KeyFlavor": "Ability_sandveil_Flavor"
+  },
+  "steadfast": {
+    "AbilityId": "steadfast",
+    "KeyName": "Ability_steadfast_Name",
+    "KeyEffect": "Ability_steadfast_Effect",
+    "KeyFlavor": "Ability_steadfast_Flavor"
+  },
+  "snowcloak": {
+    "AbilityId": "snowcloak",
+    "KeyName": "Ability_snowcloak_Name",
+    "KeyEffect": "Ability_snowcloak_Effect",
+    "KeyFlavor": "Ability_snowcloak_Flavor"
+  },
+  "gluttony": {
+    "AbilityId": "gluttony",
+    "KeyName": "Ability_gluttony_Name",
+    "KeyEffect": "Ability_gluttony_Effect",
+    "KeyFlavor": "Ability_gluttony_Flavor"
+  },
+  "angerpoint": {
+    "AbilityId": "angerpoint",
+    "KeyName": "Ability_angerpoint_Name",
+    "KeyEffect": "Ability_angerpoint_Effect",
+    "KeyFlavor": "Ability_angerpoint_Flavor"
+  },
+  "unburden": {
+    "AbilityId": "unburden",
+    "KeyName": "Ability_unburden_Name",
+    "KeyEffect": "Ability_unburden_Effect",
+    "KeyFlavor": "Ability_unburden_Flavor"
+  },
+  "heatproof": {
+    "AbilityId": "heatproof",
+    "KeyName": "Ability_heatproof_Name",
+    "KeyEffect": "Ability_heatproof_Effect",
+    "KeyFlavor": "Ability_heatproof_Flavor"
+  },
+  "simple": {
+    "AbilityId": "simple",
+    "KeyName": "Ability_simple_Name",
+    "KeyEffect": "Ability_simple_Effect",
+    "KeyFlavor": "Ability_simple_Flavor"
+  },
+  "dryskin": {
+    "AbilityId": "dryskin",
+    "KeyName": "Ability_dryskin_Name",
+    "KeyEffect": "Ability_dryskin_Effect",
+    "KeyFlavor": "Ability_dryskin_Flavor"
+  },
+  "download": {
+    "AbilityId": "download",
+    "KeyName": "Ability_download_Name",
+    "KeyEffect": "Ability_download_Effect",
+    "KeyFlavor": "Ability_download_Flavor"
+  },
+  "ironfist": {
+    "AbilityId": "ironfist",
+    "KeyName": "Ability_ironfist_Name",
+    "KeyEffect": "Ability_ironfist_Effect",
+    "KeyFlavor": "Ability_ironfist_Flavor"
+  },
+  "static": {
+    "AbilityId": "static",
+    "KeyName": "Ability_static_Name",
+    "KeyEffect": "Ability_static_Effect",
+    "KeyFlavor": "Ability_static_Flavor"
+  },
+  "poisonheal": {
+    "AbilityId": "poisonheal",
+    "KeyName": "Ability_poisonheal_Name",
+    "KeyEffect": "Ability_poisonheal_Effect",
+    "KeyFlavor": "Ability_poisonheal_Flavor"
+  },
+  "adaptability": {
+    "AbilityId": "adaptability",
+    "KeyName": "Ability_adaptability_Name",
+    "KeyEffect": "Ability_adaptability_Effect",
+    "KeyFlavor": "Ability_adaptability_Flavor"
+  },
+  "skilllink": {
+    "AbilityId": "skilllink",
+    "KeyName": "Ability_skilllink_Name",
+    "KeyEffect": "Ability_skilllink_Effect",
+    "KeyFlavor": "Ability_skilllink_Flavor"
+  },
+  "hydration": {
+    "AbilityId": "hydration",
+    "KeyName": "Ability_hydration_Name",
+    "KeyEffect": "Ability_hydration_Effect",
+    "KeyFlavor": "Ability_hydration_Flavor"
+  },
+  "solarpower": {
+    "AbilityId": "solarpower",
+    "KeyName": "Ability_solarpower_Name",
+    "KeyEffect": "Ability_solarpower_Effect",
+    "KeyFlavor": "Ability_solarpower_Flavor"
+  },
+  "quickfeet": {
+    "AbilityId": "quickfeet",
+    "KeyName": "Ability_quickfeet_Name",
+    "KeyEffect": "Ability_quickfeet_Effect",
+    "KeyFlavor": "Ability_quickfeet_Flavor"
+  },
+  "normalize": {
+    "AbilityId": "normalize",
+    "KeyName": "Ability_normalize_Name",
+    "KeyEffect": "Ability_normalize_Effect",
+    "KeyFlavor": "Ability_normalize_Flavor"
+  },
+  "sniper": {
+    "AbilityId": "sniper",
+    "KeyName": "Ability_sniper_Name",
+    "KeyEffect": "Ability_sniper_Effect",
+    "KeyFlavor": "Ability_sniper_Flavor"
+  },
+  "magicguard": {
+    "AbilityId": "magicguard",
+    "KeyName": "Ability_magicguard_Name",
+    "KeyEffect": "Ability_magicguard_Effect",
+    "KeyFlavor": "Ability_magicguard_Flavor"
+  },
+  "noguard": {
+    "AbilityId": "noguard",
+    "KeyName": "Ability_noguard_Name",
+    "KeyEffect": "Ability_noguard_Effect",
+    "KeyFlavor": "Ability_noguard_Flavor"
+  }
+}

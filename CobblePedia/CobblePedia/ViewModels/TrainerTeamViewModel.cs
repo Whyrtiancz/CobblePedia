@@ -32,7 +32,7 @@
 
             pokemon = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.SpeciesId, "@pokemon");
 
-            Pokemon detail = CobblePedia.Pedia.Pokemon[source.SpeciesId];
+            Pokemon detail = CobblePediaModel.Pedia.Pokemons[source.SpeciesId];
             Types = new ObservableCollection<SearchableObjectViewModel>();
             foreach (string item in detail.Types)
             {
@@ -41,16 +41,16 @@
 
             if (source.MoveSet.Count > 0)
             {
-                move1 = new MoveViewModel(CobblePedia.Pedia.Moves[source.MoveSet[0]], MoveViewModel.EMoveLearnType.None);
+                move1 = new MoveViewModel(CobblePediaModel.Pedia.Moves[source.MoveSet[0]], MoveViewModel.EMoveLearnType.None);
                 if (source.MoveSet.Count > 1)
                 {
-                    move2 = new MoveViewModel(CobblePedia.Pedia.Moves[source.MoveSet[1]], MoveViewModel.EMoveLearnType.None);
+                    move2 = new MoveViewModel(CobblePediaModel.Pedia.Moves[source.MoveSet[1]], MoveViewModel.EMoveLearnType.None);
                     if (source.MoveSet.Count > 2)
                     {
-                        move3 = new MoveViewModel(CobblePedia.Pedia.Moves[source.MoveSet[2]], MoveViewModel.EMoveLearnType.None);
+                        move3 = new MoveViewModel(CobblePediaModel.Pedia.Moves[source.MoveSet[2]], MoveViewModel.EMoveLearnType.None);
                         if (source.MoveSet.Count > 3)
                         {
-                            move4 = new MoveViewModel(CobblePedia.Pedia.Moves[source.MoveSet[3]], MoveViewModel.EMoveLearnType.None);
+                            move4 = new MoveViewModel(CobblePediaModel.Pedia.Moves[source.MoveSet[3]], MoveViewModel.EMoveLearnType.None);
                         }
                     }
                 }

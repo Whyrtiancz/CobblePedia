@@ -49,19 +49,19 @@
             switch (methodValue)
             {
                 case "level_up":
-                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minLevel);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minLevel);
                     break;
                 case "friendship":
-                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minFriendship);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minFriendship);
                     break;
                 case "battle_critical_hits":
-                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], minBattleCriticalHits);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minBattleCriticalHits);
                     break;
                 case "item_interact":
-                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], CobblePedia.Pedia.Translations[language][itemKey]);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], CobblePediaModel.Pedia.Translations[language][itemKey]);
                     break;
                 case "trade":
-                    Method = string.Format(CobblePedia.Pedia.Translations[language][methodKey], "");
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], "");
                     break;
             }
         }

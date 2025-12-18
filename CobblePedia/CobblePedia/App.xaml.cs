@@ -3,7 +3,14 @@
 
 namespace CobblePedia
 {
+    using System;
+    using System.Threading.Tasks;
+
     using Microsoft.UI.Xaml;
+
+    using Windows.Storage;
+
+    using CobblePedia.Models;
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -26,10 +33,20 @@ namespace CobblePedia
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            var splash = new SplashWindow();
+            splash.Activate();
+
+            // Ici vous faites votre logique de démarrage (chargement config, DB, etc.)
+            bool IsLoaded = await CobblePediaModel.Pedia.Load();
+            //StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/JSON/types.json"));
+            //string jsonContent = await FileIO.ReadTextAsync(file);
+
             m_window = new MainWindow();
             m_window.Activate();
+
+            splash.Close();
         }
     }
 }

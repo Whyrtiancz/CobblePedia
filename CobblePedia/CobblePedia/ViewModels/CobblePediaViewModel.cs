@@ -3,13 +3,20 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
+    using Microsoft.UI.Dispatching;
+
     internal partial class CobblePediaViewModel : ObservableObject
     {
+        // Ajouter en début de classe
+        private AsyncPokemonLoader? pokemonLoader;
+        private bool isLoadingPokemon = false;
+
         public ObservableCollection<SearchableObjectViewModel> TypeViewModels { get; }
         public ObservableCollection<SearchableObjectViewModel> PokemonViewModels { get; }
         public ObservableCollection<SearchableObjectViewModel> TrainerViewModels { get; }
@@ -66,41 +73,41 @@
             searchableObjects = new List<SearchableObjectViewModel>();
             searchableObjects.Add(new SearchableObjectViewModel());
 
-            foreach (PokemonType item in CobblePedia.Pedia.Types.Values)
+            foreach (PokemonType item in CobblePediaModel.Pedia.Types.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
-            foreach (Pokemon item in CobblePedia.Pedia.Pokemon.Values)
+            foreach (Pokemon item in CobblePediaModel.Pedia.Pokemons.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
-            foreach (Trainer item in CobblePedia.Pedia.Trainers.Values)
+            foreach (Trainer item in CobblePediaModel.Pedia.Trainers.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
-            foreach (Move item in CobblePedia.Pedia.Moves.Values)
+            foreach (Move item in CobblePediaModel.Pedia.Moves.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
 
             // -------------------------------------------------
-            maxBaseAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseAttack);
-            maxBaseDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseDefence);
-            maxBaseHP = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseHP);
-            maxBaseSpecialAttack = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialAttack);
-            maxBaseSpecialDefence = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialDefence);
-            maxBaseSpeed = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseSpeed);
+            maxBaseAttack = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseAttack);
+            maxBaseDefence = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseDefence);
+            maxBaseHP = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseHP);
+            maxBaseSpecialAttack = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialAttack);
+            maxBaseSpecialDefence = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseSpecialDefence);
+            maxBaseSpeed = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseSpeed);
 
-            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
-            maxBaseTotal = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
+            maxBaseTotal = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
+            maxBaseTotal = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.BaseTotal);
 
-            maxHeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Height);
-            maxWeight = CobblePedia.Pedia.Pokemon.Values.Where(item => !item.IsForm).Max(item => item.Weight);
+            maxHeight = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.Height);
+            maxWeight = CobblePediaModel.Pedia.Pokemons.Values.Where(item => !item.IsForm).Max(item => item.Weight);
 
             // -------------------------------------------------
             // Génération
             generations = new Dictionary<string, GenerationViewModel>();
-            foreach (Generation item in CobblePedia.Pedia.Generations.Values)
+            foreach (Generation item in CobblePediaModel.Pedia.Generations.Values)
             {
                 generations.Add(item.GenerationId, new GenerationViewModel(item));
             }
@@ -108,14 +115,18 @@
             // -------------------------------------------------
             // EggGroups
             eggGroups = new Dictionary<string, EggGroupViewModel>();
-            foreach (EggGroup item in CobblePedia.Pedia.EggGroups.Values)
+            foreach (EggGroup item in CobblePediaModel.Pedia.EggGroups.Values)
             {
                 eggGroups.Add(item.EggGroupId, new EggGroupViewModel(item));
             }
 
             // -------------------------------------------------
+            //this.TypeViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@type"));
+            //this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@pokemon" && !((Pokemon)item.Source).IsForm));
+            //this.TrainerViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@trainer"));
+
+            this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>();
             this.TypeViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@type"));
-            this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@pokemon" && !((Pokemon)item.Source).IsForm));
             this.TrainerViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@trainer"));
 
             // -------------------------------------------------
@@ -137,7 +148,7 @@
             }
             else
             {
-                SelectedTypeInList = new SearchableObjectViewModel(CobblePedia.Pedia.Types[typeId]);
+                SelectedTypeInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Types[typeId]);
 
             }
             if (pokemonId == null)
@@ -146,7 +157,7 @@
             }
             else
             {
-                SelectedPokemonInList = new SearchableObjectViewModel(CobblePedia.Pedia.Pokemon[pokemonId]);
+                SelectedPokemonInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Pokemons[pokemonId]);
             }
             if (trainerId == null)
             {
@@ -154,8 +165,26 @@
             }
             else
             {
-                SelectedTrainerInList = new SearchableObjectViewModel(CobblePedia.Pedia.Trainers[trainerId]);
+                SelectedTrainerInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Trainers[trainerId]);
             }
+        }
+
+        internal async Task LoadPokemonAsync()
+        {
+            if (isLoadingPokemon) return;
+
+            isLoadingPokemon = true;
+
+            var dispatcher = DispatcherQueue.GetForCurrentThread();
+            pokemonLoader = new AsyncPokemonLoader(dispatcher);
+
+            var pokemonToLoad = searchableObjects
+                .Where(item => item.KeyType == "@pokemon" && !((Pokemon)item.Source).IsForm)
+                .ToList();
+
+            await pokemonLoader.LoadPokemonAsync(PokemonViewModels, pokemonToLoad);
+
+            isLoadingPokemon = false;
         }
 
         internal SearchableObjectViewModel GetSearchableObjectViewModel(string objectId, string keyType)

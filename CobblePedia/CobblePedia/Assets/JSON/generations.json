@@ -1,0 +1,47 @@
+{
+  "gen1": {
+    "GenerationId": "gen1",
+    "Region": "kanto",
+    "KeyName": "Gen_gen1"
+  },
+  "gen2": {
+    "GenerationId": "gen2",
+    "Region": "johto",
+    "KeyName": "Gen_gen2"
+  },
+  "gen3": {
+    "GenerationId": "gen3",
+    "Region": "hoenn",
+    "KeyName": "Gen_gen3"
+  },
+  "gen4": {
+    "GenerationId": "gen4",
+    "Region": "sinnoh",
+    "KeyName": "Gen_gen4"
+  },
+  "gen5": {
+    "GenerationId": "gen5",
+    "Region": "unova",
+    "KeyName": "Gen_gen5"
+  },
+  "gen6": {
+    "GenerationId": "gen6",
+    "Region": "kalos",
+    "KeyName": "Gen_gen6"
+  },
+  "gen7": {
+    "GenerationId": "gen7",
+    "Region": "alola",
+    "KeyName": "Gen_gen7"
+  },
+  "gen8": {
+    "GenerationId": "gen8",
+    "Region": "galar",
+    "KeyName": "Gen_gen8"
+  },
+  "gen9": {
+    "GenerationId": "gen9",
+    "Region": "paldea",
+    "KeyName": "Gen_gen9"
+  }
+}

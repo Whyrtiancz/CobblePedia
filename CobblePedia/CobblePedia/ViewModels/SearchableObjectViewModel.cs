@@ -46,7 +46,7 @@
             ViewType = "CobblePedia.Views.PokemonView";
 
             string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
             SetLanguage(language);
         }
 
@@ -61,7 +61,7 @@
             ViewType = "CobblePedia.Views.TypeView";
 
             string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
             SetLanguage(language);
         }
 
@@ -76,7 +76,7 @@
             ViewType = "CobblePedia.Views.TrainerView";
 
             string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
             SetLanguage(language);
         }
         public SearchableObjectViewModel(Move move)
@@ -90,7 +90,7 @@
             ViewType = string.Empty;
 
             string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, CobblePedia.Pedia.Translations[language][keyName]).ToLower();
+            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
             SetLanguage(language);
         }
 
@@ -137,7 +137,7 @@
                 return;
             }
 
-            Name = CobblePedia.Pedia.Translations[language][keyName];
+            Name = CobblePediaModel.Pedia.Translations[language][keyName];
             SearchLabel = string.Format("{0} {1}", KeyType, Name);
         }
 

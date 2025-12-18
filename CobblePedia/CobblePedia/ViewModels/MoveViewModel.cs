@@ -70,22 +70,22 @@
 
         internal void SetLanguage(string language)
         {
-            Name = CobblePedia.Pedia.Translations[language][translationKey];
-            Effect = CobblePedia.Pedia.Translations[language][translationEffectKey];
-            Flavor = CobblePedia.Pedia.Translations[language][translationFlavorKey];
+            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
+            Effect = CobblePediaModel.Pedia.Translations[language][translationEffectKey];
+            Flavor = CobblePediaModel.Pedia.Translations[language][translationFlavorKey];
             switch (moveLearnType)
             {
                 case EMoveLearnType.Level:
-                    Description = string.Format(CobblePedia.Pedia.Translations[language]["Moves_Level"], AtLevel);
+                    Description = string.Format(CobblePediaModel.Pedia.Translations[language]["Moves_Level"], AtLevel);
                     break;
                 case EMoveLearnType.Egg:
-                    Description = CobblePedia.Pedia.Translations[language]["Moves_Egg"];
+                    Description = CobblePediaModel.Pedia.Translations[language]["Moves_Egg"];
                     break;
                 case EMoveLearnType.CT_CM:
-                    Description = CobblePedia.Pedia.Translations[language]["Moves_TM"];
+                    Description = CobblePediaModel.Pedia.Translations[language]["Moves_TM"];
                     break;
                 case EMoveLearnType.Tutor:
-                    Description = CobblePedia.Pedia.Translations[language]["Moves_Tutor"];
+                    Description = CobblePediaModel.Pedia.Translations[language]["Moves_Tutor"];
                     break;
                 default:
                     Description = string.Empty;

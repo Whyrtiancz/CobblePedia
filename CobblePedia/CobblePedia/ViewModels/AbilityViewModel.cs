@@ -21,7 +21,7 @@
 
         public AbilityViewModel(PokemonAbility source)
         {
-            Ability ability = CobblePedia.Pedia.Abilities[source.AbilityId];
+            Ability ability = CobblePediaModel.Pedia.Abilities[source.AbilityId];
 
             translationKey = ability.KeyName;
             translationEffectKey = ability.KeyEffect;
@@ -44,9 +44,9 @@
 
         internal void SetLanguage(string language)
         {
-            Name = CobblePedia.Pedia.Translations[language][translationKey];
-            Effect = CobblePedia.Pedia.Translations[language][translationEffectKey];
-            Flavor = CobblePedia.Pedia.Translations[language][translationFlavorKey];
+            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
+            Effect = CobblePediaModel.Pedia.Translations[language][translationEffectKey];
+            Flavor = CobblePediaModel.Pedia.Translations[language][translationFlavorKey];
         }
     }
 }

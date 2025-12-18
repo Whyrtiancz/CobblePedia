@@ -1,0 +1,66 @@
+{
+  "monster": {
+    "EggGroupId": "monster",
+    "KeyName": "EggGroup_monster_Name"
+  },
+  "mineral": {
+    "EggGroupId": "mineral",
+    "KeyName": "EggGroup_mineral_Name"
+  },
+  "indeterminate": {
+    "EggGroupId": "indeterminate",
+    "KeyName": "EggGroup_indeterminate_Name"
+  },
+  "water_2": {
+    "EggGroupId": "water_2",
+    "KeyName": "EggGroup_water_2_Name"
+  },
+  "ditto": {
+    "EggGroupId": "ditto",
+    "KeyName": "EggGroup_ditto_Name"
+  },
+  "dragon": {
+    "EggGroupId": "dragon",
+    "KeyName": "EggGroup_dragon_Name"
+  },
+  "no-eggs": {
+    "EggGroupId": "no-eggs",
+    "KeyName": "EggGroup_no-eggs_Name"
+  },
+  "water_1": {
+    "EggGroupId": "water_1",
+    "KeyName": "EggGroup_water_1_Name"
+  },
+  "bug": {
+    "EggGroupId": "bug",
+    "KeyName": "EggGroup_bug_Name"
+  },
+  "flying": {
+    "EggGroupId": "flying",
+    "KeyName": "EggGroup_flying_Name"
+  },
+  "field": {
+    "EggGroupId": "field",
+    "KeyName": "EggGroup_field_Name"
+  },
+  "fairy": {
+    "EggGroupId": "fairy",
+    "KeyName": "EggGroup_fairy_Name"
+  },
+  "grass": {
+    "EggGroupId": "grass",
+    "KeyName": "EggGroup_grass_Name"
+  },
+  "human_like": {
+    "EggGroupId": "human_like",
+    "KeyName": "EggGroup_human_like_Name"
+  },
+  "water_3": {
+    "EggGroupId": "water_3",
+    "KeyName": "EggGroup_water_3_Name"
+  },
+  "amorphous": {
+    "EggGroupId": "amorphous",
+    "KeyName": "EggGroup_amorphous_Name"
+  }
+}

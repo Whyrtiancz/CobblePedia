@@ -47,7 +47,7 @@
 
             foreach (string item in pokemontypes)
             {
-                types.Add(CobblePedia.Pedia.Types[item]);
+                types.Add(CobblePediaModel.Pedia.Types[item]);
             }
 
             foreach (PokemonType item in types) 

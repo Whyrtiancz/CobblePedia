@@ -28,7 +28,7 @@
 
         internal void SetLanguage(string language)
         {
-            Name = CobblePedia.Pedia.Translations[language][translationKey];
+            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
         }
     }
 }

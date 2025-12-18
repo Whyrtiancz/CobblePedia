@@ -28,16 +28,25 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
-      <StackPanel Orientation="Horizontal">
+      <Grid Height="64" Padding="4">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="48"/>
+          <ColumnDefinition Width="128"/>
+        </Grid.ColumnDefinitions>
+
         <Image Source="{x:Bind Icon}"
-               Style="{StaticResource NormalIcon}" />
-        <StackPanel Orientation="vertical">
+           Width="48" Height="48"
+           Grid.Column="0" />
+
+        <StackPanel Grid.Column="1" 
+                VerticalAlignment="Center"
+                Margin="8,0,0,0">
           <TextBlock Text="{x:Bind Name}"
-                     Style="{StaticResource NormalIconCaption}"/>
+                 Style="{StaticResource NormalIconCaption}"/>
           <TextBlock Text="{x:Bind Label}"
-                     Style="{StaticResource MediumIconCaption}"/>
+                 Style="{StaticResource MediumIconCaption}"/>
         </StackPanel>
-      </StackPanel>
+      </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="MoveView" x:DataType="model:MoveViewModel">
@@ -116,18 +125,21 @@
                AutomationProperties.HeadingLevel="Level1" />
 
     <!-- Pokemon list -->
-    <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
-                  Style="{StaticResource LeftScrollviewer}"
-                  VerticalScrollBarVisibility="Auto"
-                  VerticalScrollMode="Auto">
+    <ListView x:Name="PokemonListview"
+          ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
+          SelectedItem="{x:Bind ViewModel.SelectedPokemonInList, Mode=TwoWay}"
+          ItemTemplate="{StaticResource PokemonSimplified}"
+          SelectionMode="Single"
+          Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
+          Margin="12,0,0,0"
+          VerticalAlignment="Stretch">
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+      </ListView.ItemContainerStyle>
+    </ListView>
 
-      <ListView x:Name="PokemonListview"
-                ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
-                SelectedItem="{x:Bind ViewModel.SelectedPokemonInList, Mode=TwoWay}"
-                ItemTemplate="{StaticResource PokemonSimplified}"
-                SelectionMode="Single" />
-
-    </ScrollViewer>
 
     <!-- Pokemon -->
     <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.Numero}"

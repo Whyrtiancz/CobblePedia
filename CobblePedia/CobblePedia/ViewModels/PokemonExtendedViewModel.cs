@@ -129,7 +129,7 @@
             EggGroups = new ObservableCollection<EggGroupViewModel>();
             foreach (string item in source.EggGroups)
             {
-                EggGroups.Add(new EggGroupViewModel(CobblePedia.Pedia.EggGroups[item]));
+                EggGroups.Add(new EggGroupViewModel(CobblePediaModel.Pedia.EggGroups[item]));
             }
 
             switch (source.EggGroups.Count)
@@ -169,10 +169,10 @@
             preEvolutionCondition = new EvolutionViewModel();
             if (source.PreEvolutionSpeciesId != null)
             {
-                if (CobblePedia.Pedia.Pokemon.ContainsKey(source.PreEvolutionSpeciesId))
+                if (CobblePediaModel.Pedia.Pokemons.ContainsKey(source.PreEvolutionSpeciesId))
                 {
                     preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.PreEvolutionSpeciesId, "@pokemon");
-                    preEvolutionCondition = new EvolutionViewModel(CobblePedia.Pedia.Pokemon[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId)[0]);
+                    preEvolutionCondition = new EvolutionViewModel(CobblePediaModel.Pedia.Pokemons[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId)[0]);
                 }
             }
             Evolutions = new ObservableCollection<EvolutionViewModel>();
@@ -217,19 +217,19 @@
 
             foreach (PokemonMove item in source.EggMoves)
             {
-                LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Egg));
+                LeveledMoves.Add(new MoveViewModel(CobblePediaModel.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Egg));
             }
             foreach (PokemonMove item in source.LeveledMoves)
             {
-                LeveledMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], item.Level));
+                LeveledMoves.Add(new MoveViewModel(CobblePediaModel.Pedia.Moves[item.MoveId], item.Level));
             }
             foreach (PokemonMove item in source.TMMoves)
             {
-                TMMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.CT_CM));
+                TMMoves.Add(new MoveViewModel(CobblePediaModel.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.CT_CM));
             }
             foreach (PokemonMove item in source.TutorMoves)
             {
-                TutorMoves.Add(new MoveViewModel(CobblePedia.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Tutor));
+                TutorMoves.Add(new MoveViewModel(CobblePediaModel.Pedia.Moves[item.MoveId], MoveViewModel.EMoveLearnType.Tutor));
             }
 
             Drops = new ObservableCollection<DropViewModel>();
@@ -276,8 +276,8 @@
 
         internal void SetLanguage(string language)
         {
-            Name = CobblePedia.Pedia.Translations[language][keyName];
-            Description = CobblePedia.Pedia.Translations[language][keyDescription];
+            Name = CobblePediaModel.Pedia.Translations[language][keyName];
+            Description = CobblePediaModel.Pedia.Translations[language][keyDescription];
 
             Generation.SetLanguage(language);
             PrimaryEggGroup.SetLanguage(language);

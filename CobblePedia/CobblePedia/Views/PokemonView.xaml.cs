@@ -1,6 +1,7 @@
 using CobblePedia.ViewModels;
 
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -12,20 +13,22 @@ namespace CobblePedia.Views;
 /// </summary>
 public sealed partial class PokemonView : Page
 {
-    internal CobblePediaViewModel ViewModel
-    {
-        get
-        {
-            return CobblePediaViewModel.Model;
-        }
-    }
+    internal CobblePediaViewModel ViewModel => CobblePediaViewModel.Model;
 
     public PokemonView()
     {
-        InitializeComponent();
-
+        this.InitializeComponent();
         PokemonListview.SelectionChanged += PokemonListview_SelectionChanged;
-        //this.DataContext = ViewModel;
+    }
+
+    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        if (ViewModel.PokemonViewModels.Count == 0)
+        {
+            await ViewModel.LoadPokemonAsync();
+        }
     }
 
     private void PokemonListview_SelectionChanged(object sender, SelectionChangedEventArgs e)

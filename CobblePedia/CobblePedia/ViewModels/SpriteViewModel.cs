@@ -39,22 +39,22 @@
             switch (spriteCategory)
             {
                 case SpriteCategory.Default:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteDefault"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteDefault"];
                     break;
                 case SpriteCategory.Male:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteMale"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteMale"];
                     break;
                 case SpriteCategory.Female:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteFemale"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteFemale"];
                     break;
                 case SpriteCategory.DefaultShiny:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteDefaultShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteDefaultShiny"];
                     break;
                 case SpriteCategory.MaleShiny:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteMaleShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteMaleShiny"];
                     break;
                 case SpriteCategory.FemaleShiny:
-                    Name = CobblePedia.Pedia.Translations[language]["SpriteFemaleShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteFemaleShiny"];
                     break;
             }
         }
