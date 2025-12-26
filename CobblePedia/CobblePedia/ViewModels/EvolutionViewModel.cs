@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -41,27 +42,27 @@
 
             evolveTo = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.EvolveTo, "@pokemon");
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
             switch (methodValue)
             {
                 case "level_up":
-                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minLevel);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][methodKey], minLevel);
                     break;
                 case "friendship":
-                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minFriendship);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][methodKey], minFriendship);
                     break;
                 case "battle_critical_hits":
-                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], minBattleCriticalHits);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][methodKey], minBattleCriticalHits);
                     break;
                 case "item_interact":
-                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], CobblePediaModel.Pedia.Translations[language][itemKey]);
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][methodKey], CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][itemKey]);
                     break;
                 case "trade":
-                    Method = string.Format(CobblePediaModel.Pedia.Translations[language][methodKey], "");
+                    Method = string.Format(CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][methodKey], "");
                     break;
             }
         }

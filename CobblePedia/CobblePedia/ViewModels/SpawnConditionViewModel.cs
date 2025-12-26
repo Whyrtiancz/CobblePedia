@@ -27,6 +27,8 @@
         [ObservableProperty] private string canSeeSky;
         [ObservableProperty] private string isRaining;
         [ObservableProperty] private string maxY;
+        [ObservableProperty] private string neededBlocks;
+        [ObservableProperty] private string antiConditions;
 
         public SpawnConditionViewModel(Spawn source)
         {
@@ -40,11 +42,13 @@
             canSeeSky = source.CanSeeSky.ToString();
             isRaining = source.IsRaining.ToString();
             maxY = source.MaxY.ToString("D2");
+            neededBlocks = string.Join(", ", source.NeededNearbyBlocks);
+            antiConditions = string.Join(", ", source.AntiConditionBiomes);
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
         }
     }

@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -39,14 +40,14 @@
             effect = string.Empty;
             flavor = string.Empty;
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
-            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
-            Effect = CobblePediaModel.Pedia.Translations[language][translationEffectKey];
-            Flavor = CobblePediaModel.Pedia.Translations[language][translationFlavorKey];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationKey];
+            Effect = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationEffectKey];
+            Flavor = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationFlavorKey];
         }
     }
 }

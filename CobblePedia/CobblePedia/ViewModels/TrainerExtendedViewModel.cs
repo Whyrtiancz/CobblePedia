@@ -2,6 +2,7 @@
 {
     using System.Collections.ObjectModel;
 
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -79,14 +80,14 @@
             BiomeTagWhiteList = new ObservableCollection<string>(source.BiomeTagWhiteList);
             RequiredDefeats = new ObservableCollection<string>(source.RequiredDefeats);
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
-            Name = CobblePediaModel.Pedia.Translations[language][KeyName];
-            Series = CobblePediaModel.Pedia.Translations[language][serieKey];
-            TrainerType = CobblePediaModel.Pedia.Translations[language][trainerTypeKey];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][KeyName];
+            Series = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][serieKey];
+            TrainerType = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][trainerTypeKey];
         }
     }
 }

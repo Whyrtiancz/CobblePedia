@@ -55,11 +55,31 @@
     <Setter Property="HorizontalAlignment" Value="Left" />
   </Style>
   
-  <!-- PokemonView -->
-  <Style x:Key="PokemonName"
+  <!-- Items Views -->
+  <Style x:Key="ItemName"
+         TargetType="TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,4,0,0" />
+  </Style>
+
+  <Style x:Key="ItemLabel"
          TargetType="TextBlock">
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="Margin" Value="4,0,0,0" />
+    <Setter Property="FontSize" Value="12epx" />
+  </Style>
+
+  <Style x:Key="ItemMediumIcon"
+         TargetType="Image">
+    <Setter Property="Height" Value="48" />
+    <Setter Property="Width" Value="48" />
+    <Setter Property="Margin" Value="0,2" />
+  </Style>
+
+  <Style x:Key="PokemonName"
+         TargetType="TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,4,0,0" />
   </Style>
 
   <Style x:Key="PokemonNumber"

@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -23,12 +24,12 @@
             chance = string.Format("{0:P1}", percentage / 100F);
             icon = string.Format(Properties.Resources.ItemPicture, name.Substring(name.IndexOf(':') + 1));
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
-            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationKey];
         }
     }
 }

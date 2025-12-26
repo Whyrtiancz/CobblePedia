@@ -51,8 +51,6 @@
             CheckTrainersTeam();
             CheckMoves();
             Save();
-
-            CobblePedia pedia = CobblePedia.Pedia;
         }
 
         private void LoadCustomL10N()

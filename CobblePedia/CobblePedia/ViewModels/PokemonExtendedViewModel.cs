@@ -3,6 +3,7 @@
     using System.Collections.ObjectModel;
     using System.Reflection;
 
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -252,7 +253,7 @@
 
             isDynamaxBlocked = source.IsDynamaxBlocked;
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
         private int GetWeightIndex(int weight) => weight switch
@@ -274,34 +275,32 @@
         };
 
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
-            Name = CobblePediaModel.Pedia.Translations[language][keyName];
-            Description = CobblePediaModel.Pedia.Translations[language][keyDescription];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyName];
+            Description = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyDescription];
 
-            Generation.SetLanguage(language);
-            PrimaryEggGroup.SetLanguage(language);
-            SecondaryEggGroup.SetLanguage(language);
+            Generation.SetLanguage();
 
             foreach (EggGroupViewModel item in EggGroups)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
             foreach (SpriteViewModel item in Sprites)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
             foreach (AbilityViewModel item in Abilities)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
             foreach (DropViewModel item in Drops)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
             foreach (SpawnConditionViewModel item in Spawns)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
 
             if (!IsBreedable)

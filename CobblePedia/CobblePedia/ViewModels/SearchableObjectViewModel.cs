@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -45,9 +46,8 @@
             icon = string.Format(Properties.Resources.PokemonPicturePath, pokemon.Picture.FrontDefault);
             ViewType = "CobblePedia.Views.PokemonView";
 
-            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
-            SetLanguage(language);
+            searchValues = string.Join("|", ObjectId, pokemon.NationalPokedexNumber.ToString("D4"), CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyName]).ToLower();
+            SetLanguage();
         }
 
         public SearchableObjectViewModel(PokemonType pokemonType)
@@ -60,9 +60,8 @@
             icon = string.Format(Properties.Resources.TypeIconPath, pokemonType.TypeId);
             ViewType = "CobblePedia.Views.TypeView";
 
-            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
-            SetLanguage(language);
+            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyName]).ToLower();
+            SetLanguage();
         }
 
         public SearchableObjectViewModel(Trainer trainer)
@@ -74,10 +73,9 @@
             label = string.Join(",", trainer.Series);
             icon = "/Assets/Trainers/default.png";
             ViewType = "CobblePedia.Views.TrainerView";
-
-            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
-            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
-            SetLanguage(language);
+            
+            searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyName]).ToLower();
+            SetLanguage();
         }
         public SearchableObjectViewModel(Move move)
         {
@@ -89,9 +87,9 @@
             icon = string.Format(Properties.Resources.TypeIconPath, move.MoveType);
             ViewType = string.Empty;
 
-            string language = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"];
+            string language = SettingsHelper.GetDataLanguage();
             searchValues = string.Join("|", ObjectId, CobblePediaModel.Pedia.Translations[language][keyName]).ToLower();
-            SetLanguage(language);
+            SetLanguage();
         }
 
         public bool IsElligible(string searchPattern)
@@ -130,14 +128,14 @@
             return isElligible;
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
             if (Source == null)
             {
                 return;
             }
 
-            Name = CobblePediaModel.Pedia.Translations[language][keyName];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][keyName];
             SearchLabel = string.Format("{0} {1}", KeyType, Name);
         }
 
@@ -148,15 +146,15 @@
             switch (KeyType)
             {
                 case "@type":
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] = ObjectId;
+                    SettingsHelper.SetSelectedType(ObjectId);
                     result = new TypeExtendedViewModel(ObjectId, false);
                     break;
                 case "@pokemon":
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedPokemon"] = ObjectId;
+                    SettingsHelper.SetSelectedPokemon(ObjectId);
                     result = new PokemonExtendedViewModel(Source as Pokemon);
                     break;
                 case "@trainer":
-                    Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedTrainer"] = ObjectId;
+                    SettingsHelper.SetSelectedTrainer(ObjectId);
                     result = new TrainerExtendedViewModel(Source as Trainer);
                     break;
                 case "@move":

@@ -8,6 +8,7 @@ namespace CobblePedia
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CobblePedia.Helpers;
     using CobblePedia.ViewModels;
     using CobblePedia.Views;
 
@@ -40,21 +41,7 @@ namespace CobblePedia
             {
                 this.Root.RequestedTheme = (ElementTheme)themeIndex.Value;
             }
-            string? applicationLanguage = Windows.Storage.ApplicationData.Current.LocalSettings.Values["ApplicationLanguage"] as string;
-            if (applicationLanguage is "en-US" or "fr-FR")
-            {
-                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = applicationLanguage;
-            }
-            string? dataLanguage = Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"] as string;
-            switch (dataLanguage)
-            {
-                case "fr":
-                    CobblePediaViewModel.Model.SetFR();
-                    break;
-                default:
-                    CobblePediaViewModel.Model.SetEN();
-                    break;
-            }
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = SettingsHelper.GetApplicationLanguage();
 
             this.ExtendsContentIntoTitleBar = true;
             this.AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Tall;

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -31,30 +32,30 @@
             frontSprite = string.Format(Properties.Resources.PokemonPicturePath, front);
             backSprite = string.Format(Properties.Resources.PokemonPicturePath, back);
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
             switch (spriteCategory)
             {
                 case SpriteCategory.Default:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteDefault"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteDefault"];
                     break;
                 case SpriteCategory.Male:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteMale"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteMale"];
                     break;
                 case SpriteCategory.Female:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteFemale"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteFemale"];
                     break;
                 case SpriteCategory.DefaultShiny:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteDefaultShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteDefaultShiny"];
                     break;
                 case SpriteCategory.MaleShiny:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteMaleShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteMaleShiny"];
                     break;
                 case SpriteCategory.FemaleShiny:
-                    Name = CobblePediaModel.Pedia.Translations[language]["SpriteFemaleShiny"];
+                    Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()]["SpriteFemaleShiny"];
                     break;
             }
         }

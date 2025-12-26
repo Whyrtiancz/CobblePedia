@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -24,15 +25,15 @@
             name = item;
             icon = string.Format(Properties.Resources.ItemPicture, item.Substring(item.IndexOf(':') + 1));
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
             if (translationKey == string.Empty)
                 return;
 
-            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationKey];
         }
     }
 }

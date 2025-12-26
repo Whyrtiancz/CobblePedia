@@ -18,7 +18,7 @@ public sealed partial class PokemonView : Page
     public PokemonView()
     {
         this.InitializeComponent();
-        PokemonListview.SelectionChanged += PokemonListview_SelectionChanged;
+        //PokemonListview.SelectionChanged += PokemonListview_SelectionChanged;
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -31,11 +31,11 @@ public sealed partial class PokemonView : Page
         }
     }
 
-    private void PokemonListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (ViewModel.SelectedPokemonInList != null & PokemonListview.Items.Count > 0)
-        {
-            PokemonListview.ScrollIntoView(ViewModel.SelectedPokemonInList, ScrollIntoViewAlignment.Leading);
-        }
-    }
+    //private void PokemonListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //    if (ViewModel.SelectedPokemonInList != null & PokemonListview.Items.Count > 0)
+    //    {
+    //        PokemonListview.ScrollIntoView(ViewModel.SelectedPokemonInList, ScrollIntoViewAlignment.Leading);
+    //    }
+    //}
 }

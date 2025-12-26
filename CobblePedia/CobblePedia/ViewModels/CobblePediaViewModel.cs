@@ -5,7 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
+    using CobblePedia.Views;
 
     using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -13,9 +15,10 @@
 
     internal partial class CobblePediaViewModel : ObservableObject
     {
-        // Ajouter en début de classe
         private AsyncPokemonLoader? pokemonLoader;
         private bool isLoadingPokemon = false;
+        private AsyncTrainerLoader? trainerLoader;
+        private bool isLoadingTrainer = false;
 
         public ObservableCollection<SearchableObjectViewModel> TypeViewModels { get; }
         public ObservableCollection<SearchableObjectViewModel> PokemonViewModels { get; }
@@ -71,9 +74,13 @@
         {
             // -------------------------------------------------
             searchableObjects = new List<SearchableObjectViewModel>();
-            searchableObjects.Add(new SearchableObjectViewModel());
+            searchableObjects.Add(new SearchableObjectViewModel()); // Empty object for empty damage types
 
             foreach (PokemonType item in CobblePediaModel.Pedia.Types.Values)
+            {
+                searchableObjects.Add(new SearchableObjectViewModel(item));
+            }
+            foreach (Move item in CobblePediaModel.Pedia.Moves.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
@@ -82,10 +89,6 @@
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
             foreach (Trainer item in CobblePediaModel.Pedia.Trainers.Values)
-            {
-                searchableObjects.Add(new SearchableObjectViewModel(item));
-            }
-            foreach (Move item in CobblePediaModel.Pedia.Moves.Values)
             {
                 searchableObjects.Add(new SearchableObjectViewModel(item));
             }
@@ -121,16 +124,9 @@
             }
 
             // -------------------------------------------------
-            //this.TypeViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@type"));
-            //this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@pokemon" && !((Pokemon)item.Source).IsForm));
-            //this.TrainerViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@trainer"));
-
             this.PokemonViewModels = new ObservableCollection<SearchableObjectViewModel>();
             this.TypeViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@type"));
             this.TrainerViewModels = new ObservableCollection<SearchableObjectViewModel>(searchableObjects.Where(item => item.KeyType == "@trainer"));
-
-            // -------------------------------------------------
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
 
             // -------------------------------------------------
             PropertyChanged += CobblePediaViewModel_PropertyChanged;
@@ -138,35 +134,9 @@
 
         internal void Initialize()
         {
-            string? typeId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedType"] as string;
-            string? pokemonId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["SelectedPokemon"] as string;
-            string? trainerId = Windows.Storage.ApplicationData.Current.LocalSettings.Values["Selectedtrainer"] as string;
-
-            if (typeId == null)
-            {
-                SelectedTypeInList = TypeViewModels.First();
-            }
-            else
-            {
-                SelectedTypeInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Types[typeId]);
-
-            }
-            if (pokemonId == null)
-            {
-                SelectedPokemonInList = PokemonViewModels.First();
-            }
-            else
-            {
-                SelectedPokemonInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Pokemons[pokemonId]);
-            }
-            if (trainerId == null)
-            {
-                SelectedTrainerInList = TrainerViewModels.First();
-            }
-            else
-            {
-                SelectedTrainerInList = new SearchableObjectViewModel(CobblePediaModel.Pedia.Trainers[trainerId]);
-            }
+            SelectedType = new TypeExtendedViewModel(SettingsHelper.GetSelectedType(), false);
+            SelectedPokemon = new PokemonExtendedViewModel(CobblePediaModel.Pedia.Pokemons[SettingsHelper.GetSelectedPokemon()]);
+            SelectedTrainer = new TrainerExtendedViewModel(CobblePediaModel.Pedia.Trainers[SettingsHelper.GetSelectedTrainer()]);
         }
 
         internal async Task LoadPokemonAsync()
@@ -185,6 +155,24 @@
             await pokemonLoader.LoadPokemonAsync(PokemonViewModels, pokemonToLoad);
 
             isLoadingPokemon = false;
+        }
+
+        internal async Task LoadTrainerAsync()
+        {
+            if (isLoadingTrainer) return;
+
+            isLoadingTrainer= true;
+
+            var dispatcher = DispatcherQueue.GetForCurrentThread();
+            trainerLoader = new AsyncTrainerLoader(dispatcher);
+
+            var trainerToLoad = searchableObjects
+                .Where(item => item.KeyType == "@trainer")
+                .ToList();
+
+            await trainerLoader.LoadTrainerAsync(TrainerViewModels, trainerToLoad);
+
+            isLoadingTrainer = false;
         }
 
         internal SearchableObjectViewModel GetSearchableObjectViewModel(string objectId, string keyType)
@@ -206,25 +194,25 @@
         }
 
         #region Data Language
-        internal void SetFR()
-        {
-            SetLanguage("fr");
-        }
+        //internal void SetFR()
+        //{
+        //    SetLanguage("fr");
+        //}
 
-        internal void SetEN()
-        {
-            SetLanguage("en");
-        }
+        //internal void SetEN()
+        //{
+        //    SetLanguage("en");
+        //}
 
-        private void SetLanguage(string language)
+        private void SetLanguage()
         {
             foreach (GenerationViewModel item in this.generations.Values)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
             foreach (SearchableObjectViewModel item in this.searchableObjects)
             {
-                item.SetLanguage(language);
+                item.SetLanguage();
             }
         }
         #endregion Data Language

@@ -22,13 +22,12 @@
     <DataTemplate x:Key="SimplifiedTrainerTemplate" x:DataType="model:SearchableObjectViewModel">
       <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"
-                     Style="{StaticResource PokemonIcon}" />
+                     Style="{StaticResource ItemMediumIcon}" />
         <StackPanel Orientation="vertical">
           <TextBlock Text="{x:Bind Name}"
-                           Style="{StaticResource PokemonName}"/>
+                           Style="{StaticResource ItemName}"/>
           <TextBlock Text="{x:Bind Label}"
-                           FontSize="12epx"
-                           Style="{StaticResource PokemonName}"/>
+                           Style="{StaticResource ItemLabel}"/>
         </StackPanel>
       </StackPanel>
     </DataTemplate>
@@ -60,18 +59,20 @@
                Margin="{ThemeResource TitleBarTitleMargin}"
                AutomationProperties.HeadingLevel="Level1" />
 
-    <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
-                  Style="{StaticResource LeftScrollviewer}"
-                  VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
-      <Border>
-        <ListView Style="{StaticResource LeftListView}"
-                  SelectionMode="Single"
-                  ItemsSource="{x:Bind ViewModel.TrainerViewModels}"
-                  ItemTemplate="{StaticResource SimplifiedTrainerTemplate}"
-                  SelectedItem="{x:Bind ViewModel.SelectedTrainerInList, Mode=TwoWay}">
-        </ListView>
-      </Border>
-    </ScrollViewer>
+    <ListView Style="{StaticResource LeftListView}"
+              Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+              SelectionMode="Single"
+              ItemTemplate="{StaticResource SimplifiedTrainerTemplate}"
+              ItemsSource="{x:Bind ViewModel.TrainerViewModels}"
+              SelectedItem="{x:Bind ViewModel.SelectedTrainerInList, Mode=TwoWay}"
+              Margin="12,0,0,0"
+              VerticalAlignment="Stretch">
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+      </ListView.ItemContainerStyle>
+    </ListView>
 
     <!-- Type sélectionné -->
     <TextBlock Text="{x:Bind ViewModel.SelectedTrainer.Name}"

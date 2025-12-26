@@ -219,7 +219,7 @@
 
         public List<Evolution> GetEvolutionTo(string evolveTo)
         {
-            return Evolutions.Where(item => item.EvolveTo == evolveTo).ToList();
+            return Evolutions.Where(item => item.EvolveTo.Contains(evolveTo)).ToList();
         }
     }
 }

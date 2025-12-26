@@ -1,7 +1,11 @@
+using CobblePedia.Helpers;
 using CobblePedia.ViewModels;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+
+using Newtonsoft.Json.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,33 +29,9 @@ public sealed partial class Settings : Page
     {
         InitializeComponent();
 
-        int? value = Windows.Storage.ApplicationData.Current.LocalSettings.Values["ApplicationLanguageIndex"] as int?;
-        if (value is 0 or 1)
-        {
-            ApplicationLanguageComboBox.SelectedIndex = (int)value;
-        }
-        else
-        {
-            ApplicationLanguageComboBox.SelectedIndex = 0;
-        }
-        value = Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguageIndex"] as int?;
-        if (value is 0 or 1)
-        {
-            DataLanguageComboBox.SelectedIndex = (int)value;
-        }
-        else
-        {
-            DataLanguageComboBox.SelectedIndex = 0;
-        }
-        value = Windows.Storage.ApplicationData.Current.LocalSettings.Values["themeIndex"] as int?;
-        if (value is 0 or 1)
-        {
-            ThemeComboBox.SelectedIndex = (int)value;
-        }
-        else
-        {
-            ThemeComboBox.SelectedIndex = 0;
-        }
+        ApplicationLanguageComboBox.SelectedValue = SettingsHelper.GetApplicationLanguage();
+        DataLanguageComboBox.SelectedValue = SettingsHelper.GetDataLanguage();
+        ThemeComboBox.SelectedIndex = SettingsHelper.GetTheme();
     }
 
     private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,8 +50,7 @@ public sealed partial class Settings : Page
         if (root != null)
         {
             root.RequestedTheme = theme;
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values["Theme"] = ((int)theme);
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values["themeIndex"] = ((ComboBox)sender).SelectedIndex;
+            SettingsHelper.SetTheme((int)theme);
         }
     }
 
@@ -88,8 +67,7 @@ public sealed partial class Settings : Page
                 break;
         }
         App.Window.SetLanguage(language);
-        Windows.Storage.ApplicationData.Current.LocalSettings.Values["ApplicationLanguage"] = language;
-        Windows.Storage.ApplicationData.Current.LocalSettings.Values["ApplicationLanguageIndex"] = ((ComboBox)sender).SelectedIndex;
+        SettingsHelper.SetApplicationLanguage(language);
     }
 
     private void DataLanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,14 +76,11 @@ public sealed partial class Settings : Page
         switch (((ComboBox)sender).SelectedIndex)
         {
             case 0:
-                CobblePediaViewModel.Model.SetFR();
-                language = "fr";
+                SettingsHelper.SetDataLanguage("en");
                 break;
             case 1:
-                CobblePediaViewModel.Model.SetEN();
+                SettingsHelper.SetDataLanguage("fr");
                 break;
         }
-        Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"] = language;
-        Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguageIndex"] = ((ComboBox)sender).SelectedIndex;
     }
 }

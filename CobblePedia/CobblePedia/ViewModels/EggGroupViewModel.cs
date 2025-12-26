@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using CobblePedia.Helpers;
     using CobblePedia.Models;
 
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -23,15 +24,15 @@
             translationKey = source.KeyName;
             eggIcon = string.Format(Properties.Resources.EggGroupPicture, source.EggGroupId);
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
             if (translationKey == string.Empty)
                 return;
 
-            Name = CobblePediaModel.Pedia.Translations[language][translationKey];
+            Name = CobblePediaModel.Pedia.Translations[SettingsHelper.GetDataLanguage()][translationKey];
         }
     }
 

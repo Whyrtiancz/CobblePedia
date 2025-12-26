@@ -64,8 +64,8 @@
                       Margin="0,0,16,0"
                       Grid.Column="2" Grid.Row="0"
                       SelectionChanged="ApplicationLanguageComboBox_SelectionChanged">
-              <ComboBoxItem x:Uid="Language-fr-FR" Tag="fr-FR"/>
               <ComboBoxItem x:Uid="Language-en-US" Tag="en-US"/>
+              <ComboBoxItem x:Uid="Language-fr-FR" Tag="fr-FR"/>
             </ComboBox>
           </Grid>
           <Grid Style="{StaticResource CardSettings}">
@@ -98,8 +98,8 @@
                       Margin="0,0,16,0"
                       Grid.Column="2" Grid.Row="0"
                       SelectionChanged="DataLanguageComboBox_SelectionChanged">
-              <ComboBoxItem x:Uid="Language-fr-FR" Tag="fr-FR"/>
               <ComboBoxItem x:Uid="Language-en-US" Tag="en-US"/>
+              <ComboBoxItem x:Uid="Language-fr-FR" Tag="fr-FR"/>
             </ComboBox>
           </Grid>
           <Grid Style="{StaticResource CardSettings}">

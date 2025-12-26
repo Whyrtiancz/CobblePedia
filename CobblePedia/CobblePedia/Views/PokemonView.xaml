@@ -28,25 +28,16 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
-      <Grid Height="64" Padding="4">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="48"/>
-          <ColumnDefinition Width="128"/>
-        </Grid.ColumnDefinitions>
-
+      <StackPanel Orientation="Horizontal">
         <Image Source="{x:Bind Icon}"
-           Width="48" Height="48"
-           Grid.Column="0" />
-
-        <StackPanel Grid.Column="1" 
-                VerticalAlignment="Center"
-                Margin="8,0,0,0">
+                     Style="{StaticResource ItemMediumIcon}" />
+        <StackPanel Orientation="vertical">
           <TextBlock Text="{x:Bind Name}"
-                 Style="{StaticResource NormalIconCaption}"/>
+                           Style="{StaticResource ItemName}"/>
           <TextBlock Text="{x:Bind Label}"
-                 Style="{StaticResource MediumIconCaption}"/>
+                           Style="{StaticResource ItemLabel}"/>
         </StackPanel>
-      </Grid>
+      </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="MoveView" x:DataType="model:MoveViewModel">
@@ -367,19 +358,6 @@
                             ItemTemplate="{StaticResource EggGroupItem}"
                             Margin="0, 0, 0, 8"
                             HorizontalAlignment="Right" VerticalAlignment="Center" />
-                  <StackPanel Orientation="Horizontal">
-                    <Image Source="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.EggIcon}"
-                       Style="{StaticResource TypeIcon}" />
-                    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.PrimaryEggGroup.Name}"
-                           Style="{StaticResource EggGroupName}"/>
-                  </StackPanel>
-                  <StackPanel Orientation="Horizontal">
-                    <Image Source="{x:Bind ViewModel.SelectedPokemon.SecondaryEggGroup.EggIcon}"
-                       Style="{StaticResource TypeIcon}" />
-                    <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.SecondaryEggGroup.Name}"
-                           Style="{StaticResource EggGroupName}"/>
-
-                  </StackPanel>
                   <TextBlock Text="{x:Bind ViewModel.SelectedPokemon.EggCycles}" />
                 </StackPanel>
               </Border>
@@ -493,19 +471,39 @@
 
                 <ItemsRepeater.ItemTemplate>
                   <DataTemplate x:DataType="model:SpawnConditionViewModel">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto,*"
-                          RowDefinitions="Auto,Auto,*"
+                    <Grid ColumnDefinitions="1*,3*,1*,3*,1*,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
                           Padding="4" Margin="4">
-                      <Image Grid.Column="0" Source="{x:Bind Context}" Width="16" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind Bucket}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="2" Grid.Row="0" Text="{x:Bind Presets}" Margin="8,0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="3" Grid.Row="0" Text="{x:Bind Biomes}" VerticalAlignment="Center" TextWrapping="Wrap" />
-                      <TextBlock Grid.Column="1" Grid.Row="1" Text="{x:Bind CanSeeSky}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="2" Grid.Row="1" Text="{x:Bind MinSkylight}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="3" Grid.Row="1" Text="{x:Bind MaxSkyLight}" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind Level}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="2" Grid.Row="2" Text="{x:Bind IsRaining}" Margin="8, 0" VerticalAlignment="Center" />
-                      <TextBlock Grid.Column="3" Grid.Row="2" Text="{x:Bind MaxY}" VerticalAlignment="Center" />
+                      
+                      <TextBlock Grid.Column="0" Grid.Row="0" Text="Context :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Bind Context}" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="0" Text="Prérequis :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="0" Text="{x:Bind Presets}" Margin="8,0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="4" Grid.Row="0" Text="Rareté :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="5" Grid.Row="0" Text="{x:Bind Bucket}" Margin="8, 0" VerticalAlignment="Center" />
+
+                      <TextBlock Grid.Column="0" Grid.Row="1" Text="Niveaux :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="1" Text="{x:Bind Level}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="1" Text="Pluie :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="1" Text="{x:Bind IsRaining}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="4" Grid.Row="1" Text="Hauteur max. :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="5" Grid.Row="1" Text="{x:Bind MaxY}" VerticalAlignment="Center" />
+
+                      <TextBlock Grid.Column="0" Grid.Row="2" Text="Ciel visible :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="2" Text="{x:Bind CanSeeSky}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Grid.Row="2" Text="Lumière min. :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Grid.Row="2" Text="{x:Bind MinSkylight}" Margin="8, 0" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="4" Grid.Row="2" Text="Lumière max. :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="5" Grid.Row="2" Text="{x:Bind MaxSkyLight}" VerticalAlignment="Center" />
+
+                      <TextBlock Grid.Column="0" Grid.Row="3" Text="Biomes :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="3" Text="{x:Bind Biomes}" VerticalAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="4" />
+
+                      <TextBlock Grid.Column="0" Grid.Row="4" Text="Requis :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="4" Text="{x:Bind NeededBlocks}" VerticalAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="4" />
+
+                      <TextBlock Grid.Column="0" Grid.Row="5" Text="Anti :" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="1" Grid.Row="5" Text="{x:Bind AntiConditions}" VerticalAlignment="Center" TextWrapping="Wrap" Grid.ColumnSpan="4" />
                     </Grid>
                   </DataTemplate>
                 </ItemsRepeater.ItemTemplate>

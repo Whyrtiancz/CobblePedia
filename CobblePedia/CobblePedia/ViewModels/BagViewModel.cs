@@ -14,12 +14,12 @@
             item = new ItemViewModel(source.BagId);
             quantity = source.Quantity;
 
-            SetLanguage((string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["DataLanguage"]);
+            SetLanguage();
         }
 
-        internal void SetLanguage(string language)
+        internal void SetLanguage()
         {
-            item.SetLanguage(language);
+            item.SetLanguage();
         }
 
     }
