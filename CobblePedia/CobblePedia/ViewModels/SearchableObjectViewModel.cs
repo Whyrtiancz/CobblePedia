@@ -12,6 +12,7 @@
         [ObservableProperty] private string name;
         [ObservableProperty] private string icon;
         [ObservableProperty] private string label;
+        [ObservableProperty] private string extended;
         [ObservableProperty] private string searchLabel;
 
         public string ObjectId { get; private set; }
@@ -26,6 +27,7 @@
         {
             Source = null;
             name = string.Empty;
+            extended = string.Empty;
             ObjectId = string.Empty;
             keyName = string.Empty;
             KeyType = string.Empty;
@@ -41,6 +43,7 @@
             Source = pokemon;
             ObjectId = pokemon.SpeciesId;
             keyName = pokemon.KeyName;
+            extended = pokemon.Generation;
             KeyType = "@pokemon";
             label = "#" + pokemon.NationalPokedexNumber.ToString("D4");
             icon = string.Format(Properties.Resources.PokemonPicturePath, pokemon.Picture.FrontDefault);
@@ -55,6 +58,7 @@
             Source = pokemonType;
             ObjectId = pokemonType.TypeId;
             keyName = pokemonType.KeyName;
+            extended = string.Empty;
             KeyType = "@type";
             label = string.Empty;
             icon = string.Format(Properties.Resources.TypeIconPath, pokemonType.TypeId);
@@ -69,6 +73,7 @@
             Source = trainer;
             ObjectId = trainer.TrainerId;
             keyName = trainer.KeyName;
+            extended = string.Empty;
             KeyType = "@trainer";
             label = string.Join(",", trainer.Series);
             icon = "/Assets/Trainers/default.png";

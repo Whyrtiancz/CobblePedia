@@ -12,6 +12,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
 
     using Microsoft.UI.Dispatching;
+    using Microsoft.UI.Xaml.Data;
 
     internal partial class CobblePediaViewModel : ObservableObject
     {
@@ -58,6 +59,12 @@
 
         private static CobblePediaViewModel model;
 
+        private CollectionViewSource _groupedPokemonViewModels;
+        public CollectionViewSource GroupedPokemonViewModels
+        {
+            get => _groupedPokemonViewModels;
+            private set => SetProperty(ref _groupedPokemonViewModels, value);
+        }
         public static CobblePediaViewModel Model
         {
             get
@@ -154,7 +161,30 @@
 
             await pokemonLoader.LoadPokemonAsync(PokemonViewModels, pokemonToLoad);
 
+            GroupPokemonData();
+
             isLoadingPokemon = false;
+        }
+
+        private void GroupPokemonData()
+        {
+            var grouped = PokemonViewModels
+                .OrderBy(p => p.Name)
+                .GroupBy(p => p.Name.Substring(0, 1).ToUpper())
+                .OrderBy(g => g.Key);
+
+            grouped = PokemonViewModels
+                .OrderBy(p => p.Extended)
+                .GroupBy(p => p.Extended)
+                .OrderBy(g => g.Key);
+
+            GroupedPokemonViewModels = new CollectionViewSource
+            {
+                Source = grouped,
+                IsSourceGrouped = true
+            };
+
+            OnPropertyChanged(nameof(GroupedPokemonViewModels));
         }
 
         internal async Task LoadTrainerAsync()

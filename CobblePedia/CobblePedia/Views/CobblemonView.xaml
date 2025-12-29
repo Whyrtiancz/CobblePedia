@@ -35,27 +35,86 @@
       <RowDefinition Height="*" />
       <RowDefinition Height="1" />
     </Grid.RowDefinitions>
-    
+
     <TextBlock x:Uid="Cobblemon"
-               Grid.Row="0" Grid.Column="0"
-               Style="{ThemeResource TitleTextBlockStyle}"
-               Margin="{ThemeResource TitleBarTitleMargin}"
-               AutomationProperties.HeadingLevel="Level1" />
+             Grid.Row="0" Grid.Column="0"
+             Style="{ThemeResource TitleTextBlockStyle}"
+             Margin="{ThemeResource TitleBarTitleMargin}"
+             AutomationProperties.HeadingLevel="Level1" />
 
-    <GridView x:Name="StyledGrid"
-              Style="{StaticResource PageGrid}"
-              Grid.Row="1" Grid.Column="0"
-              ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
-              ItemTemplate="{StaticResource PokemonSimplified}">
+    <SemanticZoom x:Name="PokemonSemanticZoom"
+                Grid.Row="1" Grid.Column="0"
+                Style="{StaticResource PageGrid}">
 
-      <GridView.ItemsPanel>
-        <ItemsPanelTemplate>
-          <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
-                         MaximumRowsOrColumns="6"
-                         Orientation="Horizontal"/>
-        </ItemsPanelTemplate>
-      </GridView.ItemsPanel>
-    </GridView>
+      <!-- Vue Zoom In (vue détaillée) -->
+      <SemanticZoom.ZoomedInView>
+        <GridView x:Name="StyledGrid"
+                ItemsSource="{x:Bind ViewModel.GroupedPokemonViewModels.View, Mode=OneWay}"
+                ItemTemplate="{StaticResource PokemonSimplified}"
+                IsItemClickEnabled="True"
+                SelectionMode="None">
+
+          <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+              <ItemsWrapGrid MaximumRowsOrColumns="6"
+                           Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+          </GridView.ItemsPanel>
+
+          <GridView.GroupStyle>
+            <GroupStyle>
+              <GroupStyle.HeaderTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding Key}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="0,0,0,12"/>
+                </DataTemplate>
+              </GroupStyle.HeaderTemplate>
+            </GroupStyle>
+          </GridView.GroupStyle>
+        </GridView>
+      </SemanticZoom.ZoomedInView>
+
+      <!-- Vue Zoom Out (vue des groupes) -->
+      <SemanticZoom.ZoomedOutView>
+        <GridView ItemsSource="{x:Bind ViewModel.GroupedPokemonViewModels.View.CollectionGroups, Mode=OneWay}"
+                SelectionMode="None"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+          <GridView.ItemTemplate>
+            <DataTemplate>
+              <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="24"
+                    Width="200"
+                    Height="120">
+                <StackPanel VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
+                  <TextBlock Text="{Binding Group.Key}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           TextAlignment="Center"
+                           Margin="0,0,0,8"/>
+                  <TextBlock Text="{Binding Group.Count}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           TextAlignment="Center"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+              </Border>
+            </DataTemplate>
+          </GridView.ItemTemplate>
+
+          <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+              <ItemsWrapGrid MaximumRowsOrColumns="4"
+                           Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+          </GridView.ItemsPanel>
+        </GridView>
+      </SemanticZoom.ZoomedOutView>
+    </SemanticZoom>
 
   </Grid>
 </Page>
