@@ -1,5 +1,6 @@
 ﻿namespace CobblePedia.ViewModels
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Reflection;
 
@@ -173,7 +174,11 @@
                 if (CobblePediaModel.Pedia.Pokemons.ContainsKey(source.PreEvolutionSpeciesId))
                 {
                     preEvolution = CobblePediaViewModel.Model.GetSearchableObjectViewModel(source.PreEvolutionSpeciesId, "@pokemon");
-                    preEvolutionCondition = new EvolutionViewModel(CobblePediaModel.Pedia.Pokemons[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId)[0]);
+                    List<Evolution> evolutions = CobblePediaModel.Pedia.Pokemons[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId);
+                    if (evolutions.Count > 0)
+                    {
+                        preEvolutionCondition = new EvolutionViewModel(CobblePediaModel.Pedia.Pokemons[source.PreEvolutionSpeciesId].GetEvolutionTo(source.SpeciesId)[0]);
+                    }
                 }
             }
             Evolutions = new ObservableCollection<EvolutionViewModel>();

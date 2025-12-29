@@ -6,22 +6,56 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:CobblePedia.Views"
+    xmlns:model="using:CobblePedia.ViewModels"
     mc:Ignorable="d">
+
+  <Page.Resources>
+
+    <DataTemplate x:Key="PokemonSimplified" x:DataType="model:SearchableObjectViewModel">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="{x:Bind Icon}"
+               Style="{StaticResource PokemonLargeIcon}" />
+        <StackPanel Orientation="vertical">
+          <TextBlock Text="{x:Bind Name}"
+                     Style="{StaticResource ItemName}"/>
+          <TextBlock Text="{x:Bind Label}"
+                     Style="{StaticResource ItemLabel}"/>
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+
+  </Page.Resources>
 
   <Grid Style="{StaticResource PageGrid}">
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
+      <RowDefinition Height="1" />
     </Grid.RowDefinitions>
+    
     <TextBlock x:Uid="Cobblemon"
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Grid.Row="0" Grid.Column="0"
                Style="{ThemeResource TitleTextBlockStyle}"
                Margin="{ThemeResource TitleBarTitleMargin}"
                AutomationProperties.HeadingLevel="Level1" />
+
+    <GridView x:Name="StyledGrid"
+              Style="{StaticResource PageGrid}"
+              Grid.Row="1" Grid.Column="0"
+              ItemsSource="{x:Bind ViewModel.PokemonViewModels}"
+              ItemTemplate="{StaticResource PokemonSimplified}">
+
+      <GridView.ItemsPanel>
+        <ItemsPanelTemplate>
+          <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
+                         MaximumRowsOrColumns="6"
+                         Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </GridView.ItemsPanel>
+    </GridView>
+
   </Grid>
 </Page>
